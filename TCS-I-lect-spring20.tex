@@ -38,22 +38,33 @@
 
 \title{Theoretical Computer Science I}
 
+
 \date{FAMNIT, Fall 2020}
 \author{Discrete Structures for Computer Science\\}
 \maketitle
 
 \section*{Preface}
-
-Those are lecture notes for the course Theoretical Computer Science I, given to the Computer Science students at FAMNIT, University of Primorska.
+    Those are lecture notes for the course Theoretical Computer Science I, given to freshmen students at FAMNIT, University of Primorska.
 Ever since 2017 when I started teaching this course, those notes have been changing to accommodate the needs of computer science students.
-Those notes are supposed to be parsed together with explanations from the lectures. 
+Since 2020 I decided to make this TeX project public, so that every student may suggest new exercises (or solutions) to be added to those course notes. 
 
+Those notes are supposed to be parsed together with explanations from the lectures. 
 Any questions or found errors should be 
 %forwarded to \texttt{matjaz.krnc@upr.si}, or 
 raised as an issue in our public repository 
 \begin{center}
-    \texttt{https://github.com/mkrnc/TCS1-2020-21.git}.    
+    \url{https://github.com/mkrnc/TCS1-course-notes.git}.    
 \end{center}
+
+\medskip
+Those notes are non-trivially based on some notes of my predecessors for this course, most notably 
+\begin{center}
+    prof. \textbf{M. Milanič}, 
+    prof. \textbf{N. Prijatelj}, and 
+    prof. \textbf{P. Škraba}.
+\end{center}
+
+%Among most notable student contributors are:
 
 \tableofcontents
 
@@ -63,7 +74,6 @@ raised as an issue in our public repository
 What is a proposition? An affirmative statement that is either true or false.
 \begin{itemize}
   \item We won't be interested in natural language statements that are not affirmative (they are not a subject of logic).
-  
 
   For example: Will it rain tomorrow? Good luck with your exam! Do your homework!
 
@@ -2534,9 +2544,12 @@ Ordered pair  $(a,b)$ can also be defined as the set $\{\{a\},\{a,b\}\}$.
 \medskip
 {\textbf Homework:}
 Prove that $$\{\{a\},\{a,b\}\} = \{\{u\},\{u,v\}\}\cee a = u \inn b = v\,.$$
-\section*{Appendix}
 
-\subsection*{A short discussion about axioms}
+\appendix
+\cleardoublepage\part*{Appendix}
+\chapter{Additional Topics from Set Theory}
+
+\section{On Axioms}
 
 Every mathematical theory is based on a set of axioms --- basic propositions that we {\ em assume} to be correct.
 These axioms define the basic properties that objects of a certain theory should satisfy (e.g.~integers, real numbers, groups, vector spaces, graphs, manifolds, ...). From the axioms new truths (claims, consequences, theorems ...) are derived by logical reasoning.
@@ -2557,7 +2570,7 @@ $$0,5 = \left\{\frac{1}{2}, \frac{2}{4}, \frac{3}{6}, \cdots\right\}$$
 (Fraction is understood as an ordered pair of integers. Ordered pair $ (a, b) $ can be defined as the set $\{\{a \}, \{a, b \} \} $.)
 
 This gives the following question:
-\subsubsection*{Is there a {\em set of all sets?}}
+\subsection*{Is there a {\em set of all sets?}}
 
 We will prove, by contradiction that there is no such set!
 
@@ -2581,7 +2594,7 @@ $$ \textit{(mathematical) space does not exist.}$$
 So, in forming new sets we should not trust too much our intuition ...
 Axioms are needed to ensure the existence of certain sets (e.g.~the axiom of pairs, the axiom of subsets).
 
-\subsection{Axioms of Zermelo-Fraenkel set theory}
+\section{Axioms of Zermelo-Fraenkel set theory}
 
 \begin{enumerate}
 	\item Axiom of extensionality (set equality)
@@ -2649,5 +2662,3 @@ Axioms are needed to ensure the existence of certain sets (e.g.~the axiom of pai
 \noindent Some of above axioms maybe derived from the remaining ones, in particular 2., 3.~and 6.
 
 \end{document}
-\grid
-\grid
