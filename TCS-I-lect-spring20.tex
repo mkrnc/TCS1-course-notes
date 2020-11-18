@@ -16,6 +16,8 @@
 \usepackage{amsfonts,amsmath,amssymb,amsthm}
 \usepackage{graphics}
 \usepackage{color}
+\usepackage{fullpage}
+\usepackage{makecell}
 %\usepackage{times}
 %\usepackage{txfonts}
 \def\P {{\cal P}}
@@ -69,14 +71,18 @@ Those notes are non-trivially based on some notes of my predecessors for this co
 \tableofcontents
 
 \chapter{Mathematical logic}
-\section*{Propositions.}
+\section{Propositions}
 
-What is a proposition? An affirmative statement that is either true or false.
+A proposition is an affirmative statement that is either true or false.
 \begin{itemize}
   \item We won't be interested in natural language statements that are not affirmative (they are not a subject of logic).
 
-  For example: Will it rain tomorrow? Good luck with your exam! Do your homework!
-
+  Examples of statements which are not propositions: 
+  \begin{itemize}
+      \item Will it rain tomorrow? 
+      \item Good luck with your exam! 
+      \item Do your homework!
+  \end{itemize}
   \item The internal structure of propositions is not important for logic.
 
   For logic, the following two propositions are the same:
@@ -86,17 +92,15 @@ What is a proposition? An affirmative statement that is either true or false.
     \item ``Hamlet is a play written by Shakespeare.''
   \end{itemize}
   \item We assume that the meaning of logical connectives is well defined (which is not always the case in natural language).
-\end{itemize}
-
-Some propositions are logical consequences of others.
-
+  \item 
+  Some propositions are logical consequences of others.
 \textbf{Example:}
 \begin{itemize}
   \item (P) All children in our kindergarten are boys and some children in our kindergarten are disobedient.
   \item (C) Some boys are disobedient.
 \end{itemize}
 If proposition (P) is true, then also proposition (C) is true.
-
+\end{itemize}
 
 The contribution of logic to the knowledge is the discovery of new propositions that are logical consequences of others.
 \begin{itemize}
@@ -105,7 +109,7 @@ The contribution of logic to the knowledge is the discovery of new propositions 
   \item Mathematical structures are typically defined by a handful of axioms from which, using logical inference, theorems are proved and theories are built.
 \end{itemize}
 
-\section*{Basic logical connectives}
+\section{Basic logical connectives}
 
 We can connect arbitrary propositions with each other, independently of their meaning and internal structure.
 
@@ -129,7 +133,7 @@ We cannot infer the correctness of this proposition solely based on the correctn
 of its two parts. Even if Janez was a heavy smoker, it is not necessary that he died because of it.
 
 \medskip
-{\textbf \underline{Negation:}}
+\paragraph{ \underline{Negation:}}
 Not $A$; it is not true that $A$
 
 Notation: $\neg A$.
@@ -203,7 +207,7 @@ $B$ - consequent, necessary condition
 Example: {\em If Andrej passes the final exam, I will buy him a bike..}
 
 \medskip
-{\textbf \underline{Equivalence:}} $A$ if and only if $B$
+\paragraph{ \underline{Equivalence:}} $A$ if and only if $B$
 
 Notation: $A\cee B$
 
@@ -219,41 +223,6 @@ $A$ when and only when $B$
 
 Example: {\em I will buy a bike for Andrej, if and only if he passes the final exam.}
 
-\bigskip
-
-\subsection*{Some exercises:}
-
-{\textbf 1.}
-The following two propositions are given:
-$A$: ``Andrej speaks French.'' and $B$: ``Andrej speaks Danish.''
-Write the following compound propositions in natural language:
-
-(a) $A\ali B$
-
-(b) $A\inn B$
-
-(c) $A\inn \neg B$
-
-(d) $\neg A\ali \neg B$
-
-(e) $\neg \neg A$
-
-(f) $\neg (\neg A\inn \neg B)$
-
-\medskip
-{\textbf 2.}
-The following two propositions are given:
-$A$: ``Janez is rich.'' and $B$: ``Janez is happy.''
-
-Write the following propositions symbolically:
-
-(a) If Janez is rich, then he is unhappy.
-
-(b) Janez is neither happy nor rich.
-
-(c) Janez is happy only if he is poor.
-
-(d) Janez is poor if and only if he is unhappy.
 
 \section{Truth tables}
 
@@ -292,7 +261,7 @@ $$\begin{tabular}{c|c|c|c|c|c}
 In general, any proposition consisting of basic propositions $A_1, \ldots, A_n$, can be written as the result of successive
 uses of  the $5$ basic connectives on the propositions $A_1, \ldots, A_n$ as well as on the already constructed propositions.
 
-Example: let $A, B, C$ be the basic propositions and consider the following sequence of
+\paragraph{Example:} Let $A, B, C$ be the basic propositions and consider the following sequence of
 propositions:
 \begin{enumerate}
   \item $(A \sledi B)$
@@ -364,7 +333,7 @@ Using the above convention, we can write proposition~(\ref{eq:izjava}) more clea
 Using truth tables we can solve problems about knights and servants.
 Knights are always telling the truth, while servants always lie.
 
-{\textbf Exercise:}
+\paragraph{Example:}
 Arthur and Bine say the following:
 \begin{itemize}
   \item Arthur: ``Bine is a servant."
@@ -386,7 +355,7 @@ Which truth assignment makes this proposition true?
 $$\begin{tabular}{c|c|c|c|c|c|c}
   \hline
   % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-   $A$ &  $B$ & $\neg B$ & $A \cee \neg B$ & $A \inn B$ & $B\cee A\inn B$ & $(A\cee \neg B)\inn (B\cee A\inn B)$ \\
+   $A$ &  $B$ & $\neg B$ & $A \cee \neg B$ & $A \inn B$ & $B\cee A\inn B$ & \makecell{$(A\cee \neg B)$\\$\inn$\\ $(B\cee A\inn B)$} \\
   \hline
 1 & 1 & 0 & 0 & 1 & 1 & 0\\
 1& 0 & 1 & 1 & 0 & 1 & 1\\
@@ -396,12 +365,7 @@ $$\begin{tabular}{c|c|c|c|c|c|c}
 Arthur is a knight, while Bine is a servant.\qed
 
 \bigskip
-%{\textbf A similar exercise:}
-%Now Arthur and Bine say the following:
-%\begin{itemize}
-%  \item Arthur: ``Me and Bine are not of the same kind.''
-%  \item Bine: ``Exactly one of us is a knight.''
-%\end{itemize}
+
 
 \medskip
 The following conjunction is true:
@@ -411,23 +375,21 @@ The following conjunction is true:
 $$\begin{tabular}{c|c|c|c|c|c|c|c}
   \hline
   % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-   $A$ &  $B$ & $A\inn \neg B$ & $\neg A\inn B$ & $(A\inn \neg B) \ali (\neg A \inn B)~(*)$ & $B\cee (*)$ & $A\cee (*)$ & (\ref{eq:proposition3})\\
+   $A$ &  $B$ & 
+   \makecell{$A\inn \neg B$ \\ $\sim C$}& 
+   \makecell{$\neg A\inn B$ \\ $\sim D$}& 
+   \makecell{$C \ali D$\\$\sim E$} & 
+   $B\cee E$ & 
+   $A\cee E$ & 
+   (\ref{eq:izjava3})\\
   \hline
+  
 1& 1 & 0 & 0 & 0 & 0 & 0 & 0\\
 1& 0 & 1 & 0 & 1 & 1 & 0 & 0\\
 0& 1 & 0 & 1 & 1 & 0 & 1 & 0\\
 0& 0 & 0 & 0 & 0 & 1 & 1 & 1\\
 \end{tabular}$$
 Both are servants.\qed
-
-\medskip
-
-{\textbf Exercise:} Solve the following exercises about knights and servants:
-\begin{itemize}
-  \item Arthur: ``It is not true that Bine is a servant."~Bine: ``We are not both of the same kind.''
-  \item Arthur: ``It is not true that Cene is servant."~Bine: ``Cene is a knight or I am a knight."~Cene: ``Bine is a servant."
-\end{itemize}
-\qed
 
 
 \medskip
@@ -465,7 +427,7 @@ Let $A$ be a proposition, composed of basic propositions $A_1,\ldots, A_n$.
 
 
 
-\subsection{Logical equivalences}
+\section{Logical equivalences}
 
 Consider two propositions $B$ and $C$, composed of propositions $A_1,\ldots, A_n$.
 Clearly, the proposition $B\cee C$ is a tautology if and only if $B$ and $C$ have the same truth subspace.
@@ -505,14 +467,14 @@ $$\begin{tabular}{c|c|c|c|c|c}
   4. & 0, 0 & 1 & 0 & 1 & 0 \\
 \end{tabular}$$
 
-{\textbf Homework:} Using truth tables (or by some other means), verify the valididty of the remaining equivalences.
+\textbf{ Homework:} Using truth tables (or by some other means), verify the valididty of the remaining equivalences.
 
 \bigskip
 %%
 %%\newpage
-%%{\textbf Reitev domaèe naloge:}
+%%\textbf{ Reitev domaèe naloge:}
 %%
-%%{\textbf 1.}  Dani sta izjavi $A$: ``Andrej govori francosko.'' and $B$: ``Andrej govori dansko.''
+%%\textbf{ 1.}  Dani sta izjavi $A$: ``Andrej govori francosko.'' and $B$: ``Andrej govori dansko.''
 %%V naravnem jeziku zapii naslednje sestavljene izjave:
 %%
 %%(a) $A\ali B$
@@ -528,7 +490,7 @@ $$\begin{tabular}{c|c|c|c|c|c}
 %%(f) $\neg (\neg A\inn \neg B)$
 %%
 %%\medskip
-%%{\textbf 2.}  Dani sta izjavi $A$: ``Janez je bogat.'' and $B$: ``Janez je sreèen.''
+%%\textbf{ 2.}  Dani sta izjavi $A$: ``Janez je bogat.'' and $B$: ``Janez je sreèen.''
 %%
 %%Naslednje izjave zapii simbolièno:
 %%
@@ -542,7 +504,7 @@ $$\begin{tabular}{c|c|c|c|c|c}
 %%
 %%\bigskip
 %%
-%%{\textbf Reitev naloge o knightih and servanth}:
+%%\textbf{ Reitev naloge o knightih and servanth}:
 %%\begin{itemize}
 %%  \item Arthur: ``Jaz and Bine nisva iste vrste."~Bine: ``Natanko eden od naju je knight."
 %%\end{itemize}
@@ -617,15 +579,15 @@ In fact, it is possible to express any compound propoisition with only
 {\em two (properly chosen) basic connectives}.
 The following pairs suffice:
 \begin{enumerate}
-  \item[{\textbf (a)}] negation $\neg$ and disjunction $\ali$
-  \item[{\textbf (b)}] negation $\neg$ and conjunction $\inn$
-  \item[{\textbf (c)}] negation  $\neg$ and implication $\sledi$
+  \item[\textbf{ (a)}] negation $\neg$ and disjunction $\ali$
+  \item[\textbf{ (b)}] negation $\neg$ and conjunction $\inn$
+  \item[\textbf{ (c)}] negation  $\neg$ and implication $\sledi$
 \end{enumerate}
 This choices are the only possible ones.
 
 
 \medskip
-{\textbf Example:}
+\textbf{ Example:}
 
 Consider the proposition: ``If a thing is beautiful, then it is transient."
 
@@ -638,7 +600,7 @@ Consider the proposition: ``If a thing is beautiful, then it is transient."
 
 
 
-\subsection{Canonical forms of propositions}
+\section{Canonical forms of propositions}
 
 We owe the solution to the following task:
 
@@ -690,7 +652,7 @@ In this case we construct the proposition separately, for example
 we can take $A_1\ali \neg A_1$ (``the law of the excluded third'', every proposition is either true or false).
 
 \bigskip
-{\textbf Example:}
+\textbf{ Example:}
 We sre looking for a proposition $D$, composed of propositions $A, B$ and $C$, for which the following holds:
 $$\begin{tabular}{c|c|c|c|c|c}
   \hline
@@ -755,7 +717,7 @@ We approach one of the two soldiers and ask him:
 
 \newpage
 
-\subsection{Switching circuits}
+\section{Switching circuits}
 
 We can model logical propositions with so-called switching circuits.
 
@@ -785,7 +747,7 @@ First, let us consider two very simple circuits:
 \end{center}
 \end{figure}
 
-A series circuit is closed if and only if both switches are closed: {\textbf conjunction}.
+A series circuit is closed if and only if both switches are closed: \textbf{ conjunction}.
 
 (2) {\em two switches connected in parallel:}
 
@@ -795,7 +757,7 @@ A series circuit is closed if and only if both switches are closed: {\textbf con
 \end{center}
 \end{figure}
 
-A parallel circuit is closed if and only if at least one of the two switches is closed: {\textbf disjunction}.
+A parallel circuit is closed if and only if at least one of the two switches is closed: \textbf{ disjunction}.
 
 \medskip
 To every such circuit we can associate a logical proposition, composed of propositions corresponding to switches.
@@ -954,10 +916,10 @@ The corresponding circuits are depicted on Figure~\ref{fig:comittee}.
 	\end{center}
 	\caption{\label{fig:comittee} The corresponding circuits for the comittee (a) withouth a veto member (above), and (b) with veto for the member $A$ (below).}
 \end{figure}
-%{\textbf Homework:} Construct a circuit that simulates the proposition
+%\textbf{ Homework:} Construct a circuit that simulates the proposition
 %$$(A\sledi B) \ali (\neg B\sledi C) \ali (A \cee C)\,.$$
 
-\subsection{Logical implications}
+\section{Logical implications}
 
 A {\em logical implication} is a tautology such that the main connective is an implication.
 It $B\sledi C$ is a tautology, then the truth subspace of the antecedent (that is, proposition $B$) is
@@ -965,7 +927,7 @@ It $B\sledi C$ is a tautology, then the truth subspace of the antecedent (that i
  if the truth subspace of the antecedent is contained in the truth subspace of the consequent, then
 $B\sledi C$ is a tautology.
 
-{\textbf Homework:} Prove the statement that $B\sledi C$ is a tautology if and only if
+\textbf{ Homework:} Prove the statement that $B\sledi C$ is a tautology if and only if
 the truth subspace of the antecedent is contained in the truth subspace of the consequent.
 
 \bigskip
@@ -982,7 +944,7 @@ The following basic facts about logical implications hold:
 \end{enumerate}
 
 
-{\textbf Some comments to the implications:}
+\textbf{ Some comments to the implications:}
 
 (1.) From the truthfulness of the antecedent and the truth of the implication we can infer the truth of the consequent.
 \begin{itemize}
@@ -1000,7 +962,7 @@ Conclusion: I will go to the lectures.\kz
 
 (2.) {\em mixed hypothetical syllogism} {\em modus tollendo tollens} (lat.~the way that denies by denying)
 
-{\textbf Examples:}
+\textbf{ Examples:}
 
 1. Where there is smoke, there is also fire.
 
@@ -1020,7 +982,7 @@ Conclusion: A greedy person is not happy with little.
 
 
 \medskip
-{\textbf Example:}
+\textbf{ Example:}
 
 Koper is a country or it is a town.
 
@@ -1084,14 +1046,14 @@ Implication $10$ is indeed a tautology.\kz
 
 \section{Proofs}
 Here we describe several types of proofs.
-{\textbf 1. Direct proof.}
+\textbf{ 1. Direct proof.}
 
 We would like to prove the truthfulness of logical implication $A \sledi  B$.
 We assume that proposition $A$ is true, and directly derive the truthfulness of proposition $B$.
 
 
 \medskip
-{\textbf Example:}
+\textbf{ Example:}
 If $n$ is an odd natural number, then also $n^2$ is odd.
 
 Proof: Let $n$ be an odd natural number.
@@ -1099,13 +1061,13 @@ Then we can write it as $n = 2k-1$ for some natural number $k$.
 Therefore $n^2 = (2k-1)^2 = 4k^2-4k+1 = 2(2k^2-2k)+1$, hence  $n^2$ is odd. \qed
 
 \medskip
-\noindent{\textbf 2. Indirect proof.}
+\noindent\textbf{ 2. Indirect proof.}
 
 We would like to prove the truthfulness of  logical implication $A \sledi  B$. It is sometimes more convenient to
 prove instead equivalent implication $\neg B \sledi \neg A$.
 
 \medskip
-{\textbf Example :} If  $n^2$ is even, then $n$ is also even.
+\textbf{ Example :} If  $n^2$ is even, then $n$ is also even.
 
 Proof: The proposition is equivalent to the implication:
 
@@ -1116,14 +1078,14 @@ Equivalently: If $n$ is odd, then also $n^2$ is odd.
 But this we just proved.\qed
 
 \medskip
-\noindent{\textbf 3. Proof by contradiction.}
+\noindent\textbf{ 3. Proof by contradiction.}
 
 We would like to prove the truthfulness of proposition $A$.
 We assume that $A$ is false and show that this assumption leads to a contradiction (which we denote by $\perp$).
 This way, we showed the truthfulness of the proposition $\neg A \sledi \perp$. But this proposition is only true if proposition $\neg A$ is false. Hence $A$ is true.
 
 \medskip
-{\textbf Example:} $\sqrt 2$ is not rational.
+\textbf{ Example:} $\sqrt 2$ is not rational.
 
 Proof: Suppose that $\sqrt 2$ is a rational number. Then we can write it as $\sqrt 2 = p/q$, where $p$ and $q$ are
 two relatively prime natural numbers.
@@ -1185,7 +1147,7 @@ in the canonical CNF of $C_1\inn\cdots\inn C_m$.
 $C_1\inn\cdots\inn C_m$, then proposition $B$ is false at $d$, while proposition $C_1\inn\cdots\inn C_m$ is true at $d$. This is a contradiction with the assumption that  $C_1\inn\cdots\inn C_m\sledi B$ is a tautology.)
 
 \bigskip
-{\textbf Example:}
+\textbf{ Example:}
 
 $C_1$: A man speaks the truth or is not brave.
 
@@ -1273,7 +1235,7 @@ Facts:
 Can I infer that I will not be able to go to the cinema?
 
 \medskip
-{\textbf Solution:}
+\textbf{ Solution:}
 
 Let us define the following propositions:
 
@@ -1321,7 +1283,7 @@ Is the following inference correct?
 {\em If this animal does not have wings, then it does not lay eggs.}
 
 \medskip
-{\textbf Solution:}
+\textbf{ Solution:}
 
 Let us define the following propositions:
 
@@ -1365,7 +1327,7 @@ If we do that, then we have a proof that the proposition is not a tautology. If 
 \end{sloppypar}
 
 \bigskip
-{\textbf Homework:}
+\textbf{ Homework:}
 Found out whether the following inference is correct.
 
 Facts:
@@ -1403,7 +1365,7 @@ We will use the following notation:
 \end{itemize}
 
 \medskip
-{\textbf Examples:}
+\textbf{ Examples:}
 \begin{itemize}
   \item
 $(\forall$ natural numbers $n)$ ($n$ is divisible by $2$).
@@ -1415,7 +1377,7 @@ $(\exists !n)$ ($n$ is the smallest natural number).
 
 \subsubsection{Negation of propositions with quantifiers}
 
-{\textbf Negation $\forall$}
+\textbf{ Negation $\forall$}
 $$\neg (\forall x)A(x) \cee  (\exists x) (\neg A(x))$$
 
 \medskip
@@ -1429,7 +1391,7 @@ Equivalently: There exists at least one citizen of Slovenia that is not dark hai
 
 \medskip
 
-\noindent{\textbf Negation $\exists$}
+\noindent\textbf{ Negation $\exists$}
 $$\neg  (\exists x)A(x) \cee (\forall x) \neg A(x)$$
 
 \medskip
@@ -1444,7 +1406,7 @@ Equivalently: For every ball in the box, it holds that it is not red.\kz
 
 \medskip
 
-\noindent{\textbf Negation $\exists !$}
+\noindent\textbf{ Negation $\exists !$}
 $$\neg (\exists ! x)A(x) \cee  (\forall x) (\neg A(x)) \ali (\exists x)(\exists y)(x\neq y\inn A(x) \inn A(y))$$
 
 \medskip
@@ -1554,7 +1516,7 @@ since there exists a smallest natural number.
 Can I infer that I will not be able to go to the cinema?
 
 \medskip
-{\textbf Solution:}
+\textbf{ Solution:}
 
 Let us define the following propositions:
 
@@ -1585,7 +1547,7 @@ Is the following inference correct?
 {\em If this animal does not have wings, then it does not lay eggs.}
 
 \medskip
-{\textbf Solution:}
+\textbf{ Solution:}
 
 Let us define the following propositions:
 
@@ -1625,7 +1587,7 @@ $2^{(2^n)}$.
 \bigskip
 Let us examine the construction of all possible propositions for $n = 1$ and $n=2$.
 
-{\textbf n = 1}
+\textbf{ n = 1}
 
 We have only one atomic proposition $A$. From it, we can build $2^{(2^1)} = 4$ propositions, $C_1,\ldots, C_4$.
 
@@ -1648,7 +1610,7 @@ For  $C_3$ we can take  $\neg A$.
 
 
 \bigskip
-{\textbf n = 2}
+\textbf{ n = 2}
 
 We have two propositions, $A$ and $B$. From them, we can build $2^{(2^2)} = 16$ propositions,
 $C_1,\ldots, C_{16}$.
@@ -1707,6 +1669,53 @@ Similarly, for $C_{10}$ we can take the equivalence
 $$A\cee \neg B\,.$$
 \qed
 
+
+\section{Exercises}
+
+\textbf{ 1.}
+The following two propositions are given:
+$A$: ``Andrej speaks French.'' and $B$: ``Andrej speaks Danish.''
+Write the following compound propositions in natural language:
+
+(a) $A\ali B$
+
+(b) $A\inn B$
+
+(c) $A\inn \neg B$
+
+(d) $\neg A\ali \neg B$
+
+(e) $\neg \neg A$
+
+(f) $\neg (\neg A\inn \neg B)$
+
+\medskip
+\textbf{ 2.}
+The following two propositions are given:
+$A$: ``Janez is rich.'' and $B$: ``Janez is happy.''
+
+Write the following propositions symbolically:
+
+(a) If Janez is rich, then he is unhappy.
+
+(b) Janez is neither happy nor rich.
+
+(c) Janez is happy only if he is poor.
+
+(d) Janez is poor if and only if he is unhappy.
+
+\textbf{ Exercise:} Solve the following exercises about knights and servants:
+\begin{itemize}
+  \item Arthur: ``It is not true that Bine is a servant."~Bine: ``We are not both of the same kind.''
+  \item Arthur: ``It is not true that Cene is servant."~Bine: ``Cene is a knight or I am a knight."~Cene: ``Bine is a servant."
+\end{itemize}
+
+\textbf{ A similar exercise:}
+Now Arthur and Bine say the following:
+\begin{itemize}
+ \item Arthur: ``Me and Bine are not of the same kind.''
+ \item Bine: ``Exactly one of us is a knight.''
+\end{itemize}
 \chapter{Set Theory}
 
 \section{Sets}
@@ -1875,13 +1884,13 @@ $$\cee$$
 $$A = B\,.$$\qed
 
 
-{\textbf Homework:} prove the above implication (transitivity of inclusion).
+\textbf{ Homework:} prove the above implication (transitivity of inclusion).
 
 \medskip
-{\textbf A question:} Do there exist two sets $A$ and $B$ such that $A\subset B$ and $B\subset A$?
+\textbf{ A question:} Do there exist two sets $A$ and $B$ such that $A\subset B$ and $B\subset A$?
 
 \bigskip
-{\textbf Be careful:} relation of inclusion $\subseteq$ and relation of containment $\in$ are two completely different
+\textbf{ Be careful:} relation of inclusion $\subseteq$ and relation of containment $\in$ are two completely different
 notions!
 
 $1\in\{1,2,3\}$, but $1$ is not a subset of the set $\{1,2,3\}$.
@@ -1890,7 +1899,7 @@ $\{1\}$ is not an element of the set $\{1,2,3\}$.
 
 \medskip
 
-{\textbf Some questions:} Let $X = \{1,2,\{1\},\{2\}\}$.
+\textbf{ Some questions:} Let $X = \{1,2,\{1\},\{2\}\}$.
 Is $1$ an element of $X$?
 Is $1$ a subset of $X$?
 Is $\{1\}$ an element of $X$?
@@ -1903,14 +1912,14 @@ We are given two sets $A$ and $B$. The {\em union} of these two sets is the set 
 that has for elements precisely those objects that are elements of the set $A$ or of the set $B$:
 $$A\cup B = \{x; x\in A \ali x\in B\}\,.$$
 
-{\textbf Example:}
+\textbf{ Example:}
 $A = \{1,3,5,7\}$, $B = \{1,2,4,8\}$.
 
 $A\cup B = \{1,3,5,7,2,4,8\}$.
 
 \medskip
 
-{\textbf Union of several sets}:
+\textbf{ Union of several sets}:
 
 ${\cal A} = \{A_\lambda; \lambda \in J\}$ - union of sets with index set $J$
 
@@ -1920,7 +1929,7 @@ We define the union of an arbitrary family of sets as
 $$\cup {\cal A} = \cup_{\lambda \in J} A_\lambda = \{x;(\exists \lambda) (\lambda \in J\inn x\in A_\lambda)\}$$
 
 \medskip
-{\textbf Example:} $J = \{1,2\}$
+\textbf{ Example:} $J = \{1,2\}$
 $$\cup_{\lambda \in \{1,2\}} A_\lambda = \{x;(\exists \lambda) (\lambda \in \{1,2\}\inn x\in A_\lambda)\}= \{x;x\in A_1 \ali x\in A_2\} = A_1\cup A_2\,.$$
 
 \medskip
@@ -1928,7 +1937,7 @@ If $J$ is finite, we usually take $J = \{1,2,\ldots, n\}$ and write
 $$\cup {\cal A} = \cup_{j = 1}^nA_j = A_1\cup\cdots\cup A_n\,.$$
 
 \bigskip
-{\textbf Basic properties of the union:}
+\textbf{ Basic properties of the union:}
 \begin{itemize}
   \item $A\cup B = B\cup A$, commutativity
   \item $(A\cup B)\cup C = A\cup (B\cup C)$, associativity
@@ -1967,7 +1976,7 @@ $$\neg(A\cup B = B)$$
 \qed
 
 \bigskip
-{\textbf Homework:} Prove the remaining properties.
+\textbf{ Homework:} Prove the remaining properties.
 
 \bigskip
 
@@ -2049,7 +2058,7 @@ $$\neg(A\cup B = B)$$
 %
 %\bigskip
 %
-%{\textbf Reitev:}
+%\textbf{ Reitev:}
 %
 %$K$: Morilka je kuharica.
 %
@@ -2095,14 +2104,14 @@ We are given two sets, $A$ and $B$. The {\em intersection} of these two sets is 
 that contains as elements precisely those objects that are elements of set $A$ and of set $B$:
 $$A\cap B = \{x; x\in A \inn x\in B\}\,.$$
 
-{\textbf Example:}
+\textbf{ Example:}
 $A = \{1,3,5,7\}$, $B = \{1,2,4,8\}$.
 
 $A\cap B = \{1\}$.
 
 \medskip
 
-{\textbf Intersection of several sets}:
+\textbf{ Intersection of several sets}:
 
 ${\cal A} = \{A_\lambda; \lambda \in J\}$ - a family of sets with index set $J$, $J\neq \emptyset$!
 
@@ -2119,7 +2128,7 @@ $$\cap {\cal A} = \cap_{j = 1}^nA_j = A_1\cap\cdots\cap A_n\,.$$
 If $A\cap B = \emptyset$, we say that the sets $A$ and $B$ are {\em disjoint}.
 
 \bigskip
-{\textbf Basic properties of intersection:}
+\textbf{ Basic properties of intersection:}
 \begin{itemize}
   \item $A\cap B = B\cap A$, commutativity
   \item $(A\cap B)\cap C = A\cap (B\cap C)$, associativity
@@ -2131,7 +2140,7 @@ If $A\cap B = \emptyset$, we say that the sets $A$ and $B$ are {\em disjoint}.
 \end{itemize}
 
 \bigskip
-{\textbf Homework:} Prove the above properties. (Proofs are similar to the proofs of analogous properties of the union.)
+\textbf{ Homework:} Prove the above properties. (Proofs are similar to the proofs of analogous properties of the union.)
 
 \bigskip
 The union and the intersection are related via the distributivity laws:
@@ -2177,13 +2186,13 @@ $$(\bigcap_{\lambda\in J}A_\lambda)\cup (\bigcap_{\mu\in K}B_\mu) =
 \bigcap_{\lambda\in J, \mu\in K}(A_\lambda\cup B_\mu)\,.$$
 
 \medskip
-{\textbf Homework:} Prove that for arbitrary three sets $A$, $B$, $C$ it holds that:
+\textbf{ Homework:} Prove that for arbitrary three sets $A$, $B$, $C$ it holds that:
 $$(A\cap B)\cup C = A\cap (B\cup C) \cee C\subseteq A\,.$$
 (The condition on the right does not depend on $B$!)
 
 
 \bigskip
-{\textbf Homework solution.}
+\textbf{ Homework solution.}
 
 Let us prove transitivity of inclusion: $A\subseteq B \inn B\subseteq C \sledi A \subseteq C$
 
@@ -2208,7 +2217,7 @@ We are given two sets $A$ and $B$.
 The {\em difference}  of sets $A$ and $B$ is the set that contains as elements precisely those objects that are elements of set $A$ but they are not elements of set $B$.
 $$A\brez B = \{x; x\in A\inn x\not\in B\}\,.$$
 
-{\textbf Example:}
+\textbf{ Example:}
 Let $A$ be the set of all prime numbers, and $B$ the set of all positive odd numbers.
 Then
 
@@ -2255,7 +2264,7 @@ $$x\in A\cup B$$
 \qed
 
 \bigskip
-{\textbf Homework:} Prove the remaining properties.
+\textbf{ Homework:} Prove the remaining properties.
 
 \bigskip
 \bigskip
@@ -2304,7 +2313,7 @@ $$\overline{\cup_{\lambda\in J}A_\lambda} = {\cap_{\lambda\in J}\overline A_\lam
 $$\overline{\cap_{\lambda\in J}A_\lambda} = {\cup_{\lambda\in J}\overline A_\lambda}$$
 
 Because of De Morgan's laws, theorems about sets often come in pairs.
-If in a given inclusion, equality or equivalence about unions, intersections and complements of  subsets of a certain set we replace each set with its complement, we interchange all union and intersections, and reverse all inclusions, the result is again a valid inclusion, equality or equivalence. This principle is called {\textbf principle of duality}.
+If in a given inclusion, equality or equivalence about unions, intersections and complements of  subsets of a certain set we replace each set with its complement, we interchange all union and intersections, and reverse all inclusions, the result is again a valid inclusion, equality or equivalence. This principle is called \textbf{ principle of duality}.
 
 \bigskip
 \paragraph{Example.}
@@ -2349,7 +2358,7 @@ The {\em power set} of a given set $A$ is the family of sets that contains as el
 precisely all the subsets of the set $A$:
 $${\cal P}(A) = \{X; X\subseteq A\}$$
 
-{\textbf Example:}
+\textbf{ Example:}
 \begin{itemize}
   \item ${\cal P}(\{1,2\}) = \{\emptyset, \{1\},\{2\},\{1,2\}\}$
   \item ${\cal P}(\emptyset) = \{\emptyset\}$.
@@ -2381,12 +2390,12 @@ $X\in \P(A)\cap \P(B)\cee X\in \P(A) \inn A\in \P(B)\cee X\subseteq A \inn X\sub
 
 $\cee X\subseteq A \cap B\cee X\in \P(A\cap B)$
 
-%{\textbf V razmislek:} Zakaj velja predzadnja equivalence v zgornji verigi ekvivalenc?
+%\textbf{ V razmislek:} Zakaj velja predzadnja equivalence v zgornji verigi ekvivalenc?
 %
 %\medskip
-%{\textbf Homework:} Formalno dokaite prvo and drugo lastnost.
+%\textbf{ Homework:} Formalno dokaite prvo and drugo lastnost.
 
-{\textbf A question:} Why in the second property we don't have equality?
+\textbf{ A question:} Why in the second property we don't have equality?
 
 
 %\newpage
@@ -2427,7 +2436,7 @@ $\cee X\subseteq A \cap B\cee X\in \P(A\cap B)$
 %
 %\bigskip
 
-{\textbf Solution of one of the homeworks:}
+\textbf{ Solution of one of the homeworks:}
 
 Let us show that for every three subsets $A$, $B$, $C$, it holds that:
 $$(A\cap B)\cup C = A\cap (B\cup C) \cee C\subseteq A\,.$$
@@ -2485,7 +2494,7 @@ The {\em Cartesian product} of sets $A$ and $B$ is the set that contains as elem
  the first coordinate is from $A$ and the second coordinate is from $B$:
  $$A\times B = \{(x,y)~;~x\in A\inn y\in B\}$$
 
-{\textbf Example:} $\{1\}\times \{2,3\} = \{(1,2),(1,3)\}$,
+\textbf{ Example:} $\{1\}\times \{2,3\} = \{(1,2),(1,3)\}$,
 
 $\{2,3\}\times \{1\} = \{(2,1),(3,1)\}$.
 
@@ -2538,11 +2547,11 @@ When are two ordered pairs the same?
 $$(a,b) = (u,v) \cee a = u \inn b = v\,.$$
 
 \medskip
-{\textbf Remark:}
+\textbf{ Remark:}
 Ordered pair  $(a,b)$ can also be defined as the set $\{\{a\},\{a,b\}\}$.
 
 \medskip
-{\textbf Homework:}
+\textbf{ Homework:}
 Prove that $$\{\{a\},\{a,b\}\} = \{\{u\},\{u,v\}\}\cee a = u \inn b = v\,.$$
 
 \appendix
