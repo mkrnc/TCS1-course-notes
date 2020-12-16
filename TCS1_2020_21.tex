@@ -32,7 +32,12 @@
 
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
+\newtheorem*{corollary}{Corollary}
 \theoremstyle{definition} %theorem
+\newtheorem*{definition}{Definition}
+\theoremstyle{theorem} %theorem
+\newtheorem*{proposition}{Proposition}
+
 
 
 
@@ -48,7 +53,7 @@
 \section*{Preface}
     Those are lecture notes for the course Theoretical Computer Science I, given to freshmen students at FAMNIT, University of Primorska.
 Ever since 2017 when I started teaching this course, those notes have been changing to accommodate the needs of computer science students.
-Since 2020 I decided to make this TeX project public, so that every student may suggest new exercises (or solutions) to be added to those course notes. 
+Since 2020 I decided to make this TeX project public, so that every student was able to suggest improvements and new exercises (or solutions) to be added to those course notes. 
 
 Those notes are supposed to be parsed together with explanations from the lectures. 
 Any questions or found errors should be 
@@ -59,7 +64,7 @@ raised as an issue in our public repository
 \end{center}
 
 \medskip
-Those notes are non-trivially based on some notes of my predecessors for this course, most notably 
+Those notes are non-trivially based on some notes of my predecessors of this course, most notably 
 \begin{center}
     prof. \textbf{M. Milanič}, 
     prof. \textbf{N. Prijatelj}, and 
@@ -133,19 +138,17 @@ We cannot infer the correctness of this proposition solely based on the correctn
 of its two parts. Even if Janez was a heavy smoker, it is not necessary that he died because of it.
 
 \medskip
-\paragraph{ \underline{Negation:}}
-Not $A$; it is not true that $A$
-
-Notation: $\neg A$.
+\paragraph{ \underline{Negation:} 
+Not $A$; it is not true that $A$}
+\mbox{}\\
 
 $\neg A$ is a negation of proposition $A$. Proposition $\neg A$ is true if $A$ is false, and false if $A$ is true.
 
 Example: {\em It will be raining tomorrow. Negation: It won't be raining tomorrow. (It is not true that it will be raining tomorrow.)}
 
 \medskip
-\subsection{Conjunction: $A$ and $B$}
-
-\textbf{Notation:} $A\inn  B$
+\paragraph{\underline{Conjunction:} $A$ and $B$}
+\mbox{}\\
 
 $A\wedge B$ is a conjunction of propositions $A$ and $B$.
 This compound proposition is true
@@ -154,9 +157,7 @@ when both propositions $A$ and $B$ are true, and false otherwise.
 Example: {\em The wind blows. It is snowing. Conjunction: The wind blows and it is snowing.}
 
 \medskip
-\subsection{Disjunction: $A$ or $B$} 
-
-\textbf{Notation:} $A\ali B$
+\paragraph{\underline{Disjunction:} $A$ or $B$} \mbox{}\\
 
 $A\ali B$ is the disjunction of propositions $A$ and $B$.
 This compound proposition is true
@@ -169,7 +170,7 @@ Disjunction:
 Tomorrow Janez will be asked physics or mathematics.}
 
 \medskip
-Remark (about the differences between the natural and logical language):
+\textbf{Remark} (about the differences between the natural and logical language):
 
 1. In the natural language the word ``or" often has {\em exclusive} meaning.
 Example: {\em ``Janez was born in the year 1959 or in the year 1960."~}
@@ -178,7 +179,7 @@ In logic, we focus on the wider, inclusive meaning.
 2. In the natural language we use the disjunction when we are convinced that one of the two propositions is certainly correct,
 only we do not know which of the two.
 
-Example: Consider the disjunction of the propositions
+\textbf{Example}: Consider the disjunction of the propositions
 {\em ``Marko has a bike."~} and {\em ``Marko has a car."~}, that is,
 the proposition
 {\em ``Marko has a bike or a car."~}
@@ -193,9 +194,8 @@ In logic, this is not so. For example, we find the following proposition complet
 {\em ``$2$ times $2$ is $5$ or $2$ times $2$ is $6$.''}
 
 \medskip
-\subsection{Implication: If $A$, then $B$}
+\paragraph{\underline{Implication}: If $A$, then $B$}\mbox{}\\
 
-\textbf{Notation:} $A\sledi B$
 
 $A\sledi B$ is the implication of propositions $A$ and $B$.
 This compound proposition is false if $A$ is true and $B$ is false, and true in all other cases.
@@ -207,9 +207,7 @@ $B$ - consequent, necessary condition
 Example: {\em If Andrej passes the final exam, I will buy him a bike..}
 
 \medskip
-\paragraph{ \underline{Equivalence:}} $A$ if and only if $B$
-
-Notation: $A\cee B$
+\paragraph{\underline{Equivalence:} $A$ if and only if $B$} 
 
 $A\cee B$ is the equivalence of propositions $A$ and $B$.
 This compound proposition is true if propositions $A$ and $B$
@@ -230,12 +228,10 @@ The value of each compound proposition is uniquely determined by the values of t
 For an explicit representation of this dependence we use the so-called {\em truth tables}.
 
 We will denote the value {\em true} by ~$1$, and the value {\em false} by $0$.
-This gives the following truth tables:
+This gives the truth tables described in Table \ref{tab:neg-tt} and Table \ref{tab:tt-operators}.
 
-\newpage
-\textbf{Truth table of negation}
-
-$$\begin{tabular}{c|c|c}
+\begin{table}[!htb]
+    $$\begin{tabular}{c|c|c}
   \hline
   % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
    & $A$ & $\neg A$ \\
@@ -243,20 +239,25 @@ $$\begin{tabular}{c|c|c}
   1. & 1 & 0 \\
   2. & 0 & 1 \\
 \end{tabular}$$
+    \caption{Truth table of negation.}
+    \label{tab:neg-tt}
+\end{table}
 
+\begin{table}[!htb]
+    $$\begin{tabular}{c|c|c|c|c|c}
+      \hline
+      % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+       & $A, B$ & $A \inn B$ & $A \ali B$ & $A \sledi B$ & $A \cee B$ \\
+      \hline
+      1. & 1, 1 & 1 & 1 & 1 & 1 \\
+      2. & 1, 0 & 0 & 1 & 0 & 0  \\
+      3. & 0, 1 & 0 & 1 & 1 & 0  \\
+      4. & 0, 0 & 0 & 0 & 1 & 1 \\
+    \end{tabular}$$
+    \caption{Truth table of Conjunction, disjunction, implication and equivalence.}
+    \label{tab:tt-operators}
+\end{table}
 
-\textbf{Truth table of Conjunction, disjunction, implication and equivalence}
-
-$$\begin{tabular}{c|c|c|c|c|c}
-  \hline
-  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-   & $A, B$ & $A \inn B$ & $A \ali B$ & $A \sledi B$ & $A \cee B$ \\
-  \hline
-  1. & 1, 1 & 1 & 1 & 1 & 1 \\
-  2. & 1, 0 & 0 & 1 & 0 & 0  \\
-  3. & 0, 1 & 0 & 1 & 1 & 0  \\
-  4. & 0, 0 & 0 & 0 & 1 & 1 \\
-\end{tabular}$$
 
 In general, any proposition consisting of basic propositions $A_1, \ldots, A_n$, can be written as the result of successive
 uses of  the $5$ basic connectives on the propositions $A_1, \ldots, A_n$ as well as on the already constructed propositions.
@@ -369,9 +370,10 @@ Arthur is a knight, while Bine is a servant.\qed
 
 \medskip
 The following conjunction is true:
-\begin{equation}\label{eq:izjava3}
-[A\cee (A\inn \neg B) \ali (\neg A \inn B)]\inn [B\cee (A\inn \neg B) \ali (\neg A \inn B)]\,.
-\end{equation}
+\begin{align}
+[A\cee (A\inn \neg B) \ali& (\neg A \inn B)]\inn \nonumber \\
+&[B\cee (A\inn \neg B) \ali (\neg A \inn B)]\,.\label{eq:izjava3}
+\end{align}
 $$\begin{tabular}{c|c|c|c|c|c|c|c}
   \hline
   % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
@@ -436,19 +438,27 @@ For logic: $B = C$ (two different forms of the same proposition).
 
 Let us list the most important logical equivalences:
 \begin{enumerate}
-  \item $A \cee \neg(\neg A)$, the law of double negation
-  \item $A\inn B\cee B \inn A$,~~~$A\ali B\cee B \ali A$, commutativity of conjunction and disjunction
-  \item $A\inn (B\inn C) \cee (A\inn B)\inn C$,~~~$A\inn (B\ali C) \cee (A\ali B)\ali C$, associativity laws
-   \item $A\ali (B\inn C) \cee A\ali B \inn A\ali C$, ~~~~
-   $A\inn (B\ali C) \cee (A\inn B) \ali (A\inn C)$, distributivity laws
+  \item The law of double negation:\\
+  $A \cee \neg(\neg A)$, 
+  \item Commutativity of conjunction and disjunction:\\
+  $A\inn B\cee B \inn A$,\\
+  $A\ali B\cee B \ali A$, 
+  \item Associativity laws:\\
+  $A\inn (B\inn C) \cee (A\inn B)\inn C$,\\
+  $A\ali (B\ali C) \cee (A\ali B)\ali C$, 
+   \item Distributivity laws:\\
+   $A\ali (B\inn C) \cee A\ali B \inn A\ali C$, \\
+   $A\inn (B\ali C) \cee (A\inn B) \ali (A\inn C)$, 
    \item $A\inn A\cee A$, ~~~~$A\ali A \cee A$
-   \item $\neg(A\inn B)\cee \neg A \ali \neg B$
-   \item $\neg(A\ali B)\cee \neg A \inn \neg B$, De Morgan's laws (6. and 7.)
+   \item De Morgan's laws:\\
+   $\neg(A\inn B)\cee \neg A \ali \neg B$\\
+   $\neg(A\ali B)\cee \neg A \inn \neg B$, 
    \item $(A\sledi B) \cee (\neg B\sledi \neg A)$
    \item $(A\sledi B) \cee \neg A\ali B$
    \item $(A\sledi B) \cee \neg(A\inn \neg B)$
    \item $(A\cee B) \cee (A\sledi B) \inn (B\sledi A)$
-  \item $(A \cee B) \cee (B\cee A)$,  commutativity of equivalence
+  \item Commutativity of equivalence:\\
+  $(A \cee B) \cee (B\cee A)$,  
   \item $(A \cee B) \cee (\neg A\cee \neg B)$
   \item $(A \cee B) \cee (\neg A\ali B)\inn (A\ali \neg B)$
   \item $(A \cee B) \cee (A\inn B)\ali (\neg A\inn \neg B)$
@@ -653,10 +663,9 @@ we can take $A_1\ali \neg A_1$ (``the law of the excluded third'', every proposi
 
 \bigskip
 \textbf{ Example:}
-We sre looking for a proposition $D$, composed of propositions $A, B$ and $C$, for which the following holds:
+We are looking for a proposition $D$, composed of propositions $A, B$ and $C$, for which the following holds:
 $$\begin{tabular}{c|c|c|c|c|c}
   \hline
-  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
 $A$ & $B$ & $C$  & $D$ & basic conjunction & basic disjunction \\
   \hline
 1 & 1 & 1 & 1 & $A \inn B \inn C$ & \\
@@ -669,10 +678,20 @@ $A$ & $B$ & $C$  & $D$ & basic conjunction & basic disjunction \\
 0 & 0 & 0 & 1 & $\neg A\inn \neg B\inn \neg C$ &  \\
 \end{tabular}$$
 The canonical DNF of $D$ is
-$$(A\inn B\inn C) \ali (\neg A\inn B\inn C)\ali (\neg A\inn \neg B\inn C)\ali (\neg A\inn \neg B\inn \neg C)\,.$$
+\begin{align*}
+    (A\inn B\inn C) 
+    & \ali (\neg A\inn B\inn C) \\
+    & \ali (\neg A\inn \neg B\inn C)
+    \ali (\neg A\inn \neg B\inn \neg C)\,.
+\end{align*}
 The canonical CNF of $D$ is
-$$(\neg A\ali\neg B \ali C) \inn (\neg A\ali B \ali \neg C)\inn
-(\neg A\ali B \ali C) \inn (A\ali \neg B \ali C)\,.$$\qed
+\begin{align*}
+    (\neg A\ali\neg B \ali C) 
+    & \inn (\neg A\ali B \ali \neg C)\\
+    & \inn (\neg A\ali B \ali C) 
+    \inn (A\ali \neg B \ali C)\,.
+\end{align*}
+\qed
 
 \paragraph{Example.}
 Suppose you were caught by cannibals in Africa. Their chief is characterized by an extraordinary sense of humor
@@ -715,7 +734,6 @@ We approach one of the two soldiers and ask him:
 ``Is it true that the first exit leads to freedom if and only if you speak the truth?''
 \kz
 
-\newpage
 
 \section{Switching circuits}
 
@@ -952,13 +970,14 @@ The following basic facts about logical implications hold:
 \end{itemize}
 
 \paragraph{Example.}
-If today is Monday, I will go to the lectures.
+\begin{itemize}
+    \item If today is Monday, I will go to the lectures.
+    \item Today is Monday.
+    \item[$\circ$] \textbf{Conclusion:} I will go to the lectures.\kz
+\end{itemize}
 
-Today is Monday.
 
-Conclusion: I will go to the lectures.\kz
-
-% 5. predavanje, 2 uri 30', 18. 10. 2011
+\medskip
 
 (2.) {\em mixed hypothetical syllogism} {\em modus tollendo tollens} (lat.~the way that denies by denying)
 
@@ -1046,7 +1065,7 @@ Implication $10$ is indeed a tautology.\kz
 
 \section{Proofs}
 Here we describe several types of proofs.
-\textbf{ 1. Direct proof.}
+\subsection{Direct proof}
 
 We would like to prove the truthfulness of logical implication $A \sledi  B$.
 We assume that proposition $A$ is true, and directly derive the truthfulness of proposition $B$.
@@ -1060,8 +1079,7 @@ Proof: Let $n$ be an odd natural number.
 Then we can write it as $n = 2k-1$ for some natural number $k$.
 Therefore $n^2 = (2k-1)^2 = 4k^2-4k+1 = 2(2k^2-2k)+1$, hence  $n^2$ is odd. \qed
 
-\medskip
-\noindent\textbf{ 2. Indirect proof.}
+\subsection{Indirect proof.}
 
 We would like to prove the truthfulness of  logical implication $A \sledi  B$. It is sometimes more convenient to
 prove instead equivalent implication $\neg B \sledi \neg A$.
@@ -1077,8 +1095,7 @@ Equivalently: If $n$ is odd, then also $n^2$ is odd.
 
 But this we just proved.\qed
 
-\medskip
-\noindent\textbf{ 3. Proof by contradiction.}
+\subsection{Proof by contradiction.}
 
 We would like to prove the truthfulness of proposition $A$.
 We assume that $A$ is false and show that this assumption leads to a contradiction (which we denote by $\perp$).
@@ -1110,239 +1127,6 @@ $2m^2 = q^2$.
 Hence, also $q$ is even. This, however, is a contradiction. (We assumed that $p$ and $q$ are relatively prime numbers and showed that they are both divisible by $2$.)\qed
 
 
-
-\begin{comment}
-\subsection{Logical consequences}
-
-We are given propositions $C_1,\ldots, C_m$, composed of propositions $A_1,\ldots, A_n$.
-Let us determine all propositions $B$ for which $$C_1\inn\cdots\inn C_m\sledi B$$
-is a tautology. Such a proposition $B$ is called  {\em logical consequence}
-of propositions $C_1,\ldots, C_m$.
-
-Special cases:
-\begin{itemize}
-  \item $C_1\inn\cdots\inn C_m$ tautology  $\sledi B$ tautology
-  \item $C_1\inn\cdots\inn C_m$ contradiction $\sledi B$ any proposition
-\end{itemize}
-
-Otherwise, we take the following approach:
-
-We express the proposition $C_1\inn\cdots\inn C_m$ in its canonical CNF.
-$C_1\inn\cdots\inn C_m$ is the conjunction of a number of basic disjunctions (maxterms), composed of
-propositions $A_1,\ldots, A_n$:
-$$( \ali\ali\ali) \inn ( \ali\ali\ali) \inn \cdots \inn (\ali\ali\ali)$$
-
-The following holds:
-
-1. If $B$ is the conjunction of any number of these maxterms, then
-$$C_1\inn\cdots\inn C_m\sledi B$$
-is a tautology!
-
-(Indeed: if proposition $C_1\inn\cdots\inn C_m$ is true, then all the maxterms appearing in the canonical CNF of it are true. Therefore also the conjunction of any number of these maxterms is true.)
-
-2. If $C_1\inn\cdots\inn C_m\sledi B$ is a tautology, then the canonical CNF of $B$ can only contain those maxterms that also appear
-in the canonical CNF of $C_1\inn\cdots\inn C_m$.
-
-(Indeed: if, in the canonical CNF of $B$ we have a maxterm corresponding to a truth assignment $d$, which does not appear in the canonical CNF for
-$C_1\inn\cdots\inn C_m$, then proposition $B$ is false at $d$, while proposition $C_1\inn\cdots\inn C_m$ is true at $d$. This is a contradiction with the assumption that  $C_1\inn\cdots\inn C_m\sledi B$ is a tautology.)
-
-\bigskip
-\textbf{ Example:}
-
-$C_1$: A man speaks the truth or is not brave.
-
-$C_2$: If a man is free, he is brave.
-
-\medskip
-$A_1$: A man speaks the truth.
-
-$A_2$: A man is brave.
-
-$A_3$: A man is free.
-
-\medskip
-
-$C_1: A_1\ali \neg A_2$
-
-$C_2: A_3\sledi A_2$
-
-$C_1\inn C_2: (A_1\ali \neg A_2) \inn (A_3\sledi A_2)$
-
-\medskip
-Truth table:
-
-$$\begin{tabular}{c|c|c|c|c|c|c}
-  \hline
-  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-   & $A_1$ & $A_2$ & $A_3$ & $A_1\ali \neg A_2$ & $A_3\sledi A_2$ & $C_1\inn C_2$ \\
-  \hline
-  1. & 1 & 1 & 1 & 1 & 1 & 1 \\
-  2. & 1 & 1 & 0 & 1 & 1 & 1 \\
-  3. & 1 & 0 & 1 & 1 & 0 & 0 \\
-  4. & 1 & 0 & 0 & 1 & 1 & 1 \\
-  5. & 0 & 1 & 1 & 0 & 1 & 0 \\
-  6. & 0 & 1 & 0 & 0 & 1 & 0 \\
-  7. & 0 & 0 & 1 & 1 & 0 & 0 \\
-  8. & 0 & 0 & 0 & 1 & 1 & 1 \\
-\end{tabular}$$
-
-Canonical CNF:
-$$(\neg A_1\ali A_2\ali \neg A_3) \inn
-(A_1\ali \neg A_2\ali \neg A_3) \inn
-(A_1\ali \neg A_2\ali A_3) \inn
-(A_1\ali A_2\ali \neg A_3)$$
-
-We can obtain all logical consequences that are not tautologies by choosing one or more maxterms and connecting them conjunctively.
-The number of such consequences is
-$${4\choose 1} + {4\choose 2} +{4\choose 3} + {4\choose 4}  = 4+6+4+1 = 15\,.$$
-
-Let us analyze one of them:
-$$(A_1\ali \neg A_2\ali \neg A_3) \inn (A_1\ali A_2\ali \neg A_3)$$
-$$\cee$$
-$$(A_1\ali \neg A_3 \ali\neg A_2) \inn (A_1\ali \neg A_3\ali A_2)$$
-$$\cee$$
-$$((A_1\ali \neg A_3) \ali\neg A_2) \inn ((A_1\ali \neg A_3)\ali A_2)$$
-$$\cee$$
-$$(A_1\ali \neg A_3)\ali (\neg A_2\inn A_2)$$
-$$\cee$$
-$$A_1\ali \neg A_3$$
-The proposition reads: {\em A man speaks the truth or is not free.}
-
-\bigskip
-
-Suppose also that somebody asks us: Is proposition $A_1$ a tautological consequence of propositions $C_1$ and $C_2$?
-
-In this case, we express proposition $A_1$ in its canonical CNF with respect to the atomic propositions $A_1$, $A_2$, $A_3$:
-
-Applying implication (18) twice, we can write $A_1$ as
-$$A_1\ali (A_2\inn \neg A_2)\ali (A_3\inn \neg A_3)\,.$$
-Applying distributivity, we obtain the canonical CNF of $A_1$:
-$$(A_1\ali A_2\ali A_3)\inn (A_1\ali A_2\ali \neg A_3)\inn (A_1\ali \neg A_2\ali A_3)\inn
-(A_1\ali \neg A_2\ali \neg A_3)\,.$$
-We notice that disjunction $A_1\ali A_2\ali A_3$ does not appear in the canonical CNF of proposition $C_1\inn C_2$.
-Therefore, the answer to the above question is: no. \qed
-
-% 7. predavanje, 60', 25. 10. 2012
-
-\subsection*{Inference}
-
-Facts:
-\begin{itemize}
-  \item I will go to the match.
-  \item In the evening, I will do the homework.
-  \item If I go to the match and then to the cinema, I will not have the time to do the homework.
-\end{itemize}
-Can I infer that I will not be able to go to the cinema?
-
-\medskip
-\textbf{ Solution:}
-
-Let us define the following propositions:
-
-$A_1$: I will go to the match.
-
-$A_2$: In the evening, I will do the homework.
-
-$A_3$: I will go to the cinema.
-
-$C_1$: $A_1$
-
-$C_2$: $A_2$
-
-$C_3$: $A_1\inn A_3\sledi \neg A_2$.
-
-We have to determine whether the implication
-$$C_1\inn C_2\inn C_3\sledi \neg A_3$$
-is a tautology.
-
-
-Suppose this is not the case: let $d$ be a truth assignment for which the antecedent
-$C_1\inn C_2\inn C_3$ is true,
-while the consequent $\neg A_3$ is false.
-Since the consequent $\neg A_3(d)$ is false, the proposition $A_3(d)$ is true.
-
-Since the antecedent $C_1\inn C_2\inn C_3$ is true, both propositions $C_1=A_1$ and $C_2=A_2$ are true for assignment $d$.
-What is the value of $C_3$, that is,~$A_1\inn A_3\sledi \neg A_2$?
-Proposition $A_1\inn A_3$ is true at assignment $d$, while proposition $\neg A_2$ is false. Therefore, also proposition $C_3$ is false.
-However this is a contradiction with the assumption that the conjunction
-$C_1\inn C_2\inn C_3$ (antecedent) is true.
-
-This contradiction shows that the implication
-$$C_1\inn C_2\inn C_3\sledi \neg A_3$$
-is indeed a tautology, hence the above inference is correct. (I will not make it to the cinema.)
-\qed
-
-\bigskip
-
-The following facts are given:
-\begin{itemize}
-  \item This bird is not a bird, or it has wings.
-  \item If this animal is a bird, then it lays eggs.
-\end{itemize}
-Is the following inference correct?
-{\em If this animal does not have wings, then it does not lay eggs.}
-
-\medskip
-\textbf{ Solution:}
-
-Let us define the following propositions:
-
-$A_1$: This animal is a bird.
-
-$A_2$: This animal has wings.
-
-$A_3$: This animal lays eggs.
-
-$C_1$: $\neg A_1\ali A_2$
-
-$C_2$: $A_1\sledi A_3$
-
-$B$: $\neg A_2\sledi \neg A_3$.
-
-We have to determine whether the implication
-$$C_1\inn C_2\sledi B$$
-is a tautology.
-
-So let us suppose that it is not: let $d$ be a truth assignment at which the antecedens
-$C_1\inn C_2$ is true and the consequent $B$ is false.
-Since the consequent $B(d)$ is false, the proposition $\neg A_2(d)$ is true, and the proposition
-$\neg A_3 (d)$ is false. It follows that the proposition $A_2(d)$ is false, and the proposition
-$A_3(d)$ is true.
-
-Since the antecedens $C_1\inn C_2$ is true at the truth assignment $d$, also the proposition $C_1$ is true at $d$: $\neg A_1\ali A_2$.
-However since the proposition $A_2(d)$ is false, the proposition
-$\neg A_1(d)$ must be correct. Equivalently: proposition $A_1$ is false at truth assignemnt $d$.
-
-The truth assignment is already completely determined with this: $A_1(d)$ and $A_2(d)$ are false propositions, and
-$A_3(d)$ is true. We can check that also the proposition $C_2$ is correct at this truth assignment.
-
-We have not reached a contradiction, we constructed a truth assignment, for which the proposition $$C_1\inn C_2\sledi B$$
-is flase. (This happens only in the case when {\em this animal is not a bird, it has no wings, and lays eggs.})
-\qed
-
-\medskip
-\begin{sloppypar}
-{\em The above examples nicely illustrate that the process of proving that a particular proposition is a tautology is  the same as the process of proving  that the a certain proposition is not a tautology. In both cases, we are trying to construct a truth assignment $d$, for which the proposition is false.
-If we do that, then we have a proof that the proposition is not a tautology. If we get a contradiction, we have thus proved that the proposition is a tautology!}
-\end{sloppypar}
-
-\bigskip
-\textbf{ Homework:}
-Found out whether the following inference is correct.
-
-Facts:
-
-Duke was killed by one of his staff: the cook, the servant or the driver.
-
-If the killer was the cook, she poisoned the food.
-
-If the killer was the driver, he put a bomb in the car.
-
-The food was not poisoned and the servant is not a murderer.
-
-Conclusion: The killer was the driver.
-	content...
-\end{comment}
 
 
 \subsection{Propositions with quantifiers}
@@ -1615,20 +1399,29 @@ For  $C_3$ we can take  $\neg A$.
 We have two propositions, $A$ and $B$. From them, we can build $2^{(2^2)} = 16$ propositions,
 $C_1,\ldots, C_{16}$.
 
-$$\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c}
+$$
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c}
 \hline
-% after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
 $A$ & $B$
 & $C_1$ & $C_2$  & $C_3$ & $C_4$
-& $C_5$ & $C_6$  & $C_7$ & $C_8$
+& $C_5$ & $C_6$  & $C_7$ & $C_8$\\
+\hline
+1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1\\
+1 & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0\\
+0 & 1 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 0\\
+0 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0\\
+\hline
+\hline
+$A$ & $B$
 & $C_9$ & $C_{10}$  & $C_{11}$ & $C_{12}$
 & $C_{13}$ & $C_{14}$  & $C_{15}$ & $C_{16}$\\
 \hline
-1 & 1 &   1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-1 & 0 &   1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0\\
-0 & 1 &   1 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 0\\
-0 & 0 &   1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0\\
-\end{tabular}$$
+1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+1 & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0\\
+0 & 1 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 0\\
+0 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0\\
+\end{tabular}
+$$
 
 Of course, $C_1$ is the tautology, e.g.,~$A\ali \neg A$, and
 $C_{16}$ is the contradiction $A\inn \neg A$.
@@ -1806,7 +1599,15 @@ Be careful: a box that contains a hat is not the same thing as the hat.
 Similarly, the set
 $\{a\}$ is not the same thing as $a$. For every object $a$, it holds that $a\in \{a\}$.
 
-\subsection{Subsets}
+\section{Empty set}
+We denote the set that has no elements with symbol $\emptyset$ --- {\em empty set}.
+
+$$X = \emptyset \cee (\forall x)(x\not\in X)$$
+
+Of course it holds that:
+$$(\forall X) (\emptyset \subseteq X)$$
+
+\section{Subsets}
 We are given two sets $A$ and $B$.
 
 We say that $A$ is a {\em subset} of $B$ if and only if every element of $A$ is also an element of  $B$.
@@ -1907,7 +1708,7 @@ Is $\{1\}$ a subset of $X$?
 
 \bigskip
 
-\subsection{Union}
+\section{Union}
 We are given two sets $A$ and $B$. The {\em union} of these two sets is the set $A\cup B$,
 that has for elements precisely those objects that are elements of the set $A$ or of the set $B$:
 $$A\cup B = \{x; x\in A \ali x\in B\}\,.$$
@@ -2098,8 +1899,7 @@ $$\neg(A\cup B = B)$$
 %
 %Iz (1), (5) and (6) potem sledi $(d) = 1$. contradiction. proposition je tautology  and sklepanje je pravilno.
 
-
-\subsection{Intersection}
+\section{Intersection}
 We are given two sets, $A$ and $B$. The {\em intersection} of these two sets is the set $A\cap B$,
 that contains as elements precisely those objects that are elements of set $A$ and of set $B$:
 $$A\cap B = \{x; x\in A \inn x\in B\}\,.$$
@@ -2210,7 +2010,7 @@ Since $x$ was arbitrary, we proved $(\forall x)(x\in A\sledi x\in C)$, that is, 
 
 \bigskip
 
-\subsection{Set difference}
+\section{Set difference}
 
 We are given two sets $A$ and $B$.
 
@@ -2269,7 +2069,7 @@ $$x\in A\cup B$$
 \bigskip
 \bigskip
 
-\subsection{Complement}
+\section{Complement}
 Very frequently in mathemathics, we are in the following situation: we are given some
 {\em universal set} $S$, and only care about the elements and subsets of $S$.
 
@@ -2352,7 +2152,7 @@ $$(A\cup B)\cap C = A\cup (B\cap C) \cee A\subseteq C$$
 %\medskip
 %Of course such ``drawing'' has no connection with proposition proving.
 
-\subsection{Power set}
+\section{Power set}
 
 The {\em power set} of a given set $A$ is the family of sets that contains as elements
 precisely all the subsets of the set $A$:
@@ -2477,9 +2277,27 @@ x\not\in \cup_{\lambda\in J}A_\lambda
 x\in {\cap_{\lambda\in J}\overline A_\lambda}\,.
 \end{align*}
 
-\subsection*{Ordered tuples}
-The ordered $k$-tuple is an ordered sequence of elements denoted by normal brackets, i.e. $(a_1,a_2,\dots,a_k)$.
+\section{Ordered pairs and tuples}
 
+Consider two objects $a$ and $b$, $a\neq b$.
+For the set $\{a,b\}$ the order is irrelevant, $\{a,b\} = \{b,a\}$.
+When the order of elements is important, we speak about an {\em ordered pairs}:
+
+$(a,b)$ - ordered pair, $(a,b)\neq (b,a)$
+\begin{itemize}
+    \item $a$ - first coordinate
+    \item $b$ - second coordinate
+\end{itemize}
+When are two ordered pairs the same?
+$$(a,b) = (u,v) \cee a = u \inn b = v\,.$$
+
+\medskip
+\textbf{ Remark:}
+Ordered pairs $(a,b)$ or ordered structures of length $k$ (called ordered $k$-tupkes can also be defined as follows.
+\medskip
+
+\textbf{Definition:} 
+The ordered $k$-tuple is an ordered sequence of elements denoted by normal brackets, i.e. $(a_1,a_2,\dots,a_k)$.
 Formally we may encode the ordered $k$-tuple $(a_1,a_2,\dots,a_k)$ as an ordinary set
 \[
 (a_1,a_2,\dots,a_k)=\{A_1,A_2,\dots,A_k\},
@@ -2487,8 +2305,11 @@ Formally we may encode the ordered $k$-tuple $(a_1,a_2,\dots,a_k)$ as an ordinar
 where $A_i={a_i,a_{i+1},\dots,a_k}$ for any $1\le i\le k$. 
 Usually we use only ordered $2$-tuples, which are also called ordered pairs.
 
+\medskip
+\textbf{ Homework:}
+Prove that $$\{\{a\},\{a,b\}\} = \{\{u\},\{u,v\}\}\cee a = u \inn b = v\,.$$
 
-\subsection{Cartesian product}
+\section{Cartesian product}
 
 The {\em Cartesian product} of sets $A$ and $B$ is the set that contains as elements precisely all the ordered pairs $(x,y)$ such that
  the first coordinate is from $A$ and the second coordinate is from $B$:
@@ -2520,42 +2341,1774 @@ $n$-tuples:
 $$A_1\times A_2\times\cdots \times A_n = \prod_{i = 1}^n A_i = \{(x_1,\ldots, x_n)~;~x_1\in A_1\inn x_2\in A_2\inn\cdots \inn x_n\in A_n\}\,.$$
 
 
-\subsection*{Empty set}
-We denote the set that has no elements with symbol $\emptyset$ --- {\em empty set}.
+\section*{A short discussion about axioms}
 
-$$X = \emptyset \cee (\forall x)(x\not\in X)$$
+Every mathematical theory is based on a set of axioms --- basic propositions that we {\ em assume} to be correct.
+These axioms define the basic properties that objects of a certain theory should satisfy (e.g.~integers, real numbers, groups, vector spaces, graphs, manifolds, ...). From the axioms new truths (claims, consequences, theorems ...) are derived by logical reasoning.
 
-Of course it holds that:
-$$(\forall X) (\emptyset \subseteq X)$$
+In Set Theory, the situation is the same! There are several families of axioms, but the most established are seven particular axioms, called {\em axioms of ZFC} (Zermelo - Fraenkel - (Axiom of) Choice), see Appendix.
 
+These axioms ensure the existence of sets and ways of forming new sets from existing ones. 
+Except for the Axiom of Choice, which is of special interest, we will not discuss other axioms here in detail.
 
-\subsection*{Ordered pair}
+\chapter{Relations}
 
-Consider two objects $a$ and $b$, $a\neq b$.
-
-For the set $\{a,b\}$ the order is irrelevant, $\{a,b\} = \{b,a\}$.
-
-When the order of elements is important, we speak about an {\em ordered pair}:
-
-$(a,b)$ - ordered pair, $(a,b)\neq (b,a)$
-
-$a$ - first coordinate
-
-$b$ - second coordinate
-
-When are two ordered pairs the same?
-$$(a,b) = (u,v) \cee a = u \inn b = v\,.$$
+Within every mathematical theory ${\cal T}$ with universal set $S$
+we can represent every meaningful property $P(x)$
+with the set $$\{x~;~x\in S\inn P(x)\}\,.$$
+Similarly, we can also represent {\em relations} with sets.
 
 \medskip
-\textbf{ Remark:}
-Ordered pair  $(a,b)$ can also be defined as the set $\{\{a\},\{a,b\}\}$.
+Examples of binary relations: $\in$, $\subseteq$, $=$, $\le$, $>$, parallel, congruent
+\begin{itemize}
+          \item Example: 3 and 5 are in relation ``smaller".
+\end{itemize}
+Ternary relations: sum, difference, product
+
+------
+
+``Family'' relations: father, son, mother, husband, mother-in-law, $\ldots$
+
+parents -- ternary relation ($x,y,z$ are in the relation if and only if $x$ and $y$ are parents of $z$)
+
+------
+\section{Basic notions for binary relations}
+
+Let $R$ be a meaningful binary relation for some mathematical theory ${\cal T}$ with universal set $S$.
+
+$R$ will be presented with the set of exactly those ordered pairs of elements of $S$
+whose first coordinate is in relation $R$ with the second coordinate.
+
+$x$ is in relation $R$ with  $y$: $xRy$ or $R(x,y)$.
+$$R = \{(x,y)~;~x,y\in S\inn xRy\}$$
+or simply (if the universal set $S$ is clear from the context):
+$$R = \{(x,y)~;~xRy\}\,.$$
 
 \medskip
+If $R$ is $n$-ary, we use $n$-tuples:
+$$R = \{(x_1,\ldots, x_n)~;~R(x_1,\ldots, x_n)\}$$
+
+------
+
+A binary relation is therefore \textbf{ a subset of the Cartesian product} $S \times S =: S^2$.
+
+An $n$-ary relation is a subset of the $n$-fold Cartesian product of set $S$ with itself,
+$S \times \cdots \times S = \Pi_ {i = 1}^nS =: S^n$.
+
+\bigskip
+\zgled
+
+$S = \{1,2,3,4\}$,
+
+Binary relation ``smaller'', $<(x,y) \cee x<y$:
+
+$$< = \{(1,2),(1,3),(1,4), (2,3), (2,4), (3,4)\}\,.$$
+
+Ternary relation ``sum'', $+(x,y,z) \cee x+y = z$:
+
+$$+ = \{(1,1,2),(1,2,3),(1,3,4), (2,1,3), (2,2,4), (3,1,4)\}\,.$$
+\kz
+
+\bigskip
+
+\zgled
+
+$S = \{1,2,3,4,5,6\}$,
+
+Binary relation $R$ ``multiple'', $R(x,y) \cee x$ is a multiple of $y$, that is,
+
+$(\exists k)(k$ is a positive integer and $x = k\cdot y$):
+$$R = \{(1,1),(2,1),(2,2),(3,1),(3,3),(4,1),(4,2),(4,4),(5,1),(5,5),(6,1),(6,2),(6,3),(6,6)\}\,.$$
+
+Ternary relation ``product'', $\cdot(x,y,z) \cee z = x\cdot y$:
+$$\cdot  = \{(1,1,1),(1,2,2),(1,3,3),(1,4,4),(1,5,5),(1,6,6),(2,1,2),$$$$(2,2,4),(2,3,6),(3,1,3),(3,2,6),(4,1,4),(5,1,5),(6,1,6)\}\,.$$
+
+``Unary'' relation ``prime'', $P(x) \cee x$ is a prime:
+
+$P = \{2,3,5\}$.
+\kz
+
+\bigskip
+
+Since we represented relations with sets, we can also speak about relations
+$R\cup T$, $R\cap T$, $R\brez T$.
+
+\bigskip
+\zgled
+Let us denote by $R_{\leq}$, $R_{<}$, $R_{=}$, $R_{\ge}$, $R_{>}$ and $R_{\neq}$
+respectively the relations ``smaller or equal'', ``smaller'', ``equal'',
+``greater or equal'', ``greater'' and ``non-equal'' (e.g., on the set of positive integers). Then:
+%$$(x\leq  y) = (x<y) \cup (x = y)$$
+%$$(x> y) = (x\ge y) \brez (x = y)$$
+%$$(x> y) = (x\ge y) \cap (x \neq y)$$
+$$R_\leq = R_< \cup R_=$$
+$$R_> = R_\ge \brez R_= = R_\ge \cap R_{\neq}$$
+\kz
+
+\bigskip
+
+Let us now focus on \textbf{ binary relations} (these are of particular interest, as we shall see in the chapter on order structures).
+
+Let $R$ be a binary relation on a universal set $S$:
+$$R = \{(x,y)~;~xRy\}\,.$$
+
+The set of all first coordinates of elements of $R$ is said to be the {\em domain of relation $R$.}
+
+The set of all second coordinates of elements of $R$ is said to be the {\em range (codomain) of relation $R$.}
+
+Domain: $${\cal D}R = \{x~;~(\exists y)(xRy)\}$$
+Range: $${\cal R}R = \{y~;~(\exists x)(xRy)\}$$
+
+\medskip
+
+\zgled
+
+$R = \{(1,2), (2,3), (2,4)\}$.
+
+${\cal D}R = \{1,2\}$,
+
+${\cal R}R = \{2,3,4\}$
+
+\kz
+
+\bigskip
+
+------
+
+\textbf{ Inverse relation:}
+$$R^{-1}= \{(y,x)~;~xRy\}$$
+Clearly:
+\begin{itemize}
+  \item $yR^{-1}x \cee xRy\,.$
+  \item ${\cal D}R^{-1} = {\cal R}R$ and ${\cal R}R^{-1} = {\cal D}R$.
+    \item $(R^{-1})^{-1} = R$.
+\end{itemize}
+
+
+\bigskip
+\zgled
+
+ $R_\le^{-1}~~=~~R_\ge\,,$
+
+ $R_<^{-1}~~=~~R_>\,,$
+
+ $R_=^{-1}~~=~~R_=\,,$
+
+$R_{\neq}^{-1}~~=~~R_{\neq}\,.$\kz
+
+\subsection{Composition of relations}
+
+Let $R$ and $T$ be two binary relations.
+
+$T\circ R$: composition of relation $R$ with relation $T$
+
+$$x T\circ R y \cee (\exists u)(xRu\inn uTy)$$
+
+$$T\circ R = \{(x,y)~;~(\exists u)(xRu\inn uTy)$$
+
+
+\bigskip
+\zgled
+
+$R = \{(1,3),(2,3)\}$, $T = \{(3,1)\}$
+
+$T\circ R = \{(1,1), (2,1)\}$, $R\circ T = \{(3,3)\}$.
+
+
+\medskip
+
+brother $\circ$ father $\subseteq$ father
+
+father $\circ$ brother  $\subseteq$ uncle
+
+(father $\circ$ brother)$\cup$(mother $\circ$ brother) = uncle
+
+sister $\circ$ mother $\subseteq$  mother
+
+(wife $\circ$ mother) $\cup$ (husband $\circ$ mother) = mother-in-law
+\kz
+
+\medskip
+In general $T\circ R\neq R\circ T$. On the other hand, associativity holds.
+
+\begin{proposition}
+Let $V, T, R$ be binary relations on universal set $S$. Then
+$$V\circ(T\circ R) = (V\circ T)\circ R\,.$$
+\end{proposition}
+
+\begin{proof}
+$$(x,y)\in V\circ(T\circ R)\cee x V\circ(T\circ R) y
+\cee$$
+$$(\exists u)(x(T\circ R)u\inn uVy)
+\cee (\exists u)(\exists v)(xRv\inn vTu\inn uVy)\cee $$
+$$(\exists v)(xRv\inn (\exists u)(vTu\inn uVy))
+\cee(\exists v)(xRv\inn v(V\circ T)y)\cee$$
+$$x ((V\circ T)\circ R)y \cee (x,y)\in (V\circ T)\circ R\,.$$
+\end{proof}
+
+Inverse of a  composition is equal to the composition of inverses in reverse order:
+
+\begin{proposition}
+Let $T$ and $R$ be binary relations on universal set $S$. Then
+$$(T\circ R)^{-1} = R^{-1}\circ T^{-1}\,.$$
+\end{proposition}
+
+\begin{proof}
+$$(x,y)\in (T\circ R)^{-1} \cee (y,x)\in T\circ R
+\cee$$
+$$(\exists u)(yRu\inn uTx)
+\cee (\exists u)(uR^{-1}y\inn xT^{-1}u)
+\cee$$
+$$(\exists u)(xT^{-1}u\inn uR^{-1}y)
+\cee x (R^{-1}\circ T^{-1}) y\cee (x,y)\in R^{-1}\circ T^{-1}\,.$$
+\end{proof}
+
+
+\bigskip
+\zgled
+
+Let  $a,b\in\mathbb{R}$.
+
+Define the following relations
+
+$R = \{(x,y)~;~x+y = a\}$,
+
+$T = \{(x,y)~;~x+y = b\}$.
+
+Then
+$T\circ R = \{(x,y)~;~(\exists u)(x+u = a\inn u+y = b)\}=\{(x,y)~;~x-y = a-b\}$.
+
+$R\circ T = \{(x,y)~;~x-y = b-a\}$.
+
+$R^{-1}= R$, $T^{-1} = T$.
+
+In this case, equality in the above claim becomes
+$(T\circ R)^{-1} = R \circ T\,.$
+\kz
+
+
+
+\subsection{Universal, null and identity relations}
+
+Every set $S$ asmits three special relations:
+
+$S\times S$ -- the universal relation
+
+$\emptyset$ -- the null relation
+
+$I = \{(x,x)~;~x\in S\}$ -- the identity relation
+
+\begin{proposition}
+Let $R$ be a binary relation on universal set $S$.
+
+Then $I\circ R = R\circ I = R$.
+\end{proposition}
+
+\begin{proof}
+$xI\circ Ry \cee (\exists u)(xRu \inn uIy) \cee xRy$.
+
+$xR\circ Iy \cee (\exists u)(xIu \inn uRy) \cee xRy$.
+\end{proof}
+
+\medskip
+It also holds:
+
+\begin{itemize}
+  \item $\emptyset \circ R = R\circ \emptyset = \emptyset$
+  \item $(S\times S)\circ R =
+({\cal D}R) \times S$ and $R\circ (S\times S) = S\times {\cal R}R$.
+\end{itemize}
+
+%Let us prove the equality $R\circ (S\times S) = S\times {\cal R}R$:
+%
+%$x(R\circ (S\times S))y \cee (\exists u)(x(S\times S)u \inn uRy)
+%\cee (\exists u)(uRy) \cee y\in {\cal R}R \cee x\in S\inn y\in {\cal R}R  \cee x(S\times {\cal R}R)y$.
+
+\bigskip
+
+\textbf{ Homework}: Prove the above properties.
+%equality $(S\times S)\circ R = ({\cal D}R) \times S$.
+
+%$x((S\times S)\circ R)y \cee (\exists u)(x R u \inn u(S\times S)y)
+%\cee (\exists u)(xRu) \cee x\in {\cal D}R \cee x\in {\cal D}R\inn y\in S  \cee x(({\cal D}R) \times S)y$.
+
+\section{Properties of binary relations}
+
+Some properties of binary relations are particularly important:
+
+\bigskip
+
+$R \textrm{ is {\em reflexive}} \cee (\forall x)(x\in S\sledi xRx)$
+
+%\begin{center}
+%\includegraphics[height=20mm]{reflexive.eps}
+%\end{center}
+
+\textbf{ Example:} relation $\le$ in real numbers
+
+\bigskip
+
+$R \textrm{ is {\em irreflexive}} \cee (\forall x)(x\in S\sledi \neg(xRx))$
+
+%\begin{center}
+%\includegraphics[height=20mm]{irreflexive.eps}
+%\end{center}
+
+\textbf{ Example:} relation  $<$ in real numbers
+
+\bigskip
+
+$R \textrm{ is {\em symmetric}} \cee (\forall x)(\forall y)(x\in S\inn y\in S\inn xRy\sledi yRx)$
+
+%\begin{center}
+%\includegraphics[height=20mm]{simetricna.eps}
+%\end{center}
+%
+
+\textbf{ Example:} relation ``being parallel'' on lines in the plane
+
+\bigskip
+
+$R \textrm{ is {\em asymmetric}} \cee (\forall x)(\forall y)(x\in S\inn y\in S\inn xRy\sledi \neg(yRx))$
+
+%\begin{center}
+%\includegraphics[height=20mm]{asimetricna.eps}
+%\end{center}
+
+\textbf{ Example:} relation  $<$ in real numbers
+
+% 12. predavanje, 2 uri, 22. 11. 2011
+
+%Pokazali smo, da velja ${\cal P}(A)\cup {\cal P}(B)\subseteq  {\cal P}(A\cup B)$.
+%
+%Dokai, da velja
+%$${\cal P}(A)\cup {\cal P}(B)={\cal P}(A\cup B)$$
+%natanko tedaj, ko je $$(A\subseteq B) \ali (B\subseteq A)\,.$$.
+%
+%\bigskip
+%${\cal P}(A)\cup {\cal P}(B)={\cal P}(A\cup B)$
+%
+%$\cee$
+%
+%${\cal P}(A\cup B) \subseteq {\cal P}(A)\cup {\cal P}(B)$
+%
+%$\cee$
+%
+%$(\forall X)(X\in {\cal P}(A\cup B)\sledi X\in {\cal P}(A)\cup {\cal P}(B))$
+%
+%$\cee$
+%
+%$(\forall X)(X\subseteq A\cup B\sledi X\subseteq A \ali X\subseteq B)$
+%
+%$\cee$
+%
+%$(A\subseteq B) \ali (B\subseteq A)$
+%
+%\medskip
+%Dokaz zadnje ekvivalence napravimo posebej:
+%
+%$(\Leftarrow)$:
+%Èe je $(A\subseteq B) \ali (B\subseteq A)$, potem je
+%$A\cup B = B \ali A\cup B = A$ and v vsakem primeru velja
+%$(\forall X)(X\subseteq A\cup B\sledi X\subseteq A \ali X\subseteq B)$.
+%
+%\medskip
+%
+%$(\Rightarrow)$:
+%Recimo, da je
+%$(\forall X)(X\subseteq A\cup B\sledi X\subseteq A \ali X\subseteq B)$
+%and da ne velja
+%$(A\subseteq B) \ali (B\subseteq A)$.
+%
+%Torej je
+%$\neg((A\subseteq B) \ali (B\subseteq A))$
+%
+%$\sledi$
+%
+%$(\neg(A\subseteq B) \in \neg(B\subseteq A))$
+%
+%$\sledi$
+%
+%$(\exists a)(a\in A\brez B)\inn (\exists b)(b\in B\brez A)$.
+%
+%Tedaj pa za mnoico $X = \{a,b\}$ velja $X\subseteq A\cup B$, vendar ne velja $X\subseteq A$ niti $X\subseteq B$.
+%contradiction.\hfill\qed
+%
+%\bigskip
+%
+%\textbf{ Ponovitev:}
+%
+%binarne relacije
+%
+%domena
+%
+%zaloga vrednosti
+%
+% \zgled
+%
+%Let $X$ poljubna set and $S = X\cup {\cal P}(X)$. relation  $R$ je podmnoica $S\times S$, definirana s predpisom
+%$$xRy\cee x\in X\inn x\in y\,.$$
+%Tedaj je ${\cal D}R = X$ and ${\cal R}R = {\cal P}(X)\brez \{\emptyset\}\,.$
+%\kz
+%
+%\medskip
+%Inverzna relation . Kompozitum relacij.
+%
+%$x(T\circ R)y \cee (\exists u)(xRu\inn uTy)$.
+%
+%$(R\circ T)^{-1} = T^{-1}\circ R^{-1}$
+%
+%nièelna relation , identièna relation ,
+%univerzalna relation
+%
+%\bigskip
+%
+%Reitev domaèe  naloge:  $(S\times S)\circ R = ({\cal D}R) \times S$.
+%
+%\bigskip
+%
+%$R \textrm{ is {\em reflexive}} \cee (\forall x)(x\in S\sledi xRx)$
+%
+%$R \textrm{ is {\em irreflexive}} \cee (\forall x)(x\in S\sledi \neg(xRx))$
+%
+%$R \textrm{ is {\em symmetric}} \cee (\forall x)(\forall y)(x\in S\inn y\in S\inn xRy\sledi yRx)$
+%
+%$R \textrm{ is {\em asymmetric}} \cee (\forall x)(\forall y)(x\in S\inn y\in S\inn xRy\sledi \neg(yRx))$
+%
+%\bigskip
+
+\bigskip
+
+$R \textrm{ is {\em antisymmetric}} \cee (\forall x)(\forall y)(x\in S\inn y\in S\inn xRy\inn yRx\sledi x = y)$
+%
+%\begin{center}
+%\includegraphics[height=20mm]{antisimetricna.eps}
+%\end{center}
+
+\textbf{ Example:}
+relation  $\le$ in real numbers
+
+relation  $\subseteq$ in sets
+
+\bigskip
+
+$R \textrm{ is {\em transitive}} \cee (\forall x)(\forall y)(\forall z)(x\in S\inn y\in S\inn z\in S\inn xRy\inn yRz\sledi xRz)$
+
+%\begin{center}
+%\includegraphics[height=20mm]{transitive.eps}
+%\end{center}
+
+\textbf{ Example:} relation  $<$ in real numbers
+
+relation  $\subset$ in sets
+
+\bigskip
+
+$R \textrm{ is {\em intransitive}} \cee (\forall x)(\forall y)(\forall z)(x\in S\inn y\in S\inn z\in S\inn xRy\inn yRz\sledi \neg(xRz))$
+
+%\begin{center}
+%\includegraphics[height=20mm]{intransitive.eps}
+%\end{center}
+
+\textbf{ Example:}
+relation  $R$ in real numbers, defined by the rule $xRy \cee x = y + 1$
+
+\bigskip
+
+$R \textrm{ is {\em strict total}} \cee (\forall x)(\forall y)(x\in S\inn y\in S
+\inn x\neq y\sledi (xRy)\ali (yRx))$
+
+%\begin{center}
+%\includegraphics[height=20mm]{sovisna.eps}
+%\end{center}
+
+\textbf{ Example:}
+relation  $<$ in real numbers
+
+\bigskip
+
+$R \textrm{ is {\em total}} \cee (\forall x)(\forall y)(x\in S\inn y\in S
+\sledi (xRy)\ali (yRx))$
+
+%\begin{center}
+%\includegraphics[height=20mm]{strogosovisna.eps}
+%\end{center}
+
+\textbf{ Example:}
+
+relation  $\le$ in real numbers
+
+\bigskip
 \textbf{ Homework:}
-Prove that $$\{\{a\},\{a,b\}\} = \{\{u\},\{u,v\}\}\cee a = u \inn b = v\,.$$
+Choose some family relations and for each of them verify which of the above properties hold.
+
+\bigskip
+Some of the above properties imply others:
+\begin{itemize}
+  \item $R$ is total $\sledi$ $R$ is strict total.
+  \item $R$ is asymmetric $\sledi$ $R$ is irreflexive.
+  \item $R$ is symmetric and transitive, and ${\cal D}R = S$ $\sledi$ $R$ is reflexive
+\end{itemize}
+
+% 13. predavanje, 2 uri, 23. 11. 2011
+
+% 3. kviz
+
+
+\section{Equivalence relation}
+
+$R$ is {\em equivalence} $\cee$ $R$ is reflexive, symmetric and transitive.
+
+\textbf{ Example:} the identity relation
+
+\begin{proposition}
+$R$ is equivalence $\cee$ ${\cal D}R = S$ and $R^{-1}\circ R = R$.
+\end{proposition}
+
+\begin{proof}
+The condition is necessary:
+
+$xRx \sledi {\cal D}R = S$
+$$xR^{-1}\circ Ry \sledi (\exists z)(xRz \inn zR^{-1}y)
+\sledi (\exists z)(xRz \inn yRz)
+\sledi (\exists z)(xRz \inn zRy)
+\sledi xRy\,.$$
+$$xRy
+\sledi (xRy\inn yRy)
+\sledi (xRy\inn yR^{-1}y)
+\sledi xR^{-1}\circ Ry\,.$$
+Hence $R^{-1}\circ R = R$.
+
+The condition is also sufficient:
+
+Let ${\cal D}R = S$ and $R^{-1}\circ R = R$.
+
+Reflexivity: we need to show  $(\forall x)(x\in S\sledi xRx)$.
+
+Let $x\in S$. Since ${\cal D}R = S$,
+it follows $x\in {\cal D}R\sledi (\exists y)(y\in S\inn xRy)$.
+$$xRy
+\sledi xRy\inn yR^{-1}x
+\sledi x R^{-1}\circ R x
+\sledi xRx\,.$$
+
+Symmetry: we need to show $(\forall x)(\forall y)(x\in S\inn y\in S\inn xRy\sledi yRx)\,.$
+
+Let $x\in S\inn y\in S\inn xRy$.
+Then
+$$xRy \sledi (xRy\inn yRy)
+\sledi (yRy\inn yR^{-1}x)
+\sledi yR^{-1}\circ Rx
+\sledi yRx\,.$$
+
+Transitivity: we need to show $(\forall x)(\forall y)(\forall z)(x\in S\inn y\in S\inn z\in S\inn xRy\inn yRz\sledi xRz).$
+
+Let $x\in S\inn y\in S\inn z\in S\inn xRy\inn yRz$.
+Then $$xRy \inn yRz \sledi xRy\inn zRy
+\sledi xRy\inn yR^{-1}z
+\sledi xR^{-1}\circ Rz
+\sledi xRz\,.$$
+\end{proof}
+
+Every equivalence relation has the nice property that it divides set $S$ on which it is defined into {\em non-empty and pairwise disjoint sets the union of which is exactly set $S$}.
+
+\medskip
+\textbf{ Equivalence classes.}
+
+Let $R$ be an equivalence relation defined on a set $S$. Let $x\in S$. The {\em equivalence class of element $x$ with respect to the equivalence relation $R$} is the set of all elements that are in relation with $x$:
+$$R[x] = \{y~;y\in S \inn yRx\}\,.$$
+
+Equivalence classes enjoy the following properties:
+\begin{itemize}
+  \item Since $R$ is a reflexive relation, it holds $x\in R[x]$. Consequently $R[x]\neq \emptyset$.
+  \item $y\in R[x]\sledi R[y]=R[x]$.
+
+  Indeed: Let $y\in R[x]$.
+
+  $z\in R[y]\sledi zRy\inn yRx\sledi zRx\sledi z\in R[x]$.
+
+  $z\in R[x]\sledi zRx\inn yRx\sledi zRx\inn xRy \sledi zRy\sledi z\in R[y]$.
+  \item $y\not\in R[x]\sledi R[x]\cap R[y]=\emptyset$.
+
+  Indeed: $(\exists z)(z\in R[x]\cap R[y])\sledi (\exists z)(R[z] = R[x]\inn R[z] = R[y])\sledi
+  y\in R[y]=R[x]$. Contradiction with assumption $y\not\in R[x]$.
+  \end{itemize}
+
+It follows that:
+\begin{enumerate}
+  \item Every element of $S$ is in exactly one equivalence class. Namely in the one containing all elements of $S$ that are in relation $R$ with it.
+  \item Every equivalence class is completely determined with an arbitrary element of it. We say that an arbitrary element of a class is a {\em representative} of the class.
+      \item The equivalence classes of a given equivalence relation $R$ divide the set $S$ into
+      nonempty and pairwise disjoint sets the union of which is the set $S$.
+      \end{enumerate}
+
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[height=30mm]{ekvivalencna.eps}
+\end{center}
+\end{figure}
+
+Such divisions are called partitions. {\em Partition of a set $S$} = a set of nonempty and pairwise disjoint sets the union of which is $S$.
+
+Hence, to every equivalence relation there corresponds a partition of set $S$.
+The converse holds as well. Every partition ${\cal A}$ of set $S$ determines a unique equivalence relation $R$
+such that the sets in the partition are exactly the equivalence classes of relation $R$.
+\begin{itemize}
+  \item Two elements $x$ and $y$ are in relation $R$ if and only if they belong to the same set of the partition:
+      $$xRy\cee (\exists X)(X\in {\cal A}\inn x\in X\inn y\in X)\,.$$
+\end{itemize}
+Let us verify that the so defined relation is an equivalence relation:
+\begin{itemize}
+  \item reflexivity: $x\in S \sledi (\exists X)(X\in {\cal A}\inn x\in X)\sledi xRx\,.$
+  \item symmetry:
+  $xRy\sledi (\exists X)(X\in {\cal A}\inn x\in X\inn y\in X)
+  \sledi (\exists X)(X\in {\cal A}\inn y\in X\inn x\in X)\sledi yRx\,.$
+  \item transitivity:
+  $xRy \inn yRz\sledi (\exists X)(X\in {\cal A}\inn x\in X\inn y\in X)
+  \inn (\exists Y)(Y\in {\cal A}\inn y\in Y\inn z\in Y)$.
+
+  Hence $y$ is both in $X$ and $Y$. Since the sets are pairwise disjoint, it follows that
+  $X = Y$. But then $z$ is also in set $X$. Consequently $xRz$.
+\end{itemize}
+
+\textbf{ Exercise:} Justify that partition ${\cal A}$ coincides with the set of equivalence classes of relation $R$.
+
+\bigskip
+
+% 14. predavanje, 2 uri, 29. 11. 2011
+
+To every set $S$ on which some equivalence relation $R$ is defined, we can associate some new set, the elements of which are the equivalence classes of relation $R$:
+
+{\em Quotient set of $S$ with respect to relation $R$}:
+$$S/R = \{R[x]~;~x\in S\}=\{X~;~(\exists x)(x\in S \inn X = R[x])\}$$
+\begin{itemize}
+  \item The notion of quotient set represents a mathematical formulation of the logical notion of {\em abstraction}:
+  By moving from a given set $S$ to the quotient set, we ignore all differences between objects belonging to the same equivalence class!
+\end{itemize}
+
+
+\bigskip
+\zgled
+
+Let $S = \{1,2,3\}$ and $R = \{(1,1),(1,3),(2,2),(3,1),(3,3)\}$.
+
+Relation  $R$ is an equivalence relation.
+
+$R[1] = R[3] = \{1,3\}$, $R[2] = \{2\}$.
+
+$S/R =  \{R[1], R[2],R[3]\} = \{R[1], R[2]\} = \{\{1,3\},\{2\}\}$.
+
+If we define a partition ${\cal A} = \{\{1,2\},\{3\}\}$ of set $S$, then we can define a relation $R'$ by the rule
+$xR'y \cee (\exists X)(X\in {\cal A}\inn x\in X\inn y\in Y)$.
+It holds
+
+$R' = \{(1,1),(1,2),(2,1),(2,2),(3,3)\} = R$
+and $S/R' = \{\{1,2\},\{3\}\} = {\cal A}$.
+\kz
+
+
+\subsubsection{Examples of equivalence relations}
+
+\begin{enumerate}
+\item \textbf{ Fractions.}
+
+In the set of fractions $a/b\,,$
+   where $ a $ and $ b $ be arbitrary integers and $ b \neq 0$, the definition of equality of two fractions
+   $a / b = c / d \cee ad = bc$
+    is an equivalence relation. Each equivalence class with respect to this relation collects together all pairwise equal fractions and then represents the corresponding {\em rational number}. The corresponding quotient set is the {\em set of rational numbers}.
+   \item \textbf{ Congruences.}
+
+
+   In the set of {\em integers} the relation {\em congruence modulo $m$}, where $ m> 0$  is a positive integer, $$a \equiv b \pmod{m} \cee m \textrm{ divides } a-b \,,$$
+   is an equivalence relation.
+
+   In this case, the equivalence classes are the {\em residue classes modulo $ m $}. Each equivalence class contains all those numbers that give the same remainder (residue) when divided by $ m $.
+
+   Obviously there are exactly $ m $ of these classes. These classes are called {\em integers modulo $ m $}. The quotient set is the set of integers modulo $m$.
+
+   \item \textbf{ Parallelism of lines.}
+
+In the set of {\em all lines}, the relation ``parallel'' is an equivalence relation. Each equivalence class therefore contains all the lines that are parallel to each other, and therefore represent a certain {\em direction}. In this case, the quotient set is {\em the set of all directions}.
+\end{enumerate}
+
+\section{Functions}
+
+{\em Function is a central notion of classical and modern mathematics.
+From $18$th century on, the notion of a function was becoming increasingly
+more precise and general. The definition of a function as we know it today was given by Cauchy and Riemann:}
+
+\medskip
+%Znana je naslednja definicija:
+For two sets $A$ and $B$, a {\em function from $A$ to $B$} is a rule that assigns to every element of $A$ a unique element of $B$.
+Notation: $f:A\to B$.
+
+\medskip
+To avoid any doubt what is meant with the word ``rule'', we can define functions as special relations.
+
+\medskip
+A binary relation $R$ is {\em unique} if:
+$$(x,y)\in R \inn (x,z)\in R\sledi y = z$$
+
+A {\em function} (also {\em mapping, map, transformation})
+is a unique binary relation. We usually denote functions with letters $f, g,h,\ldots$
+
+We say that $f$ is a function from $A$ to $B$, and write $f:A\to B$ if ${\cal D}f= A$ and the following holds: $(x,y)\in f\sledi x\in A\inn y\in B$.
+
+The set of all functions from $A$ to $B$ is denoted by $B^A$.
+
+We write
+$$y=f(x)\cee (x,y)\in f\,.$$
+$$f = \{(x,y)~;~x\in A\inn y = f(x)\in B\}\,.$$
+
+$x\in A$: independent variable, original, argument
+
+$y (= f(x))$: dependent variable, image of element $x$.
+
+\medskip
+
+The following notation is also in use:
+
+$x\mapsto f(x)$~~``$x$ maps to  $f(x)$",
+
+$A\overset{f}{\to} B$~~``$f$ is a function from $A$ to $B$".
+
+\bigskip
+\textbf{ Examples of functions:}
+\begin{itemize}
+  \item $A = \{1,2,3\}$, $B = \{2,4,6\}$
+
+  $f = \{(1,2),(2,4),(3,4)\}$
+
+  \item $A = \{$points at the surface of planet Earth$\}$, $B = \mathbb{R}$,
+
+$f(x) = $ temperature in  $^\circ C$ at point $x$ on December 2, 2012, at 6:00 local time
+
+  \item $A = \{$people living on Earth at a certain time $T\}$, $B = \mathbb{N}$,
+
+$f(x) = $ age (in seconds) of person $x$ at time $T$.
+\end{itemize}
+
+\bigskip
+The set $\{(x,y)~;~x\in A\inn y = f(x)\}$ is sometimes referred to as the {\em graph of a function.}
+
+\bigskip
+\textbf{ Depictions of functions.}
+If $A\subseteq \mathbb{R}$ and $B = \mathbb{R}$, the graph of a function can also be depicted as
+a set of points in the plane.
+
+\textbf{ Example:} $f:\mathbb{R}\to \mathbb{R},~~~f(x) = x^2\,.$
+\begin{center}
+\includegraphics[height=50mm]{yx2.eps}
+\end{center}
+
+\medskip
+
+In a asimilar way, we can also depict {\em binary relations} on the set $S =\mathbb{R}$:
+
+Let $xRy \cee x^2+y^2 = 4$.
+Then, relation $R$ is represented by a circle of radius $2$ and center in the origin.
+
+\begin{center}
+\includegraphics[height=50mm]{x2+y2=4.eps}
+\end{center}
+
+\bigskip
+Let $f:A\to B$.
+The domain of function $f$:
+
+$${\cal D}f = \{x~,~(\exists y)((x,y)\in f)\} = A$$
+
+Range of function $f$:
+
+$$\textrm{Im}f = \{y~,~y\in B\inn (\exists x)(x\in A\inn (x,y)\in f)\} \subseteq B$$
+
+%Mnoico vseh funkcij iz $A$ v $B$ lahko zapiemo s pomoèjo
+%$$B^A = \{f~;~f\textrm{ is funkcija }\inn {\cal D}f = A \inn \textrm{ Im}f \subseteq B\}$$.
+
+\medskip
+\textbf{ Example:} $f = \{(1,2),(2,4),(3,4)\}$, $A = \{1,2,3\}$, $B = \{2,4,6\}$.
+${\cal D}f = \{1,2,3\}$, $\textrm{Im}(f) = \{2,4\}$.
+
+\bigskip
+In general $\textrm{Im}f \subseteq B$. If equality holds, $\textrm{Im}f  = B$, then we say that $f$ is a {\em surjective} function.
+In this case we say that $f$ maps $A$ {\em onto} $B$.
+
+\bigskip
+\textbf{ Example:} $A = \{1,2,3\}$, $B = \{2,4,6\}$. $f= \{(1,2),(2,4),(3,4)\}$ is not surjective. $g:A\to B$, $g = \{(1,2),(2,6),(3,4)\}$, is surjective.
+
+\bigskip
+The definition of a function allows that several originals have the same $f$-image.
+In the extreme case, $f$ maps all elements of $A$ into the same element of $B$.
+Such a function is called a {\em constant (function)}.
+
+The other extreme occurs when two different originals always have different images:
+
+$f$ is {\em injective} $\cee$ $(\forall y)(y\in \textrm{Im}f\sledi (\exists!x)(x\in A \inn f(x) = y))$
+
+~~~~~~~~~~~~~~~$\cee$ $(\forall x)(\forall y)(f(x) = f(y) \sledi x = y)$
+
+\bigskip
+\textbf{ Example:} $f = \{(1,2),(2,4),(3,4)\}$ is not injective.
+$g = \{(1,2),(2,6),(3,4)\}$ is injective.
+
+\bigskip
+Let $U\subseteq A$. We write:
+$$f(U) = \{y~;~y\in B\inn (\exists x)(x\in U\inn f(x) = y)\}$$
+$f(U)$ -- image of subset  $U$ under mapping $f$
+
+\bigskip
+\textbf{ Example:} $f = \{(1,2),(2,4),(3,4)\}$.
+$U = \{2,3\}$. $f(U) = \{f(2),f(3)\} = \{4\}$.
+
+\medskip
+Clearly:
+\begin{itemize}
+  \item $f(A) = \textrm{Im}f$.
+  \item $U\subseteq V\sledi f(U)\subseteq f(V)$.
+\end{itemize}
+
+The images behave in the following way with respect to unions and intersections:
+\begin{itemize}
+  \item $f(U\cup V) = f(U)\cup f(V)$,
+  \item $f(U\cap V) \subseteq f(U)\cap f(V)$.
+\end{itemize}
+
+\textbf{ Homework:} Prove the above properties.
+
+\subsection{Inverse relation, preimages}
+
+\bigskip
+\textbf{ Inverse relation:}
+$$f^{-1} = \{(y,x)~;~f(x) = y\}\,.$$
+$f^{-1}$ is not necessarily a function!
+
+\medskip
+\textbf{ Example:} $f = \{(1,2),(2,4),(3,4)\}$.
+$f^{-1} = \{(2,1),(4,2),(4,3)\}$ - is not a function.
+
+\medskip
+{\em Preimage} of element $y$:
+$$f^{-1}(y) = \{x~;~x\in A\inn f(x) = y\}\,.$$
+
+Let $E\subseteq B$. {\em Preimage of $E$} (under mapping $f$):
+$$f^{-1}(E) = \{x~;~x\in A\inn f(x) \in E\}$$
+
+\medskip
+\textbf{ Example:} $f = \{(1,2),(2,4),(3,4)\}$.
+$f^{-1}(2) = \{1\}$, $f^{-1}(4) = \{2,3\}$, $f^{-1}(\{2,4\}) = \{1,2,3\}$
+\medskip
+
+Clearly:
+\begin{itemize}
+  \item $f^{-1}(\textrm{Im}f) = A$
+\end{itemize}
+
+\bigskip
+It also holds:
+\begin{itemize}
+  \item $E\subseteq F\sledi f^{-1}(E)\subseteq f^{-1}(F)$
+\end{itemize}
+
+\bigskip
+Preimages are in good relations with unions, intersections, and differences:
+\begin{itemize}
+  \item $f^{-1}(E\cup F)= f^{-1}(E)\cup f^{-1}(F)$
+  \item $f^{-1}(E\cap F)= f^{-1}(E)\cap f^{-1}(F)$
+  \item $f^{-1}(E\brez F)= f^{-1}(E)\brez f^{-1}(F)$
+\end{itemize}
+
+\textbf{ Proof of the property $f^{-1}(E\cap F)= f^{-1}(E)\cap f^{-1}(F)$:}
+$$x\in f^{-1}(E\cap F)\cee
+f(x)\in E\cap F\cee
+f(x)\in E \inn f(x)\in F\cee$$ $$\cee x\in f^{-1}(E) \inn x\in f^{-1}(F)
+\cee x\in f^{-1}(E)\cap f^{-1}(F)$$
+\qed
+
+\textbf{ Homework:} Prove the other two properties.
+
+\bigskip
+Similarly we can check that:
+\begin{itemize}
+  \item for all  $U\subseteq A$, it holds that $$U\subseteq f^{-1}(f(U))$$
+  \item for all $E\subseteq B$, it holds that $$f(f^{-1}(E))\subseteq E$$
+\end{itemize}
+
+\bigskip
+
+------------------------------------------------------------------------------------------------------------
+
+\bigskip
+
+Let $f:A\to B$. When is the inverse relation $f^{-1}$ a function?
+
+$f^{-1}$ is a function from $\textrm{Im}f$ to  $A$ $\cee$ $f$ is injective.
+
+%(Indeed: to have  da bo $f^{-1}$ funkcija, ne smeta obstajati dva razlièna urejena para v $f^{-1}$, ki bi imela isto prvo koordinato $\cee$ ne smeta obstajati dva razlièna urejena para v $f$, ki bi imela isto drugo koordinato, tj.~$f$ je injektivna.)
+
+
+Therefore, if $f^{-1}$ is a function, then for every element
+$y\in \textrm{Im}f$  there exists a unique $x\in {\cal D}f$ such that
+$f^{-1}(y) = x$. It holds that
+$$f^{-1}(y) = x\cee f(x) = y\,.$$
+
+Hence: $$f^{-1}(f(x)) = x$$
+and
+$$f(f^{-1}(y)) = y\,.$$
+
+A particularly interesting case is given if function $f$ is not only injective, but also surjective.
+In this case, we say that function $f$ is {\em bijective}.
+
+If $f$ is bijective, then  $\textrm{Im}f = B$ and $f^{-1}$ is a function from $B$ to $A$.
+
+%\bigskip
+
+%------------------------------------------------------------------------------------------------------------
+%
+%\bigskip
+
+\subsection{Composition of functions}
+$$g\circ f = \{(x,z)~;~(\exists y)((x,y)\in f\inn (y,z)\in g)\}$$
+$$= \{(x,z)~;~(\exists y)(f(x) = y \inn g(y) = z)\}\,.$$
+
+Hence, if $\textrm{Im}f\cap {\cal D}g = \emptyset$, then $g\circ f = \emptyset\,.$
+This example is not particularly interesting, so we usually require: $\textrm{Im}f\subseteq {\cal D}g$,
+therefore $A\overset{f}{\to} B\overset{g}{\to} C$.
+Under this condition:
+$$g\circ f = \{(x,z)~;~z = g(f(x))\}$$
+relation $g\circ f$ is also a function (from $A$ to $C$): $(g\circ f)(x) = g(f(x))$.
+
+\bigskip
+\textbf{ Example:} $f = \{(1,2),(2,4),(3,4)\}$, $g = \{(2,3),(4,5)\}$
+(Notice that ${\cal D}g = \textrm{Im}f$.)
+$g\circ f = \{(1,3),(2,5), (3,5)\}$
+
+\bigskip
+Just like compositions of binary relations, compositions of functions also enjoy
+
+\textbf{ Associativity:}
+
+If
+$$A\overset{f}{\to} B\overset{g}{\to} C\overset{h}{\to} D\,,$$
+then
+$$h\circ (g\circ f) = (h\circ g)\circ f\,.$$
+
+\subsection{Restrictions and extensions}
+When are two functions $f$ and $g$ the same?
+
+According to the definition of equality of sets, $f = g$ only if they have the same ordered pairs as elements.
+This is true precisely when the following two conditions are satisfied:
+\begin{itemize}
+  \item ${\cal D}f = {\cal D}g$
+  \item for every element $x$ of this common domain, it holds $f(x) = g(x)$.
+\end{itemize}
+
+Two particular ways of modifying a given function are particularly important:
+
+\textbf{ Restriction:}
+Let $f:A\to B$ and $U\subseteq A$.
+
+The {\em restriction} of $f$ on  $U$
+is the function $g$ that has set $U$ as its domain and such that for all $x\in U$, it holds
+$g(x) = f(x)$. Notation:
+$$g = f_{|U}$$
+
+\bigskip
+\textbf{ Example:} $f = \{(1,2),(2,4),(3,4)\}$, $A = \{1,2,3\}$, $U =  \{1,2\}$.
+$f_{|U} = \{(1,2),(2,4)\}$
+
+\bigskip
+If function $g$ is a restriction of function $f$, we say that $f$ is an {\em extension} of function $g$.
+
+\subsection{Canonical decomposition of a function}
+Consider the function $f:A{\to} B$.
+Let us define the following relation $R$ on set $A$:
+$$xRy \cee f(x) = f(y)\,.$$
+
+Clearly, $R$ is an equivalence relation:
+\begin{itemize}
+  \item for all $x\in A$ it holds $xRx$,
+  \item $xRy \sledi f(x) = f(y) \sledi f(y) = f(x) \sledi yRx$,
+  \item $xRy \inn yRz \sledi f(x) = f(y) \inn f(y) = f(z) \sledi f(x) = f(z) \sledi xRz$.
+\end{itemize}
+Now, let us compute the quotient set $A/R$ (the set of all equivalence classes).
+
+Let us first map set $A$ {\em onto} set $A/R$:
+$$p:A{\to} A/R$$
+$$p(a) = R[a]$$
+Mapping $p$ is surjective. It is called a {\em natural mapping}.
+
+Now, let us define a mapping $g$ from  the quotient set $A/R$ to set $B$ so that
+function $f$ will be the composition of functions $p$ and $g$, $f = g\circ p$:
+$$g:A/R{\to} B$$
+$$g(u) = f(x)\,,$$
+where $x$ is an arbitrary representative of equivalence class $u$ (that is, $x\in u$).
+
+\begin{itemize}
+  \item Mapping  $g$ is well defined (the value of $g(u)$ is independent of the choice of representative of class $u$):
+$$x\in u\inn y\in u \sledi xRy \sledi f(x) = f(y)\,.$$
+  \item Mapping $g$ is injective:
+$$g(u) = g(v) \inn g(u) = f(x) \inn g(v) = f(y) \sledi f(x) = f(y) \sledi xRy \sledi  u = v\,.$$
+  \item It follows from the definitions of functions $g$ and $p$ that  $f = g\circ p$:
+
+Let $x\in A$. Then:
+$$(g\circ p)(x) = g(p(x)) = g(R[x]) = f(x)\,.$$
+\end{itemize}
+
+We can decompose $f$ as follows:
+\begin{center}
+\includegraphics[height=20mm]{dekompozicija.eps}
+\end{center}
+
+%Izpeljali smo naslednjo dekompozicijo funkcije $f:A{\to} B$:
+%\begin{center}
+%\includegraphics[height=20mm]{dekompozicija.eps}
+%\end{center}
+%
+%Pri tem je:
+%\begin{itemize}
+%  \item  $p:A{\to} A/R$ surjektivna preslikava, definirana s predpisom
+%$p(a) = R[a]$.
+%  \item relation  $R$ je definirana na mnoici $A$ kot
+%$xRy \cee f(x) = f(y)\,.$
+%  \item $g:A/R{\to} B$ je injektivna preslikava, definirana s predpisom $g(u) = f(x)\,,$ kjer je $x\in u$.
+%\item $f = g\circ p$.
+%\end{itemize}
+%
+This decomposition can be further refined by
+introducing a mapping $h$, given by the same rule as $g$, but that maps to the set $\textrm{Im}g = \textrm{Im}f$.
+Mapping $h$ is then bijective:
+$$h:A/R{\to} \textrm{Im}f$$
+$$h(u) = g(u)\,.$$
+Finally, we map set $\textrm{Im}f$ to set $B$ with the  {\em identity mapping} $i$, which fixes all elements:
+$$i:\textrm{Im}f{\to}B$$
+$$i(y) = y\,.$$
+
+It is clear that for all $x\in A$, it holds
+$$i(h(p(x))) = h(p(x)) = g(p(x)) = f(x)\,.$$
+Therefore
+$$f = i\circ h\circ p\,.$$
+This way, we obtain {\em canonical decomposition} of function $f$:
+\begin{center}
+\includegraphics[height=20mm]{dekompozicija2en.eps}
+\end{center}
+
+\textbf{ Example:}
+$A = \{1,2,3\}, B = \{2,4,6\}$,
+$f = \{(1,2),(2,4),(3,4)\}$
+
+(that is, $f(1) = 2$, $f(2)= f(3) = 4$)
+
+Equivalence relation: $R = \{(1,1),(2,2),(3,3),(2,3),(3,2)\}$
+
+Quotient set: $A/R = \{\{1\},\{2,3\}\}$
+
+$\textrm{Im} f = \{2,4\}$
+
+Natural mapping $p$: $p(1) = \{1\}$, $p(2) = p(3) = \{2,3\}$.
+
+Mapping $g: \{\{1\},\{2,3\}\}\to \{2,4,6\}$:
+
+$g(\{1\}) = f(1) = 2$, $g(\{2,3\}) = f(2) = f(3) = 4$.
+
+Mapping $h: \{\{1\},\{2,3\}\}\to \{2,4\}$:
+$h(\{1\}) = g(\{1\}) = 2$, $h(\{2,3\}) = g(\{2,3\}) = 4$.
+
+Identity mapping $i:\{2,4\}\to\{2,4,6\}$: $i(2) = 2$, $i(4) = 4$.
+
+\begin{center}
+\includegraphics[height=20mm]{dekompozicija3en.eps}
+\end{center}
+
+%end of lectures 22.11
+\newpage
+\section{Order structures}
+
+{\em Besides equivalence relations and functions, relations that generate a certain \emph{ order} among the elements of a given set
+are of particular importance in mathematics. The order can be more or less strict, so we deal with different order structures. As we shall see, these structures form a hierarchy and are thus ordered on their own.}
+
+\bigskip
+Let us start with the most general structures.
+
+\bigskip
+
+Let $S$ be a universal set and $R$ a relation on $S$.
+
+We obtain the most general structure if we only require transitivity.
+
+This is not a particularly interesting structure: the null relation, the identity relation and the universal relation are all transitive!
+
+\bigskip
+$R$ {\em virtually orders} $S$ $\cee$ $R$ is transitive and reflexive.
+
+The word ``virtually'' relates to our intuitive notion of order, since the universal relation $S\times S$ is a virtual order on $S$, even though it does not order anything!
+
+\medskip
+$R$ {\em partially orders} $S$ $\cee$ $R$ is transitive, reflexive and antisymmetric.
+
+\medskip
+Let $R$ be a partial order on $S$. Then, a pair $(S,R)$ is called a partially ordered set or, shortly, a {\em poset}.
+
+$xRy$:
+
+``$x$ is smaller than or equal to $y$"~or
+
+``$y$ is greater than or equal to $x$".
+
+\medskip
+\textbf{ Example of a partial order:} relation of set inclusion ``$\subseteq$", defined
+on an arbitrary family of subsets of a given universal set ${\cal U}$.
+
+Two sets $A$ and $B$ might not be comparable with respect to relation of inclusion!
+
+This holds also in general. This is where the name ``partial order'' comes from.
+
+\medskip
+\textbf{ Example:} relation of divisibility on the set of positive integers.
+
+This is also a partial order. Two numbers might be incomparable
+with respect to this relation (e.g., $5$ and $7$, or $12$ and $16$).
+
+\bigskip
+The relation  ``$\le$"~on the set of real numbers also satisfies all conditions of a partial order.
+
+Even more: this relation is also total, since every two real numbers $x$ and $y$ satisfy $x\le y$ or $y\le x$.
+
+
+\bigskip
+
+$R$ {\em totally} or {\em linearly orders} $S$ $\cee$ $R$ is transitive, reflexive,
+antisymmetric and total.
+
+\bigskip
+However: $R$ is total  $\sledi R$ is reflexive!
+
+(if in the condition $(\forall x)(\forall y)(xRy \ali yRx)$ we take $y = x$, we get
+$(\forall x)(xRx)$).
+
+Hence:
+
+$R$ {totally (linearly) orders} $S$ $\cee$ $R$ is transitive, antisymmetric and total.
+
+\bigskip
+
+------------------------------------------------------------------------------
+
+% 16. predavanje, 2 uri, 7. 12. 2011
+
+\bigskip
+
+Relations of strict inclusion ``$\subset$'' and strict inequality ``$<$'':
+\begin{itemize}
+  \item they are both transitive and irreflexive
+  \item both are asymmetric
+  \item relation of strict inclusion determines only a ``{\em partial}'' order (since there exist pairs of incomparable sets)
+  \item on the other hand, relation of strict inequality stroge determines a ``total'' order: it is {\em strict total}, any two {\em different} real numbers are pairwise comparable with respect to $<$.
+\end{itemize}
+
+Every asymmetric relation is also irreflexive. Hence we can define
+
+$R$ {\em strictly partially orders} $S$ $\cee$ $R$ is transitive and asymmetric.
+
+\bigskip
+
+Analogously:
+
+\medskip
+$R$ {\em strictly linearly orders} $S$ $\cee$ $R$ is transitive, asymmetric and strict total.
+
+\bigskip
+
+Let $R$ be a strict partial order on $S$.
+
+$xRy$: ``$x$ is below $y$"~or
+
+``$x$ is smaller than $y$"~or
+
+``$y$ is above $x$"~or
+
+``$y$ is greater than $x$".
+
+(The same terminology is also used if $R$ is a partial order and $x\neq y$.
+
+------------------------------------------------------------------------------
+
+\bigskip
+
+Let us consider one more relation of order: \textbf{ preorder} (or: quasiorder).
+
+A model for preorder is for example the relation ``is at least as tall as'' on the set of all people.
+It is transitive and total (therefore also reflexive).
+
+But it is not antisymmetric!
+If $x$ ``is at least as tall as'' $y$ and $y$ ``is at least as tall as''~$x$,
+we can only infer that $x$ and $y$ are equally tall, and not that $x = y$.
+
+$R$ is a {\em preorder} on $S$ $\cee$ $R$ is transitive and total.
+
+\bigskip
+
+------------------------------------------------------------------------------
+\bigskip
+
+So far we have seen $7$ different order structures.
+Let us define on the set that contains as elements these $7$
+structures, relation ``is a special case of''.
+
+$x$ is a special case of $y$ if every relation $R_x$ that determines structure $x$
+also has all the properties of structure $y$.
+
+\begin{itemize}
+  \item Example:
+
+  linear order is a special case of partial order
+
+  strict linear order is a special case of strict partial order
+\end{itemize}
+
+relation  ``is a special case of'' is transitive, reflexive and antisymmetric, hence it determines a partial
+order among these structures.
+
+Partial orders can be represented with so called~{\em Hasse diagrams:}
+
+\begin{center}
+\includegraphics[height=50mm]{strukture-en.eps}
+\end{center}
+
+Hasse diagram
+
+$R$ - relation that partially or strictly partially orders $S$
+
+$xRy\cee $ we can get from $x$ to $y$ in the diagram moving only upwards
+
+\bigskip
+------------------------------------------------------------------------------
+
+\bigskip
+
+\textbf{ Example:} $A = \{1,2,3\}$, $S = {\cal P}(A)$, $R$: strict inclusion
+
+\begin{center}
+\includegraphics[height=40mm]{Hasse.eps}
+\end{center}
+
+\bigskip
+
+------------------------------------------------------------------------------
+\bigskip
+
+\textbf{ Example:} Hasse diagram of a totally or strictly totally ordered set:
+
+\begin{center}
+\includegraphics[height=40mm]{Hasse1.eps}
+\end{center}
+
+\pagebreak
+%lectures together with midterms
+\subsection{Lattice}
+
+A {\em lattice} structure is a partial order with particularly nice features.
+In order to define it, we need some definitions.
+
+\bigskip
+
+Let a set $S$ be partially ordered with relation $R$ and let $U\subseteq S$.
+
+If there exists $a\in S$ such that for all $x\in U$ it holds $aRx$, we say that
+$a$ is an {\em $R$-lower bound} for $U$.
+
+\bigskip
+If there exists $b\in S$ such that for all $x\in U$ it holds $xRb$, we say that
+$b$ is an {\em $R$-upper bound} for $U$.
+
+\bigskip
+If $U$ has an $R$-lower bound, we say that $U$ is {\em $R$-bounded from below}.
+
+\bigskip
+If $U$ has an $R$-upper bound, we say that $U$ is {\em $R$-bounded from above}.
+
+\bigskip
+If $U$ has an $R$-upper bound as well as an $R$-lower bound, we say that
+$U$ is {\em $R$-bounded}.
+
+\bigskip
+$a\in S$ is an {\em $R$-greatest lower bound ($R$-infimum)} of a subset $U$
+$\cee$ $a$ is an $R$-lower bound for $U$ and for every $R$-lower bound $x$ for $U$ it holds $xRa$.
+
+Notation: $a = R$-$\inf U$.
+
+\bigskip
+$b\in S$ is an {\em $R$-least upper bound ($R$-supremum)} of a subset $U$
+$\cee$ $b$ is an $R$-upper bound for $U$ and for every $R$-upper bound $x$ for $U$ it holds $bRx$.
+
+Notation: $b = R$-$\sup U$.
+
+\bigskip
+Because of antisymmetry, every subset $U\subseteq S$ has at most one $R$-$\sup$
+and at most one $R$-$\inf$.
+
+But some subsets might have neither of them!
+
+\bigskip
+\textbf{ Example:}
+
+$S = \mathbb{Q}$, $R = \le$
+
+$$U = \{x~;~x\in \mathbb{Q}\inn 0\le x \inn x^2\le 2\}$$
+
+Set $U$ is bounded from above and from below.
+
+$\inf U = 0$, $\sup U$ does not exist!
+
+\medskip
+$$V = \{x~;~x\in \mathbb{Q}\inn 0\le x \inn 2\le x^2\le 5\}$$
+
+Set $V$ is bounded, but neither $\inf V$ nor $\sup V$ exist.
+
+\begin{definition}
+Set $S$ has the structure of a {\em lattice} with respect to relation $R$ $\cee$
+$R$ partially orders $S$ and every {\em two-element} subset $X\subseteq S$
+has an $R$-supremum and an $R$-infimum.
+\end{definition}
+
+\textbf{Remark:} the structure of a lattice can be defined purely algebraically.
+
+\subsubsection{Examples of lattices}
+\begin{enumerate}
+  \item $A$ - set
+
+  ${\cal P}(A)$ -- power set
+
+  ${\cal P}(A)$ is a lattice with respect to  $R = \subseteq$:
+  \begin{itemize}
+    \item partial order $\checkmark$
+     \item $E,F\subseteq A$, $E\neq F$:
+
+     $\inf\{E,F\} = E\cap F$
+
+     $\sup\{E,F\} = E\cup F$
+  \end{itemize}
+  \item Let $R$ linearly order $S$.
+
+  $a, b\in S, a\neq b\sledi aRb$ or $bRa$
+
+$aRb\sledi R\textrm{-}\inf\{a,b\} = a,~R\textrm{-}\sup\{a,b\} = b$.
+
+$bRa\sledi R\textrm{-}\inf\{a,b\} = b,~R\textrm{-}\sup\{a,b\} = a$.
+
+  \item $S = \mathbb{N}\backslash \{0\}$, $R = |$ (relation  of divisibility).
+  \begin{itemize}
+    \item partial order $\checkmark$
+    \item $x,y\in \mathbb{N}$, $x\neq y$
+
+    $\inf\{x,y\} = $ greatest common divisor of $x$ and $y$
+
+    $\sup\{x,y\} = $ least common multiple of $x$ and $y$
+  \end{itemize}
+\end{enumerate}
+
+
+
+\begin{figure}[hb]
+	\centering
+\includegraphics[height=40mm]{Hasse4-en.eps}
+\caption{Some further examples with Hasse diagrams.}
+\end{figure}
+
+\pagebreak
+
+In every lattice, every \underline{finite} non
+empty subset of set $S$ has an infimum and a supremum!
+
+\begin{proposition}
+Let $S$ have the structure of a lattice with respect to $R$. Then for every three elements
+$a_1,a_2,a_3\in S$, it holds that
+$$R\textrm{-}\inf\{a_1,a_2,a_3\} = R\textrm{-}\inf\{R\textrm{-}\inf\{a_1,a_2\}, a_3\}\,.$$
+\end{proposition}
+
+\begin{proof}
+Let $a = R\textrm{-}\inf\{R\textrm{-}\inf\{a_1,a_2\}, a_3\}$.
+
+\emph{ $a$ is a lower bound of the set $\{a_1,a_2,a_3\}$:}
+
+  $aRa_3$, since $a$ is a lower bound of the set $\{R\textrm{-}\inf\{a_1,a_2\}, a_3\}$.
+
+  Similarly
+   $aR(R\textrm{-}\inf\{a_1,a_2\})$, but since $(R\textrm{-}\inf\{a_1,a_2\})Ra_1$ and $R$ is transitive, we get $aRa_1$.
+   Similarly we also get $aRa_2$.
+
+
+\emph{ $a$ is the greatest lower bound of the set $\{a_1,a_2,a_3\}$:}
+
+Let $x$ be an arbitrary lower bound of the set $\{a_1,a_2,a_3\}$. Therefore $xRa_1$, $xRa_2$ and $xRa_3$.
+
+$xRa_1, xRa_2\sledi xR(R\textrm{-}\inf\{a_1,a_2\})$.
+
+$xR(R\textrm{-}\inf\{a_1,a_2\}) \inn xRa_3\sledi xRa$.
+\end{proof}
+
+Similarly for supremum. We can repeat the procedure and show the existence of infimum and supremum for
+arbitrary finite nonempty sets.
+
+\medskip
+%\textbf{ V razmislek:} Kako bi dokazali obstoj $R$-$\inf\{a_1,\ldots, a_n\}$?
+%
+%\medskip
+
+\begin{corollary}
+If $S$ is a lattice with respect to $R$, then every \underline{finite} nonempty set has both $R\textrm{-}\inf$
+and $R\textrm{-}\sup$.
+\end{corollary}
+
+%(Proof: exercise.)
+
+%\begin{proposition}
+%Naj ima $S$ strukturo mree glede na $R$. Tedaj za vsake tri elemente $a_1,a_2,a_3\in S$ velja
+%$$R\textrm{-}\inf\{a_1,a_2,a_3\} = R\textrm{-}\inf\{R\textrm{-}\inf\{a_1,a_2\}, a_3\}\,.$$
+%\end{proposition}
+%
+%\begin{proof}
+%Let $a = R\textrm{-}\inf\{R\textrm{-}\inf\{a_1,a_2\}, a_3\}$.
+%
+%\emph{ $a$ je spodnja meja mnoice $\{a_1,a_2,a_3\}$:}
+%
+%  $aRa_3$, saj je $a$ spodnja meja mnoice $\{R\textrm{-}\inf\{a_1,a_2\}, a_3\}$.
+%
+%  Podobno je
+%  $aR(R\textrm{-}\inf\{a_1,a_2\})$, ker pa je $(R\textrm{-}\inf\{a_1,a_2\})Ra_1$ and je $R$ transitive, je $aRa_1$. Podobno je tudi $aRa_2$.
+%
+%
+%\emph{ $a$ je najveèja spodnja meja mnoice $\{a_1,a_2,a_3\}$:}
+%
+%Let $x$ poljubna spodnja meja mnoice $\{a_1,a_2,a_3\}$. Torej je $xRa_1$, $xRa_2$ and $xRa_3$.
+%
+%$xRa_1, xRa_2\sledi xR(R\textrm{-}\inf\{a_1,a_2\})$.
+%
+%$xR(R\textrm{-}\inf\{a_1,a_2\}) \inn xRa_3\sledi xRa$.
+%\end{proof}
+%
+%Podobno za supremum. Postopek lahko ponavljamo and
+%pokaemo obstoj infimuma and supremuma poljubne konène neprazne mnoice.
+
+%\medskip
+%\textbf{ V razmislek:} Kako bi dokazali obstoj $R$-$\inf\{a_1,\ldots, a_n\}$?
+
+\medskip
+%
+%\begin{corollary}
+%Èe je $S$ mrea glede na $R$, ima vsaka \underline{finite} neprazna set $R\textrm{-}\inf$
+%and $R\textrm{-}\sup$.
+%\end{corollary}
+%
+We may require the existence of infimum and supremum for \emph{ all} nonempty subsets (not only for finite ones):
+
+\begin{definition}
+Set $S$ has the structure of a {\em complete lattice} with respect to relation $R$ $\cee$
+$R$ partially orders set $S$ and \underline{every} nonempty subset $X$ of set $S$ has $R$-inf and $R$-sup.
+\end{definition}
+
+Clearly, every complete lattice is also a lattice with respect to the same relation $R$.
+Every finite lattice is a complete lattice.
+
+\bigskip
+\textbf{ Example:}
+
+$A$ -- arbitrary set
+
+${\cal P}(A)$ is a complete lattice for $\subseteq$:
+
+If ${\cal A}$ is a nonempty family of subsets of set $A$, then
+$$(\subseteq)\textrm{-}\inf {\cal A} = \cap {\cal A}$$
+and
+$$(\subseteq)\textrm{-}\sup {\cal A} = \cup {\cal A}\,.$$
+
+\bigskip
+
+\textbf{ Question:} Is the set ${\mathbb R}$ of real numbers a complete lattice with respect to relation ``$\le$''?
+
+\bigskip
+
+$\mathbb{R}$ is not a complete lattice with respect to $\le$:
+the whole set $\mathbb{R}$ is not bounded! (it has neither a supremum nor an infimum)
+
+We can extend the set of real numbers to a complete lattice by adding to it elements
+$\infty$ and $-\infty$, and require $x\le \infty$ for all $x\in \mathbb R$ and $-\infty\le x$ for all $x\in \mathbb R$.
+
+
+------------------------------
+
+Hasse diagram of the $9$ order structures that we have seen:
+
+\begin{center}
+\includegraphics[height=70mm]{strukture2-en.eps}
+\end{center}
+
+$x$ is below  $y$ $\cee$ $x$ is a special case of $y$.
+
+% 17. predavanje, 2 uri, 13. 12. 2011
+%
+%Ponovitev:
+%\begin{itemize}
+%\item Hassejev diagram struktur urejenosti:
+%\begin{center}
+%\includegraphics[height=70mm]{strukture3.eps}
+%\end{center}
+%
+%$x$ je pod $y$ $\cee$ $x$ je poseben primer $y$.
+%
+%$R$ {\em strogo delno ureja} $S$ $\cee$ $R$ je transitive and asymmetric.
+%
+%$R$ {\em strogo linearno ureja} $S$ $\cee$ $R$ je transitive, asymmetric and sovisna.
+%
+%\bigskip
+%
+%  \item Mreža: delna urejenost, kjer ima vsaka dvoelementna podmnožica supremum and infimum.
+%
+%  Polna mrea: vsaka podmnoica ima supremum and infimum.
+%
+
+
 
 \appendix
 \cleardoublepage\part*{Appendix}
+\chapter{Additional Topics from Set Theory}
+\section{Logical consequences}
+
+We are given propositions $C_1,\ldots, C_m$, composed of propositions $A_1,\ldots, A_n$.
+Let us determine all propositions $B$ for which $$C_1\inn\cdots\inn C_m\sledi B$$
+is a tautology. Such a proposition $B$ is called  {\em logical consequence}
+of propositions $C_1,\ldots, C_m$.
+
+Special cases:
+\begin{itemize}
+  \item $C_1\inn\cdots\inn C_m$ tautology  $\sledi B$ tautology
+  \item $C_1\inn\cdots\inn C_m$ contradiction $\sledi B$ any proposition
+\end{itemize}
+
+Otherwise, we take the following approach:
+
+We express the proposition $C_1\inn\cdots\inn C_m$ in its canonical CNF.
+$C_1\inn\cdots\inn C_m$ is the conjunction of a number of basic disjunctions (maxterms), composed of
+propositions $A_1,\ldots, A_n$:
+$$( \ali\ali\ali) \inn ( \ali\ali\ali) \inn \cdots \inn (\ali\ali\ali)$$
+
+The following holds:
+
+1. If $B$ is the conjunction of any number of these maxterms, then
+$$C_1\inn\cdots\inn C_m\sledi B$$
+is a tautology!
+
+(Indeed: if proposition $C_1\inn\cdots\inn C_m$ is true, then all the maxterms appearing in the canonical CNF of it are true. Therefore also the conjunction of any number of these maxterms is true.)
+
+2. If $C_1\inn\cdots\inn C_m\sledi B$ is a tautology, then the canonical CNF of $B$ can only contain those maxterms that also appear
+in the canonical CNF of $C_1\inn\cdots\inn C_m$.
+
+(Indeed: if, in the canonical CNF of $B$ we have a maxterm corresponding to a truth assignment $d$, which does not appear in the canonical CNF for
+$C_1\inn\cdots\inn C_m$, then proposition $B$ is false at $d$, while proposition $C_1\inn\cdots\inn C_m$ is true at $d$. This is a contradiction with the assumption that  $C_1\inn\cdots\inn C_m\sledi B$ is a tautology.)
+
+\bigskip
+\textbf{ Example:}
+
+$C_1$: A man speaks the truth or is not brave.
+
+$C_2$: If a man is free, he is brave.
+
+\medskip
+$A_1$: A man speaks the truth.
+
+$A_2$: A man is brave.
+
+$A_3$: A man is free.
+
+\medskip
+
+$C_1: A_1\ali \neg A_2$
+
+$C_2: A_3\sledi A_2$
+
+$C_1\inn C_2: (A_1\ali \neg A_2) \inn (A_3\sledi A_2)$
+
+\medskip
+Truth table:
+
+$$\begin{tabular}{c|c|c|c|c|c|c}
+  \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+   & $A_1$ & $A_2$ & $A_3$ & $A_1\ali \neg A_2$ & $A_3\sledi A_2$ & $C_1\inn C_2$ \\
+  \hline
+  1. & 1 & 1 & 1 & 1 & 1 & 1 \\
+  2. & 1 & 1 & 0 & 1 & 1 & 1 \\
+  3. & 1 & 0 & 1 & 1 & 0 & 0 \\
+  4. & 1 & 0 & 0 & 1 & 1 & 1 \\
+  5. & 0 & 1 & 1 & 0 & 1 & 0 \\
+  6. & 0 & 1 & 0 & 0 & 1 & 0 \\
+  7. & 0 & 0 & 1 & 1 & 0 & 0 \\
+  8. & 0 & 0 & 0 & 1 & 1 & 1 \\
+\end{tabular}$$
+
+Canonical CNF:
+\begin{align*}
+(\neg A_1\ali A_2\ali \neg A_3) & \inn (A_1\ali \neg A_2\ali \neg A_3)\\ 
+& \inn (A_1\ali \neg A_2\ali A_3) \\
+& \inn (A_1\ali A_2\ali \neg A_3)
+\end{align*}
+$$
+$$
+
+We can obtain all logical consequences that are not tautologies by choosing one or more maxterms and connecting them conjunctively.
+The number of such consequences is
+$${4\choose 1} + {4\choose 2} +{4\choose 3} + {4\choose 4}  = 4+6+4+1 = 15\,.$$
+
+Let us analyze one of them:
+$$(A_1\ali \neg A_2\ali \neg A_3) \inn (A_1\ali A_2\ali \neg A_3)$$
+$$\cee$$
+$$(A_1\ali \neg A_3 \ali\neg A_2) \inn (A_1\ali \neg A_3\ali A_2)$$
+$$\cee$$
+$$((A_1\ali \neg A_3) \ali\neg A_2) \inn ((A_1\ali \neg A_3)\ali A_2)$$
+$$\cee$$
+$$(A_1\ali \neg A_3)\ali (\neg A_2\inn A_2)$$
+$$\cee$$
+$$A_1\ali \neg A_3$$
+The proposition reads: {\em A man speaks the truth or is not free.}
+
+\bigskip
+
+Suppose also that somebody asks us: Is proposition $A_1$ a tautological consequence of propositions $C_1$ and $C_2$?
+
+In this case, we express proposition $A_1$ in its canonical CNF with respect to the atomic propositions $A_1$, $A_2$, $A_3$:
+
+Applying implication (18) twice, we can write $A_1$ as
+$$A_1\ali (A_2\inn \neg A_2)\ali (A_3\inn \neg A_3)\,.$$
+Applying distributivity, we obtain the canonical CNF of $A_1$:
+\begin{align*}
+    (A_1\ali A_2\ali A_3)
+    & \inn (A_1\ali A_2\ali \neg A_3)\\
+    & \inn (A_1\ali \neg A_2\ali A_3)
+    \inn (A_1\ali \neg A_2\ali \neg A_3)\,.
+\end{align*}
+We notice that disjunction $A_1\ali A_2\ali A_3$ does not appear in the canonical CNF of proposition $C_1\inn C_2$.
+Therefore, the answer to the above question is: no. \qed
+
+% 7. predavanje, 60', 25. 10. 2012
+
+\section{Inference}
+
+Facts:
+\begin{itemize}
+  \item I will go to the match.
+  \item In the evening, I will do the homework.
+  \item If I go to the match and then to the cinema, I will not have the time to do the homework.
+\end{itemize}
+Can I infer that I will not be able to go to the cinema?
+
+\medskip
+\textbf{ Solution:}
+
+Let us define the following propositions:
+
+$A_1$: I will go to the match.
+
+$A_2$: In the evening, I will do the homework.
+
+$A_3$: I will go to the cinema.
+
+$C_1$: $A_1$
+
+$C_2$: $A_2$
+
+$C_3$: $A_1\inn A_3\sledi \neg A_2$.
+
+We have to determine whether the implication
+$$C_1\inn C_2\inn C_3\sledi \neg A_3$$
+is a tautology.
+
+
+Suppose this is not the case: let $d$ be a truth assignment for which the antecedent
+$C_1\inn C_2\inn C_3$ is true,
+while the consequent $\neg A_3$ is false.
+Since the consequent $\neg A_3(d)$ is false, the proposition $A_3(d)$ is true.
+
+Since the antecedent $C_1\inn C_2\inn C_3$ is true, both propositions $C_1=A_1$ and $C_2=A_2$ are true for assignment $d$.
+What is the value of $C_3$, that is,~$A_1\inn A_3\sledi \neg A_2$?
+Proposition $A_1\inn A_3$ is true at assignment $d$, while proposition $\neg A_2$ is false. Therefore, also proposition $C_3$ is false.
+However this is a contradiction with the assumption that the conjunction
+$C_1\inn C_2\inn C_3$ (antecedent) is true.
+
+This contradiction shows that the implication
+$$C_1\inn C_2\inn C_3\sledi \neg A_3$$
+is indeed a tautology, hence the above inference is correct. (I will not make it to the cinema.)
+\qed
+
+\bigskip
+
+The following facts are given:
+\begin{itemize}
+  \item This bird is not a bird, or it has wings.
+  \item If this animal is a bird, then it lays eggs.
+\end{itemize}
+Is the following inference correct?
+{\em If this animal does not have wings, then it does not lay eggs.}
+
+\medskip
+\textbf{ Solution:}
+
+Let us define the following propositions:
+
+$A_1$: This animal is a bird.
+
+$A_2$: This animal has wings.
+
+$A_3$: This animal lays eggs.
+
+$C_1$: $\neg A_1\ali A_2$
+
+$C_2$: $A_1\sledi A_3$
+
+$B$: $\neg A_2\sledi \neg A_3$.
+
+We have to determine whether the implication
+$$C_1\inn C_2\sledi B$$
+is a tautology.
+
+So let us suppose that it is not: let $d$ be a truth assignment at which the antecedens
+$C_1\inn C_2$ is true and the consequent $B$ is false.
+Since the consequent $B(d)$ is false, the proposition $\neg A_2(d)$ is true, and the proposition
+$\neg A_3 (d)$ is false. It follows that the proposition $A_2(d)$ is false, and the proposition
+$A_3(d)$ is true.
+
+Since the antecedens $C_1\inn C_2$ is true at the truth assignment $d$, also the proposition $C_1$ is true at $d$: $\neg A_1\ali A_2$.
+However since the proposition $A_2(d)$ is false, the proposition
+$\neg A_1(d)$ must be correct. Equivalently: proposition $A_1$ is false at truth assignemnt $d$.
+
+The truth assignment is already completely determined with this: $A_1(d)$ and $A_2(d)$ are false propositions, and
+$A_3(d)$ is true. We can check that also the proposition $C_2$ is correct at this truth assignment.
+
+We have not reached a contradiction, we constructed a truth assignment, for which the proposition $$C_1\inn C_2\sledi B$$
+is flase. (This happens only in the case when {\em this animal is not a bird, it has no wings, and lays eggs.})
+\qed
+
+\medskip
+\begin{sloppypar}
+{\em The above examples nicely illustrate that the process of proving that a particular proposition is a tautology is  the same as the process of proving  that the a certain proposition is not a tautology. In both cases, we are trying to construct a truth assignment $d$, for which the proposition is false.
+If we do that, then we have a proof that the proposition is not a tautology. If we get a contradiction, we have thus proved that the proposition is a tautology!}
+\end{sloppypar}
+
+\bigskip
+\textbf{ Homework:}
+Found out whether the following inference is correct.
+
+Facts:
+
+Duke was killed by one of his staff: the cook, the servant or the driver.
+
+If the killer was the cook, she poisoned the food.
+
+If the killer was the driver, he put a bomb in the car.
+
+The food was not poisoned and the servant is not a murderer.
+
+Conclusion: The killer was the driver.
+	content...
+
 \chapter{Additional Topics from Set Theory}
 
 \section{On Axioms}
