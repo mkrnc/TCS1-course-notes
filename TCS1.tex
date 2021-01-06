@@ -3,12 +3,12 @@
     \WarningFilter{titlesec}{Non standard sectioning command detected}
 \documentclass[11pt,paper=b5,footinclude,headinclude]{scrbook} % KOMA-Script book
 \usepackage[T1]{fontenc}
-\usepackage[style=arsclassica, parts=false, eulermath=true, palatino=true, eulerchapternumbers=true]{classicthesis}
+\usepackage[style=arsclassica, parts=false, eulermath=false, palatino=true, eulerchapternumbers=true]{classicthesis}
 
 
 %\documentclass[11pt,a5paper,footinclude,headinclude]{scrbook} % KOMA-Script book
 
-
+\usepackage{xspace}
 \usepackage{url}
 \usepackage{enumerate}
 \usepackage{comment}
@@ -32,24 +32,32 @@
 
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
+\newtheorem*{lemma}{Lemma}
 \newtheorem*{corollary}{Corollary}
 \theoremstyle{definition} %theorem
 \newtheorem*{definition}{Definition}
 \theoremstyle{theorem} %theorem
+\newtheorem*{theorem}{Theorem}
 \newtheorem*{proposition}{Proposition}
 
-
+%vars
+\newcommand{\myTitle}{Theoretical Computer Science\xspace}
+\newcommand{\mySubtitle}{Discrete Structures for Computer Science Students \xspace} 				%dodaj podnaslov if needed
+\newcommand{\myName}{UP FAMNIT \xspace}
+\newcommand{\myPublisher}{XXX}
+\newcommand{\myMonth}{Spring}
+\newcommand{\myYear}{2021}
+\newcommand{\verzija}{Version 0.1\xspace}
+\newcommand{\shortAuthors}{M. Krnc, M. Milanič, R. Požar, N. Prijatelj, P. Škraba}
+\newcommand{\myAuthors}{XXx }
+\newcommand{\myISBN}{978-961-XXX-XXX-X }
+\newcommand{\myRepo}{\url{https://github.com/mkrnc/TCS1-course-notes.git}}
 
 
 \begin{document}
-
-\title{Theoretical Computer Science I}
-
-
-\date{FAMNIT, Fall 2020}
-\author{Discrete Structures for Computer Science\\}
-\maketitle
-
+\input{Titlepage}
+\input{cip}
+\newpage
 \section*{Preface}
     Those are lecture notes for the course Theoretical Computer Science I, given to freshmen students at FAMNIT, University of Primorska.
 Ever since 2017 when I started teaching this course, those notes have been changing to accommodate the needs of computer science students.
@@ -60,7 +68,7 @@ Any questions or found errors should be
 %forwarded to \texttt{matjaz.krnc@upr.si}, or 
 raised as an issue in our public repository 
 \begin{center}
-    \url{https://github.com/mkrnc/TCS1-course-notes.git}.    
+    \myRepo.    
 \end{center}
 
 \medskip
@@ -72,6 +80,9 @@ Those notes are non-trivially based on some notes of my predecessors of this cou
 \end{center}
 
 %Among most notable student contributors are:
+
+
+\input{kolofon}
 
 \tableofcontents
 
@@ -1232,7 +1243,7 @@ $$\kz
 
 Let $P(x)$ denote the proposition ``$x$ is prime''.
 
-{\emph For every natural number $x$ there exists a natural number $y$, bigger than $x$, that is a prime number:
+\emph{ For every natural number $x$ there exists a natural number $y$, bigger than $x$, that is a prime number:
   $(\forall x)(\exists y)(y>x\inn P(y))$.}
 
   Negation:   $$\neg (\forall x)(\exists y)(y>x\inn P(y)) \cee(\exists  x)\neg (\exists y)(y>x\inn P(y))$$
@@ -3863,8 +3874,1403 @@ $x$ is below  $y$ $\cee$ $x$ is a special case of $y$.
 %
 %  \item Mreža: delna urejenost, kjer ima vsaka dvoelementna podmnožica supremum and infimum.
 %
-%  Polna mrea: vsaka podmnoica ima supremum and infimum.
+%  Polna mreža: vsaka podmnožica ima supremum and infimum.
 %
+
+
+
+\subsection{Well ordering}
+
+Just like the set of real numbers $\mathbb{R}$, the set of natural numbers $\mathbb{N}$
+is also strictly linearly oredered with relation ``$<$''.
+
+But it also has the following additional property:
+
+{\em Every nonempty subset of natural numbers has a smallest element!}
+
+Example:
+\begin{itemize}
+ \item In the set of all natural numbers such an element is $0$.
+  \item In the set of all prime numbers the smallest element is $2$.
+\end{itemize}
+
+The set of real numbers does not have this property!
+\begin{itemize}
+  \item set $\mathbb{R}$ does not have any smallest element
+  \item the set $\{x~;~x\in \mathbb{R} \inn x> 0\}$ also not
+\end{itemize}
+
+\bigskip
+The property that every nonempty subset has a smallest element is referred to {\em well ordering}.
+
+\bigskip
+$R$ -- relation  on set  $S$ (typically partial or strict partial order)
+\begin{itemize}
+  \item $a\in S$ is a {\em minimal element} of set  $S$ with respect to relation $R$ (or {\em $R$-minimal element} of set $S$) $\cee$ $(\forall y)(y\in S\inn y\neq a\sledi \neg (yRa))$
+  \item $b\in S$ is a {\em least element} of set $S$ with respect to relation $R$ (or {\em $R$-least element} of set $S$) $\cee$ $(\forall y)(y\in S\inn y\neq b\sledi bRy)$
+\end{itemize}
+
+\bigskip
+$xRy$: ``$x$ is below $y$"~
+
+\medskip
+No element of $S$ is below a minimal element.
+
+A least element is below  every other element.
+
+\begin{itemize}
+  \item Every element that is incomparable with every other element is a minimal element.
+\end{itemize}
+
+\bigskip
+\newpage
+\textbf{ Example:}
+
+Partial orders $R$ and $T$ are given with the following Hasse diagrams:
+
+\begin{center}
+\includegraphics[height=40mm]{Hasse2-en.eps}
+\end{center}
+
+\medskip
+
+\begin{proposition}
+Let $R$ be antisymmetric. Then every $R$-least element is also $R$-minimal.
+\end{proposition}
+
+\begin{proof}
+By contradiction. Suppose that there exists an $R$-least element $b$ that is not
+$R$-minimal.
+
+$b$ is not $R$-minimal:
+
+$\neg(\forall y)(y\in S\inn y\neq b\sledi \neg (yRb))$
+
+$\sledi(\exists y)(y\in S\inn y\neq b\inn yRb)$
+
+Since $b$ is $R$-least, it holds $bRy$. But since $R$ is antisymmetric, from  $bRy\inn yRb$ it follows that $y = b$.
+This is in contradiction with $y \neq b$.
+\end{proof}
+
+
+$R \textrm{ {\em well orders }} S \cee R \textrm{ is strict total, irreflexive and }$
+
+~~~~~$(\forall X)(X\subseteq S\inn X\neq\emptyset\sledi X \textrm{ has an $R$-minimal element})$
+
+\begin{proposition}
+$R$ well orders $S$ $\sledi$ $R$ is a strict linear order of $S$.
+\end{proposition}
+
+\begin{proof}
+We need to show that $R$ is transitive, asymmetric and strict total.
+
+Strict totality follows from the definition of a well order.
+
+Asymmetry: Suppose that $xRy$ and $yRx$.
+Since $R$ is irreflexive, we have $y\neq x$.
+But then, the set $\{x,y\}$ does not have any  $R$-minimal element:
+\begin{itemize}
+  \item $xRy\sledi y$ is not $R$-minimal
+  \item $yRx\sledi x$ is not $R$-minimal
+\end{itemize}
+Therefore, $R$ is asymmetric.
+
+Transitivity can be shown similarly:
+Suppose that
+$$xRy\inn yRz\inn \neg(xRz)\,.$$
+Since $R$ is irreflexive, we have $x\neq y$ and $y\neq z$.
+Since it is strict total, we have $zRx$ and consequently $z\neq x$.
+The set  $\{x,y,z\}$ has an $R$-minimal element, however:
+\begin{itemize}
+  \item this element is not $y$, since $xRy \inn x\neq y$,
+  \item this element is not $z$, since $yRz \inn y\neq z$.
+  \item this element is not $x$, since $zRx \inn z\neq x$.
+  \end{itemize}
+This contradiction shows that $R$ is transitive.
+\end{proof}
+
+\begin{proposition}
+Let $R$ be a well ordering on $S$. Then every $R$-minimal element
+is also $R$-least.
+\end{proposition}
+
+\begin{proof}
+$x$ is $R$-minimal for $S$ $\sledi (\forall y)(y\in S\inn y\neq x\sledi \neg (yRx))$
+
+Strict totality: $y\neq x\inn \neg (yRx)\sledi xRy$
+
+Consequently:
+$(\forall y)(y\in S\inn y\neq x\sledi xRy)$
+
+Therefore $x$ is an $R$-least element.
+\end{proof}
+
+\begin{corollary}
+Let $R$ be a well ordering on $S$. Then for all $x\in S$ it holds:
+$$x \textrm{ is } R\textrm{-least } \cee x \textrm{ is } R\textrm{-minimal}\,.$$
+\end{corollary}
+
+\begin{proposition}
+Let $R$ be a well ordering on a nonempty set $X$. Then
+$X$ has {\em a unique} $R$-least (or $R$-minimal) element.
+\end{proposition}
+
+\begin{proof}
+Suppose that there exist two different $R$-least elements $x$ and $y$.
+Then $xRy$ and $yRx$. But this is a contradiction with asymmetry.
+\end{proof}
+
+\bigskip
+One can also define well ordering by means of $R$-least elements, but then we also need to require asymmetry.
+
+\begin{proposition}
+$R$ well orders $S$ if and only if $R$ is strict total, asymmetric and the following condition holds:
+
+$(\forall X)(X\subseteq S\inn X\neq\emptyset\sledi X$ has an $R$-least element).
+\end{proposition}
+
+\begin{proof}
+\textbf{ Homework.}
+\end{proof}
+
+\textbf{ Remark:} The notion of well ordering is important because it generalizes the
+ordering $<$ on the set of natural numbers.
+The principle of induction can also be generalized to well ordered sets (this is the so called~{\em transfinite induction}).
+
+%\bigskip
+%Z relacijo dobre urejenosti sta povezana tudi dva pojma, dobro znana v modelu naravnih tevil.
+
+% 18. predavanje, 2 uri (vljuèno s kvizom), 14. 12. 2011
+
+\medskip
+\subsubsection*{Immediate successor. Greatest element.}
+
+In the set of natural numbers, ordered with respect to relation ``$<$", every number has its (uniquely determined) immediate successor.
+What characterizes an immediate successor $y$ of a number $x$?
+\begin{itemize}
+  \item $x<y$
+  \item for every other number $z$ such that $x<z$, it also holds $y<z$.
+\end{itemize}
+
+\medskip
+Let $R$ be a well ordering on a set $S$. Element $y$ is an {\em immediate successor} of element $x$
+$\cee$ $xRy$ and $(\forall z)(z\in S\inn z\neq y\inn xRz\sledi yRz)$.
+
+\bigskip
+Every finite subset of natural numbers has not only the least but also the {\em greatest element}.
+This is such a number $x$ from the set with which every other number $y$ is in relation $y<x$.
+
+\medskip
+We can generalize the definition:
+
+Let $R$ be a well ordering of $S$ and let $X\subseteq S$.
+Element $x\in X$ is an  {\em $R$-greatest element} of set $X$ $\cee$ $(\forall y)(y\in X\inn y\neq x\sledi yRx)$.
+
+\bigskip
+
+\textbf{ Remark:}
+The definitions of immediate successor and $R$-greatest element can also be introduced for general partially ordered sets.
+But they are particularly interesting for well ordered sets, since the $R$-greatest elements are the only elements without an immediate
+successor (as we will see below).
+In general partially ordered sets this may not be the case:
+\begin{center}
+\includegraphics[height=30mm]{Hasse3-en.eps}
+\end{center}
+
+\bigskip
+\begin{proposition}
+Let $R$ be a well ordering on $S$ and let $x\in S$. If $x$ is not the  $R$-greatest element of the set $S$, then $x$
+has a unique immediate successor.
+\end{proposition}
+
+\begin{proof}
+Consider the set
+$$X = \{z~;z\in S\inn xRz\}\,.$$
+
+Since $x$ is not $R$-last, the set $X$ is nonempty.
+
+Therefore, set $X$ has a unique $R$-least element $y$.
+
+Let us show that $y$ is an immediate successor of $x$:
+\begin{itemize}
+  \item Since $y\in X$, we have $xRy$.
+  \item If $z\in S$ is an element such that $xRz$ and $z\neq y$, then
+$yRz$ (since $z\in X$ and  is $y$ $R$-least  element of set $X$).
+\end{itemize}
+
+$y$ is also unique immediate successor of element $x$:
+
+Suppose that there exists $z\neq y$ that is an immediate successor of $x$.
+Since $xRz$, we have  $z\in X$.
+
+Since $y$ is $R$-least element of  $X$, $z\in X\inn z\neq y$,
+it also holds $yRz$.
+
+But this is a contradiction with the definition of immediate successor of $x$.
+\end{proof}
+
+The notion of immediate predecessor is defined similarly as the
+notion of immediate successor.
+
+However the analogous claim for a well order $R$, saying that every element $x$ that is not $R$-least has (a unique) immediate successor, does not hold!
+
+\bigskip
+\textbf{ Example:}
+Let $S = \mathbb{N}\cup\{\infty\}$. For $R$ take the usual ordering $<$ on $\mathbb{N}$, extended by the rule $n<\infty$ for all $n\in \mathbb{N}$.
+Then $R$ well orders $S$. However, element $\infty$ does not have any immediate predecessors.
+
+\medskip
+
+Let us close this chapter on order structures with the Hasse diagram of the $10$ order structures that we have studied:
+
+\begin{center}
+\includegraphics[height=70mm]{strukture3-en.eps}
+\end{center}
+
+$x$ is below $y$ $\cee$ $x$ is a special case of $y$.
+
+\chapter{Cardinality of Sets}
+{\em When do two finite sets have the same number of elements?
+
+We remove one element from each of the sets and repeat the procedure.
+The two sets have the same number of elements if and only if they become empty simultaneously with the above procedure.
+This way, we found a bijective mapping between the two sets.}
+
+\section{Equipollent sets}
+
+A set $A$ is {\em equipollent} to a set $B$ if there exists at least one bijective mapping from $A$ onto $B$.
+
+Notation: $$A\sim B\,.$$
+
+We also say that $A$ and $B$ \emph{ have the same cardinality}.
+
+\bigskip
+$----------------------------------$
+\bigskip
+
+\textbf{ Example:}
+
+$\mathbb{N} = \{0,1,2,\ldots\}$,~~~~~$2\mathbb{N} = \{0,2,4,\ldots\}$
+
+$f: 2\mathbb{N} \to \mathbb{N}$, $f(2n) = 2n$ is not a bijective mapping
+
+$g: 2\mathbb{N} \to \mathbb{N}$, $g(2n) = n$ is a bijective mapping!
+Hence the sets are equipollent.
+
+
+\bigskip
+$----------------------------------$
+\bigskip
+
+\textbf{ Example:}
+
+Let $X$ be a set.
+Let $C(X)$ be the set of all functions of the form $f: X\to \{0,1\}$.
+Then $C(X)\sim {\cal P}(X)$.
+
+Indeed:
+Consider the mapping
+$F:C(X)\to {\cal P}(X)$ defined with the rule
+$$F(f) = f^{-1}(1) = \{x\in X\,:\,f(x) = 1\}$$
+for all $f\in C(X)$.
+Mapping $F$ is a bijective mapping from the set $C(X)$ onto the set ${\cal P}(X)$.
+There are several ways to verify this, for example by finding a mapping
+$G:{\cal P}(X)\to C(X)$ that is inverse to $F$, that is, that
+$F\circ G = \textrm{id}_{{\cal P}(X)}$
+and
+$G\circ F = \textrm{id}_{C(X)}$.
+Function $G$ with these properties can be defined with the rule
+$$G(S) = \chi_S$$
+for all $S\subseteq X$, where
+${\chi_S}:X\to \{0,1\}$ is the \textbf{ characteristic function} of set $S$, defined by
+$$\chi_S(x) = \left\{
+  \begin{array}{ll}
+              1, & \hbox{if  $x\in S$;} \\
+              0, & \hbox{if $x\not\in S$.}
+            \end{array}
+          \right.$$
+%Let $A$ poljubna podmnoica mnoice $X$. Oglejmo si preslikavo
+%$f:{\cal P}(X)\to C(X)$, definirano s predpisom
+%$$f(A) = \chi_A\,,$$
+%kjer je $\chi_A:X\to \{0,1\}$ karakteristièna funkcija mnoice $A$:
+%$$\chi_A(x) = \left\{
+%            \begin{array}{ll}
+%              1, & \hbox{èe je $x\in A$;} \\
+%              0, & \hbox{èe je $x\not\in A$.}
+%            \end{array}
+%          \right.$$
+%Preslikava $f$ je bijektivna preslikava mnoice ${\cal P}(X)$ na mnoico $C(X)$:
+%\begin{itemize}
+%  \item injektivnost:
+%
+%Pokazali bomo $A\neq B\sledi f(A)\neq f(B)$.
+%
+% Èe sta $A$ and $B$ razlièni podmnoici mnoice $X$, potem obstaja $x\in (A\brez B)\cup(B\brez A)$.
+%
+%Èe je $x\in A\brez B$, potem je $\chi_A(x) = 1\neq 0 = \chi_B(x)$.
+%
+%Èe pa je $x\in B\brez A$, potem je $\chi_A(x) = 0\neq 1 = \chi_B(x)$.
+%
+%V vsakem primeru je torej $f(A)\neq f(B)$.
+%
+%  \item surjektivnost:
+%
+%  Let $\chi\in C(X)$. Definirajmo $A = \{x~;~x\in X$ and $\chi(x) = 1\}$.
+%
+%Tedaj je oèitno $A\in {\cal P}(X)$ and $\chi = \chi_A = f(A)$.
+%\end{itemize}
+
+\subsection{Properties of the equipollence relation}
+\begin{itemize}
+  \item $A\sim A$ {\em (reflexivity)}
+
+  (identity: $i:A\to A$ is bijective)
+  \item $A\sim B\sledi B\sim A$ {\em (symmetry)}
+
+  (the inverse of a bijective mapping is a bijective mapping!
+
+   If  $f:A\overset{bij.}{\to}B$, then
+   $f^{-1}:B\overset{bij.}{\to}A$)
+
+  \item $A\sim B$ and $B\sim C\sledi A\sim C$ {\em (transitivity)}
+
+  (Composition of bijective mappings is a bijective mapping!
+
+  If $f:A\overset{bij.}{\to}B$ and $g:B\overset{bij.}{\to}C$, then
+  $g\circ f:A\overset{bij.}{\to}C$)
+\end{itemize}
+
+The relation of equipollence $\sim$ is an {\em equivalence relation}!
+
+\bigskip
+
+\framebox{$A\sim B$ and $C\sim D$ and $A\cap C = \emptyset$ and $B\cap D = \emptyset$
+$\sledi$ $A\cup C\sim B\cup D$}
+
+\begin{proof}
+Let $f:A\overset{bij.}{\to}B$ and $g:C\overset{bij.}{\to}D$.
+
+Define $h:A\cup C\to B\cup D$ with the rule
+$$h(x) = \left\{
+          \begin{array}{ll}
+            f(x), & \hbox{if  $x\in A$;} \\
+            g(x), & \hbox{if $x\in C$.}
+          \end{array}
+        \right.$$
+Mapping $h$ is a bijective mapping from the set $A\cup C$ onto the set $B\cup D$,
+since every element of the set $B\cup D$ is the image of exactly one element from the set $A\cup C$.
+\end{proof}
+
+%\bigskip
+%$-----------------$
+\bigskip
+
+% 22. predavanje, 2 uri, 4. 1. 2012, 5. kviz 20'
+
+\framebox{$A\sim B$ and $C\sim D$
+$\sledi$ $A\times C\sim B\times D$}
+
+\begin{proof}
+Let $f:A\overset{bij.}{\to}B$ and $g:C\overset{bij.}{\to}D$.
+
+Define $h:A\times C\to B \times D$
+with the rule
+$$h(x,y) = (f(x),g(y))\,.$$
+
+Mapping $h$ is a bijective mapping of the set $A\times C$ onto the set $B\times D$:
+\begin{itemize}
+  \item injectivity:
+
+  $h(x,y) = h(x',y')\sledi
+  (f(x),g(y)) = (f(x'),g(y')) \sledi f(x) = f(x')$ and $g(y) = g(y')$
+
+  $\sledi x = x'$ and $y = y' \sledi (x,y) = (x',y')$
+  \item surjectivity:
+
+  Let $(b,d)\in B\times D$. Since $f$ and $g$ are surjective, there exist elements $a\in A$
+  and $c\in C$ such that $f(a) = b$ and $g(c) = d$. Therefore $(b,d) = (f(a),g(c)) = h(a,c)$.
+\end{itemize}
+\end{proof}
+
+%\bigskip
+%$-----------------$
+\bigskip
+
+\framebox{$A\times B\sim B\times A$}
+
+
+\begin{proof} Define  $f:A\times B\to B\times A$ with the rule
+$$f(x,y) = (y,x)\,.$$
+
+Mapping $f$ is bijective:
+\begin{itemize}
+  \item injectivity:
+
+  $f(x,y) = f(x',y') \sledi (y,x) = (y',x') \sledi y = y'$ and $x = x'$ $\sledi (x,y) = (x',y')$.
+
+  \item surjectivity: $(b,a)\in B\times A$ is the image of element $(a,b)$.
+\end{itemize}
+\end{proof}
+
+Let us mention some more properties without proof:
+\begin{enumerate}
+  \item $(A\times B)\times C\sim A\times (B\times C)$.
+  \item $A\times \{a\}\sim A$.
+  \item To every two sets $X$ and $Y$ we can associate two {\em disjoint} sets
+  $U$ and $V$ such that $X\sim U$ and $Y\sim V$.
+
+  Indeed: $U = X\times\{\emptyset\}$, $V = Y\times\{\{\emptyset\}\}$.
+  \item Recall that the symbol $A^B$ denote the set of all functions from set $B$ to set $A$.
+
+  $A\sim C$ and $B\sim D$ $\sledi$ $A^B\sim C^D$.
+%  \item $(A\times B)^C\sim A^C\times B^C$.
+%  \item $(A^B)^C\sim A^{B\times C}$.
+\end{enumerate}
+
+\textbf{ Homework:} Prove properties 1. and 2.
+
+\textbf{ Question for thougth:} How would you prove property 4.?
+
+\section{Comparability of sets}
+Is it possible to define relations similar to
+$\le , <, \ge, >$ on sets?
+Is it possible to reasonably compare sets to each other regarding the quantities of their elements?
+
+\bigskip
+Let $A$ and $B$ be arbitrary sets. There are four logical possibilities:
+\begin{enumerate}[(1)]
+  \item Set $A$ has at least one subset $A_1$ that is equipollent to set $B$, while
+  set $B$ does not have any subset that would be equipollent to set $A$.
+  \item Set $B$ has at least one subset $B_1$ that is equipollent to set $A$, while
+  set $A$ does not have any subset that would be equipollent to set $B$.
+  \item Set $A$ has at least one subset $A_1$ that is equipollent to set $B$, and
+  set $B$ has at least one subset $B_1$ that is equipollent to set $A$.
+  \item Set $A$ does not have any subset that would be equipollent to set $B$, and
+  set $B$ does not have any subset that would be equipollent to set $A$.
+\end{enumerate}
+
+(1): We say that set $A$ {\em is of bigger cardinality than} set $B$.
+
+(2): Set  $B$ {\em is of bigger cardinality than} set $A$.
+
+(1): $A>B$,~~~~~(2): $B>A$
+
+\bigskip
+It follows immediately from definition that relation  $>$
+is irreflexive, asymmetric and transitive (therefore, it is a strict partial order)!
+\begin{itemize}
+  \item $A\ngtr A$
+  \item $A>B\sledi B\ngtr A$
+  \item $A>B$ and $B>C\sledi A> C$
+\end{itemize}
+
+If $B>A$, then we also write $A<B$ and say that set $A$ {\em is of smaller cardinality than} set $B$.
+$$A<B\cee B>A\,.$$
+
+\bigskip
+Case (3) is considered by the following theorem.
+
+\framebox{\vbox{Schr\"oder-Bernstein theorem: $$(3)\sledi A\sim B\,.$$}}
+
+(Proof later.)
+
+\textbf{ Remark:} Clearly, the implication $A\sim B\sledi (3)$ holds.  (We can take $A_1 = A$, $B_1 = B$.)
+Schr\"oder-Bernstein theorem states that also the converse implication holds.
+
+\bigskip
+The most ``problematic''~is case (4):
+
+(4): ``$A$ and $B$ are incomparable neither with respect to the relation of equipollence $\sim$
+nor with respect to the relation ``is of bigger cardinality than'' $>$"
+
+As soon as we assume the axiom of choice, case (4) never occurs!
+
+Axiom of choice  $\sledi$
+Given any two sets $A$ and $B$, at least one of them is equipollent to a subset of the other one.
+
+(For a proof, see
+ A.A. Fraenkel: Abstract Set Theory, North-Holland Publishing Company,
+Amsterdam 1953, p.~319--321.)
+
+\bigskip
+\textbf{ Law of trichotomy:}
+
+{\em Arbitrary two sets $A$ and $B$ are comparable with respect to their cardinality.
+Exactly one of the following conditions holds:
+$$A>B,~~B>A~~\textrm{ or }A\sim B\,.$$}
+
+\medskip
+It holds:
+
+\medskip
+Axiom of choice $\cee$ law of trichotomy.
+
+%\bigskip
+%Opomba: videli smo, da je relation  $>$ stroga delna urejenost.
+
+\medskip
+\textbf{ Questions for thought:}
+
+Relation $>$ is a strict partial order.
+\begin{itemize}
+    \item Let $\gtrsim$ be the relation on sets, defined by the rule $A\gtrsim B\cee (A>B$ or $A\sim B$).
+     Is this relation total (assuming the law of trichotomy)? Is it a partial order (assuming the law of trichotomy)?
+
+%     je reflexive and transitive, ni pa delna urejenost, ker ni antisymmetric. Èe privzamemo zakon trihotomije, je relation  $\gtrsim$ ibka urejenost (transitive and strogo sovisna). relation  $\ge$, definirana s predpisom $A\ge B\cee (A>B$ or $A= B$), pa je delna urejenost.
+    \item Let $\ge$ be the relation on sets, defined by the rule $A\gtrsim B\cee (A>B$ or $A= B$).
+     Is this relation total (assuming the law of trichotomy)? Is it a partial order (assuming the law of trichotomy)?
+\end{itemize}
+
+\bigskip
+
+\begin{theorem}[Schr\"oder-Bernstein theorem]
+Let $A$ and $B$ be two sets.
+Suppose that set $A$ has has at least one subset $A_1$ that is equipollent to set $B$, and
+  set $B$ has at least one subset $B_1$ that is equipollent to set $A$.
+Then  $$A\sim B\,.$$
+\end{theorem}
+
+\begin{proof}
+There exists a set $A_1\subseteq A$ such that $A_1\sim B$.
+
+There exists a set  $B_1\subseteq B$ such that  $B_1\sim A$.
+
+Fix two bijections $f:A\to B_1$ and $g:B\to A_1$.
+
+We will find two subsets $A_0\subseteq A$ and $B_0\subseteq B$ such that
+mappings $f|_{A_0}:A_0\to B_0$ and
+$g|_{B\brez B_0}:B\brez B_0\to A\brez A_0$ will be bijections.
+
+Then, it will follow:
+$$A = A_0\cup (A\brez A_0)\sim B_0\cup (B\brez B_0)= B\,,$$
+since  $A_0\cap (A\brez A_0) = \emptyset$ and
+ $B_0\cap (B\brez B_0) = \emptyset$.
+
+ \medskip
+First, let us assign to every proper subset $X$ of set $A$ some subset $X'$
+of set $A$, as follows:
+
+%Let $X\subseteq A$. Slika $Y = f(X)$ je prava podmnoica mnoice $B_1$, torej velja
+%$$f(X) = Y\subseteq B_1\subseteq B\,.$$
+%Mnoica $B\brez Y$ je zato neprazna podmnoica mmnoice $B$.
+%
+%Funkcija $g$ preslika mnoico $B\brez Y$ na neko neprazno podmnoico $X^*$
+%mnoice $A_1$, torej na neko pravo neprazno podmnoico mnoice $A$,
+%$$\emptyset\neq g(B\brez Y) = X^*\subseteq A_1\subseteq A\,.$$
+%Komplement te mnoice je torej neprazen, oznaèimo ga z $X'$:
+%$$\emptyset\neq A\brez X^*\subseteq A\,.$$
+%$$X' = A\brez X^*\,.$$
+%Povzemimo:
+$$X' = A\brez g(B\brez f(X))\,.$$
+
+%Let us verify that $X'$ is indeed a proper subset of set $A$:
+%$$X'\subseteq A\cee g(B\brez f(X))\neq \emptyset \cee
+%B\brez f(X)\neq \emptyset \cee f(X)\subseteq B\,,$$
+%which holds since $f(X)\subseteq B_1\subseteq B$.
+
+%\medskip
+It holds that:
+$$X_1\subseteq X_2\sledi X_1'\subseteq X_2'\,.$$
+Indeed:
+
+$X_1\subseteq X_2 \sledi Y_1 = f(X_1)\subseteq f(X_2) = Y_2\sledi$
+
+$\sledi B\brez Y_2\subseteq B\brez Y_1\sledi g(B\brez Y_2)\subseteq g(B\brez Y_1)\sledi$
+
+$\sledi X_1' = A\brez g(B\brez Y_2)\subseteq A\brez g(B\brez Y_1)= X_2'$.
+
+$---$
+
+A subset $Z\subseteq A$ is a {\em particular subset} if
+$$Z\subseteq Z'\,.$$
+$\emptyset$ is a particular subset of set $A$!
+
+Let $A_0$ be {\em the union of all particular subsets of set} $A$!
+
+If $Z$ is a particular subset, then $Z\subseteq A_0\sledi Z'\subseteq A_0'\sledi$
+$$Z\subseteq Z'\subseteq A_0'\,.$$
+Therefore, also $A_0$ is contained in $A_0'$:
+$$A_0\subseteq A_0'$$
+Hence, $A_0$ is a particular subset!
+
+$A_0\subseteq A_0' \sledi A_0'\subseteq (A_0')'\sledi
+A_0'$ is a particular subset $\sledi A_0'\subseteq A_0$.
+
+We have $$A_0 = A_0'\,.$$
+
+This way, we found the subset $A_0$ we were looking for, a subset that $f$ bijectively maps
+onto set $B_0$:
+$$B_0 = f(A_0)\subseteq B\,.$$
+Moreover, function $g$ bijectively maps the set $B\brez B_0$ onto the set $A\brez A_0$:
+$$g(B\brez B_0) = g(B\brez f(A_0)) = A\brez A_0\,,$$
+since $A_0 = A\brez g(B\brez f(A_0))$.
+\end{proof}
+
+% 23. predavanje, 2 uri, 10. 1. 2012
+%\subsection*{Ponovitev:}
+%
+%Obravnavali smo relacijo ekvipolence med mnoicami and primerljivost mnoic.
+%\begin{itemize}
+%  \item $A\sim B\cee \exists \textrm{ bijektivna preslikava } f:A\to B$
+%  \item $\sim$ is an equivalence relation relation !
+%  \item $\mathbb{N}\sim 2\mathbb{N}$, ${\cal P}(X)\sim C(X)$ (potenèna set $\sim$ mnoici karakteristiènih funkcij)
+%  \item $A\sim B$ and $C\sim D$ and $A\cap C=\emptyset$ and $B\cap D=\emptyset$ $\sledi$
+%      $A\cup C\sim B\cup D$
+%  \item Brez dokaza smo povedali:
+%
+%  $(A \times B) \times C \sim A \times (B \times C)$
+%
+%  (preslikava $((a,b),c)\mapsto (a,(b,c))$ je bijektivna)
+%
+%  $A\times \{a\}\sim A$
+%
+%  (preslikava $(x,a)\mapsto x$ je bijektivna)
+%
+%  \item relation  $>$, ``$A$ ima veèjo moè kot $B$", je stroga delna urejenost. Definicija:
+%  $$A>B\cee (\exists A_1) ((A_1\subseteq A)\inn A_1\sim B) \inn \neg(\exists B_1)((B_1\subseteq B)\inn B_1\sim A)$$
+%  \item V potev pridejo tiri logiène monosti:
+%  \begin{enumerate}[(1)]
+%    \item $A>B$
+%    \item $B>A$ ($\cee A< B$)
+%    \item $(\exists A_1) ((A_1\subseteq A)\inn A_1\sim B) \inn (\exists B_1)((B_1\subseteq B)\inn B_1\sim A)$
+%    \item $\neg(\exists A_1) ((A_1\subseteq A)\inn A_1\sim B) \inn \neg(\exists B_1)((B_1\subseteq B)\inn B_1\sim A)$
+%  \end{enumerate}
+%  \item Schr\"oder-Bernsteinov izrek: $(3) \sledi A\sim B$
+%  \item Zakon trihotomije:
+%  {\em Za vsaki dve mnoici $A$ and $B$ velja natanko ena od monosti $A<B, A>B$ and $A\sim B$.}
+%  \item Zakon trihotomije je ekvivalenten aksiomu izbire.
+%  \end{itemize}
+
+
+%\end{document}
+\chapter{Finite and infinite sets}
+
+One can define (in)finite sets in several ways. Assuming the axiom of choice, all these ways are equivalent.
+
+\begin{description}
+  \item[(By means of natural numbers.)] A given set $S$ is finite if and only if there exists a natural number $n$ such that set $S$ has exactly $n$ elements.
+
+      Weaknesses:
+
+      -- The definition relies on the notion of natural number.
+
+      -- For some sets we can certainly say that they are finite even though we do not know the precise number of their elements.
+      For instance, the set of all books printed an planet Earth until year 2012, is surely finite.
+
+  \item[(Peirce and Dedekind.)] A given set $S$ is infinite if and only if it has at least one proper subset that is equipollent to it.
+
+  \medskip
+  This definition is nicely exempplified with the so-called~{\em Hilbert's Great Hotel:
+
+  In a hotel with infinitely many rooms (numbered with $1,2,3,\ldots$) there is a quest in every room.
+  A number of new guests come to the hotel. Can we find room for them?}
+
+ Let's consider two cases.
+ \begin{itemize}
+  \item {Finitely many guests arrive.} Suppose that $10$ new guests arrive.
+
+  We ask the guest in room $j$ to move to room $j+10$, for all $j = 1,2,3,\ldots$
+
+  The new $10$ guests are placed into rooms $1,2,\ldots, 10$, that became free.
+
+  \item {Infinitely many guests arrive, $g_1, g_2, g_3,\ldots$}
+
+  We ask the guest in room $j$ to move to room $2j$, for all $j = 1,2,3,\ldots$
+
+  The new guests are placed in the following way:
+
+  $g_1\mapsto 1$
+
+  $g_2\mapsto 3$
+
+  $g_3\mapsto 5$
+
+  $\ldots$
+
+  $g_j\mapsto 2j-1$
+\end{itemize}
+
+
+  When rearranging the ``old''~guests we used the facts that
+
+  $\{1,2,3,\ldots\}\sim\{1,2,3,\ldots\}\brez\{1,\ldots,10\}$ and
+
+  $\{1,2,3,\ldots\}\sim\{2,4,6,\ldots\}$.
+
+  In addition, when rearranging the infinitely many new~guests we used the fact that
+
+  $\{1,2,3,\ldots\}\sim \{1,3,5,\ldots\}$.
+  \item[(Tarski.)] Recall: $a$ is a minimal element in $S$ with respect to relation $R$ if for no other element $y$ if this set, it holds $yRa$.
+
+      If $S$ is an arbitrary set, then every family of its subsets is partially ordered with respect to the relation of inclusion $\subseteq$.
+      With respect to this relation, this family either has a minimal element, or it does not have one. In this case, a minimal element is a subset that has no other set from this family as its subset!
+
+      \textbf{ Example:} $A = \{1,2,3\}$.
+
+      Family ${\cal D}_1 = \{\{1\}, \{1,2\}, \{1,2,3\}\}$ has one minimal element: set  $\{1\}$.
+
+      Family ${\cal D}_2 = \{\{1\}, \{2\}, \{1,2\}, \{2,3\}\}$ has two minimal elements: set $\{1\}$ and set $\{2\}$.
+
+      Every nonempty family of subsets of set $A$ has at least one minimal element with respect to relation $\subseteq$.
+
+      \textbf{ Example:} $\mathbb{N}^+ = \{1,2,3,\ldots\}$.
+
+      For  $k\ge 1$ let $$\mathbb{N}_k = \mathbb{N}^+\setminus\{1,2,\ldots, k\}= \{k+1,k+2,\ldots\}\,.$$
+
+      Consider the following nonempty family of subsets
+      $${\cal D} = \{\mathbb{N}_1,\mathbb{N}_2, \mathbb{N}_3,\ldots\}\,.$$
+
+      Notice that for all $k\ge 1$ it holds $\mathbb{N}_{k+1}\subseteq \mathbb{N}_k$.
+      Therefore ${\cal D}$ does not have any minimal element with respect to $\subseteq$.
+
+      \medskip
+      \textbf{ The definition of Tarski:}
+      A given set $S$ is finite if and only if every nonempty family of subsets of set $S$ has at least one minimal element with respect to the relation of inclusion ``$\subseteq$". If the set is not finite, it is infinite.
+\end{description}
+
+\begin{comment}
+
+\section{Finite sets}
+\textbf{ Example:}
+\begin{itemize}
+  \item Set $\{a,b\}$ is finite.
+  \item The empty set $\emptyset$ is finite.
+\end{itemize}
+
+Clearly:
+If $A$ is a finite set and $B\subseteq A$ then also $B$ is a finite set.
+
+\begin{corollary}
+If $A$ is a finite set and $B$ is an arbitrary set, then
+$A\cap B$ and $A\brez B$ are finite sets.
+\end{corollary}
+
+\begin{lemma}
+If $A$ and $B$ are finite sets, then also their union $A\cup B$ is finite.
+\end{lemma}
+
+For a proof, see \emph{ Niko Prijatelj: Matemati\v cne strukture I, p.~175--176.}
+
+\begin{theorem}
+If $A$ is a finite set, then also $A\cup \{x\}$ is a finite set.
+\end{theorem}
+
+\begin{theorem}
+Every nonempty family of subsets of a finite set has at least one maximal element with respect to the relation of inclusion $\subseteq$.
+\end{theorem}
+
+\begin{proof}
+By contradiction. Suppose that there exists a finite set $A$ and a nonempty family ${\cal D}$
+of subsets of set $A$ such that ${\cal D}$ has no maximal element with respect to the relation of inclusion $\subseteq$.
+
+Consider the family $${\cal F} = \{Z~;~(Z = A\brez X)\inn X\in {\cal D}\}\,.$$
+%vseh relativnih komplementov mnoic v druini ${\cal D}$.
+
+Clearly, this family does not have any minimal elements:
+\begin{itemize}
+\item If $Z\in {\cal F}$ were a minimal element of family ${\cal F}$, then
+$X = A\brez Z$ would be a maximal element of family ${\cal D}$.
+\end{itemize}
+This however contradicts the finiteness of set $A$.
+\end{proof}
+
+% 24. predavanje, 2 uri, 11. 1. 2012
+
+\begin{theorem}[Principle of induction.]\label{izrek:indukcija}
+Let $A$ be a finite set and let $P$ be a property that is meaningful for subsets of set  $A$.
+
+If $P(\emptyset)$ holds and if for every $x\in A$ and every $X\subseteq A$, it holds that
+$$P(X)\sledi P(X\cup \{x\})\,,$$
+then
+$$P(A)\,.$$
+\end{theorem}
+
+\begin{proof}
+Let $${\cal D} = \{X~;~X\subseteq A \inn P(X)\}\,.$$
+This family of sets is nonempty since $\emptyset\in {\cal D}$.
+Therefore, ${\cal D}$ has at least one maximal element, say $M$.
+
+If $M\neq A$, then there exists an element $x\in A\brez M$. But since
+$P(M)$, the assumption implies that $P(M\cup \{x\})$ and hence $M\cup \{x\}\in{\cal D}$.
+SInce $M\subset M\cup \{x\}$, this is in contradiction with the assumption that $M$ is maximal.
+
+Therefore, it has to hold $M = A\sledi A\in {\cal D}\sledi P(A)$.
+\end{proof}
+
+\begin{corollary}
+Let $A$ be a finite set and ${\cal F}$ an arbitrary family of sets.
+If $\emptyset\in {\cal F}$ and if for every $X\subseteq A$ and every $x\in A$
+it holds that
+$$X\in {\cal F}\sledi X\cup \{x\}\in {\cal F}\,,$$
+then $A\in {\cal F}$.
+\end{corollary}
+
+\begin{proof}
+Apply the above theorem for the property $P(X) = ``X\in {\cal F}"$.
+\end{proof}
+
+\textbf{ Example:}
+
+Let $A$ be a finite set, and $f$ a function that maps set $A$ {\em surjectively} onto some set $B$.
+Then, $B$ is also a finite set.
+
+\medskip
+Indeed: let ${\cal F} =\{X~;~X\subseteq A \inn f(X)$ finite$\}$.
+
+$\emptyset\in {\cal F}$ $\checkmark$
+
+$X\in {\cal F}, x\in A\sledi f(X)$ finite $\sledi
+f(X\cup \{x\}) = f(X) \cup \{f(x)\}$ finite!
+
+Therefore $A\in {\cal F}$ and thus $f(A) = B$ is a finite set. $\checkmark$\qed
+
+\bigskip
+\textbf{ Special case:} $f$ is bijective:
+
+\begin{itemize}
+\item $A$ finite and $A\sim B$ $\sledi$ $B$ finite.
+\end{itemize}
+
+Consequently:
+\begin{itemize}
+\item $A$ infinite and $A\sim B$ $\sledi$ $B$ infinite.
+\end{itemize}
+
+\bigskip
+
+Let us mention without proof some other interesting properties of finite sets:
+\begin{itemize}
+  \item $A$ finite $\sledi$ ${\cal P}(A)$ finite
+  \item ${\cal D}$ finite family of finite sets $\sledi$ $\cup {\cal D}$ finite.
+  \item $A$ finite, $B$ infinite $\sledi$ $A<B$
+  \item $A$ finite, $B$ finite $\sledi A\times B$ finite
+\end{itemize}
+
+Remark: in \emph{ Niko Prijatelj: Matemati\v cne strukture I, p.~177--178}, you may find a proof of the fact that every set that is finite
+according to Tarski is also finite according to Peirce and Dedekind.
+
+
+\section{Infinite sets}
+
+The set of natural numbers $\mathbb{N}$ is infinite, since $\mathbb{N}\sim 2\mathbb{N}$.
+
+$\mathbb{N}$  -- model of a set that satisfies the {\em Peano axioms}:
+\begin{enumerate}[1.)]
+  \item Set $\mathbb{N}$ has an element denoted by $0$.
+  \item If $x\in \mathbb{N}$ then there exists a unique element $x'\in \mathbb{N}$ called the {\em immediate successor} of element $x$.
+  \item There is no $x\in \mathbb{N}$ such that  $x' = 0$.
+  \item $x' = y' \sledi x = y$.
+  \item If $M\subseteq \mathbb{N}$ is a subset such that (i) $0\in M$ and (ii) $(x\in M\sledi x'\in M)$ then  $M = \mathbb{N}$.
+\end{enumerate}
+
+\textbf{ Example:}
+
+The set $$N = \{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\},
+\{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}\},\ldots \}\,.$$
+is a {\em Peano set} (a set that satisfies all five Peano axioms)!
+
+\begin{enumerate}
+  \item $0 = \emptyset$
+  \item $A\in N\sledi A' = A\cup \{A\}$.
+  \item $A\in N$, $A' = A\cup \{A\}= \emptyset$ -- nonsense!
+  \item $A\cup \{A\} = B\cup \{B\}$ $\sledi$ $A = B$
+
+  if $A\neq B$, we would have $A\in B$ and $B\in A$, which is not possible due to the so-called~{\em axiom of regularity: Every nonempty set $A$ has at least one element $x$ such that $A$ and $x$ have no elements in common.}
+
+  Indeed: if $A\neq B$ then $A\in B\cap \{A,B\}$ and $B\in A\cap \{A,B\}$.
+  The axiom of regularity implies
+  $A\cap \{A,B\}= \emptyset$ or  $B\cap \{A,B\}= \emptyset$.
+
+  \item By construction: let $N'\subseteq N$ be a subset such that
+  $\emptyset\in N'$ and $(A\in N'\sledi A\cup \{A'\}\in N')$. Then $N' = N$.
+\end{enumerate}
+
+\bigskip
+On the Peano set
+ $$\{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}, \{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}\}, \ldots\}\,.$$
+we can define a structure of a strict linear order! Set
+$A<B$ if and only if set $A$ is both an element and subset of set $B$.
+\begin{itemize}
+  \item Example:
+  $\{\emptyset\} < \{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}\}$,
+
+      since $\{\emptyset\} \in \{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}\}$,
+
+      and also  $\{\emptyset\} \subseteq  \{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}\}$.
+\end{itemize}
+
+\bigskip
+
+Every set that is equipollent to the set of natural numbers, is {\em countably infinite}.
+
+If $A$ is a countably infinite set, then there exists a bijective mapping $f:\mathbb{N}\to A$.
+Hence, the elements of $A$ can be enumerated
+$$A = \{f(0), f(1), f(2),\ldots\}\,.$$
+%\medskip
+%Definicija countably infinite sets: set
+%$S$ je {\em countably infinite}, èe je ekvipolentna mnoici naravnih tevil.
+%Lahko zapiemo
+%$$S = \{f(0), f(1), f(2),\ldots\}\,,$$
+%kjer je $f:\mathbb{N}\to S$ bijekcija.
+
+\begin{theorem}
+Every infinite set has at least one countably infinite subset.
+\end{theorem}
+
+\begin{proof}
+Let $S$ be an infinite set and let $S'\subset S$ be a proper subset equipollent with set $S$.
+
+Let $f:S\to S'$ be a bijection.
+
+The assumption implies $S\brez S'\neq \emptyset$. Let $a_0\in S\brez S'$.
+
+$a_1 = f(a_0)\in S'\subset S$
+
+$a_2 = f(a_1)\in S'\subset S$
+
+$a_3 = f(a_2)\in S'\subset S$
+
+etc.
+
+$----------------$
+
+This way, we obtain a set
+$$A = \{a_0,a_1,a_2,\ldots\}\,.$$
+Let us show that all elements $a_0,a_1,a_2,\ldots$ are pairwise distinct.
+
+Suppose they are not. Let $j$ be the first index such that $a_i = a_j$ for some $i<j$.
+
+$a_0\in S\brez S'$ and $a_k\in S'$ for $k\ge 1$ $\sledi$ $i\neq 0$.
+
+$a_i = f(a_{i-1})$, $a_j = f(a_{j-1})$
+
+Since $a_i = a_j$ and $f$ is injective $\sledi$ $a_{i-1} = a_{j-1}$, in contradiction with definition of index $j$.
+
+Hence, the mapping
+$$g:A\to \mathbb{N}$$
+$$g(a_i) = i$$
+is a bijection.
+
+Consequently $A\sim \mathbb{N}$.
+\end{proof}
+
+\subsection*{Properties of countably infinite sets}
+
+{\em How can we obtain new countably infinite sets from existing countably infinite sets?}
+
+\bigskip
+\begin{enumerate}[(1.)]
+\item $A$ -- finite set, $B$ -- countably infinite, $A\cap B = \emptyset$
+
+$A = \{a_1,\ldots, a_k\}$, $B = \{b_0,b_1,\ldots, b_i, \ldots\}$
+
+$A\cup B = \{a_1,\ldots, a_k, b_0,b_1,\ldots, b_i, \ldots\}$
+
+$f:A\cup B \to B$
+
+$f(a_1) = b_0$
+
+$f(a_2) = b_1$
+
+$\ldots$
+
+$f(a_k) = b_{k-1}$
+
+$f(b_0) = b_k$
+
+$f(b_1) = b_{k+1}$
+
+$\ldots$
+
+This function is clearly a bijection!
+
+Hence $A\cup B$ is countably infinite.
+
+\item
+
+$A$, $B$ -- countably infinite sets, $A\cap B = \emptyset$
+
+$A\cup B = \{a_0,b_0,a_1,b_1,\ldots\}$
+
+$f:A\cup B\to A$
+
+$f(a_0) = a_0$
+
+$f(b_0) = a_1$
+
+$f(a_1) = a_2$
+
+$f(b_1) = a_3$
+
+$\ldots$
+
+$f$ is a bijection!
+
+Therefore the set $A\cup B$ is also countably infinite.
+
+\item (continuation of (2.))
+
+If sets $A$ and $B$ are not disjoint, we write the union $A\cup B$ as the union of two disjoint sets:
+$A\cup B=A\cup (B\brez A)$. If the set $B\brez A$ is finite, we use the above reasoning, and if it is infinite, then it is countably infinite.
+In any case, the union $A\cup B$ is a countably infinite set.
+
+\medskip
+\textbf{ Question for thought:} Prove the validity of the following claim:
+
+{\em Every infinite subset of a countably infinite set is countably infinite.}
+
+% 25. predavanje, 2 uri, 17. 1. 2012
+
+%\subsection*{Ponovitev:}
+%
+%\begin{itemize}
+%  \item Ekvivalentne definicije konènih oz. infinite sets:
+%\begin{enumerate}
+%  \item Definicija s pomoèjo naravnih tevil.
+%
+%  $S$ je finite $\cee (\exists n\in \mathbb{N}$)($S$ ima natanko $n$ elementov)
+%  \item Peirce-Dedekind:
+%
+% $S$ je infinite $\cee$ $S$ ima vsaj eno pravo podmnoico, ki ji je ekvipolentna.
+%  \item Tarski:
+%
+%$S$ je finite $\cee$ vsaka neprazna druina podmnoic mnoice $S$ ima vsaj en minimalen element with respect to relation stroge inkluzije.
+%\end{enumerate}
+%\item Lastnosti konènih mnoic:
+%
+%- Vsaka podmnoica konène mnoice je finite.
+%
+%- Konèna unija konènih mnoic je finite.
+%
+%- Èe konèni mnoici dodamo en element, dobimo konèno mnoico.
+%
+%- Vsaka neprazna druina podmnoic kakne konène mnoice ima vsaj en maksimalen element with respect to relation stroge inkluzije.
+%
+%- Princip indukcije za konène mnoice.
+%
+%- Surjektivna slika konène mnoice je finite set.
+%
+%- Èe je $A\sim B$, potem je $A$ finite $\cee$ $B$ je finite.
+%
+%\item $A$ finite, $B$ infinite $\sledi$ $A<B$.
+%
+%Kartezièni produkt konènih mnoic je finite set.
+%
+%\item Mnoica naravnih tevil $\mathbb{N}$.
+%
+% Peanovi aksiomi:
+%
+% (i) $0\in N$, (ii) obstaja funkcija $N\to N$, $x\mapsto x'$. (iii) $\neg(\exists x)(x' = 0)$.
+% (iv) $x' = y'\sledi x = y$. (v) $M\subseteq N\inn 0\in M \inn (x\in M\sledi x'\in M)\sledi M = N$.
+%
+%  \item Lastnosti countably infinite sets:
+%\begin{itemize}
+%  \item Vsaka infinite set ima vsaj eno countably infinite podmnoico.
+%  \item Konèna unija konènih or countably infinite sets je countably infinite,
+%  èe je le infinite.
+%  \item tevno infinite unija countably infinite sets je countably infinite.
+%\end{itemize}
+%\end{itemize}
+%
+%\bigskip
+%$-----------------$
+%\bigskip
+
+\medskip
+{\em Corollary:}
+
+$A_1,\ldots, A_k$ sets, each of them is finite or countably infinite
+
+$\sledi$ $A_1\cup\cdots\cup A_k$ is countably infinite (if at least one of $A_i$ is countably infinite),
+
+since
+$$A_1\cup\cdots\cup A_k = (\cdots ((A_1\cup A_2)\cup A_3)\cup\cdots \cup A_k)\,.$$
+%
+%\bigskip
+%$-----------------$
+%\bigskip
+
+\item We are given countably infinitely many pairwise disjoint countably infinite sets
+$$A_1, A_2,A_3\ldots$$
+Their union is countably infinite:
+\begin{center}
+\includegraphics[width=50mm]{stevnonesk.eps}
+\end{center}
+
+Function
+$$f:\cup_{k}A_k\to \mathbb{N}$$
+defined with the rule:
+
+$f(a_1^1) = 0$
+
+$f(a_1^2) = 1$
+
+$f(a_2^1) = 2$
+
+$f(a_3^1) = 3$
+
+$f(a_2^2) = 4$
+
+$f(a_1^3) = 5$
+
+$\ldots$
+
+is a bijection!
+
+The assumption that the sets are pairwise disjoint, is not important. If the sets have some elements in common, then we map each such element only once, namely at its first occurrence (and later we simply ignore it).
+\end{enumerate}
+
+\subsection*{Examples of countably infinite sets}
+
+\bigskip
+{\em The set of integers} $\mathbb{Z}$ is countably infinite (since $\mathbb{Z} = \mathbb{N}\cup (-\mathbb{N})$).
+
+\bigskip
+$-----------------$
+\bigskip
+
+Also the set of {\em rational numbers} $\mathbb{Q}$ is countably infinite!
+
+Clearly, it is enough to show that the set of positive rational numbers $\mathbb{Q}_+$
+is countably infinite, since $\mathbb{Q} = \mathbb{Q}_-\cup \{0\}\cup \mathbb{Q}_+$ and
+$\mathbb{Q}_-\sim \mathbb{Q}_+$.
+
+But the set $\mathbb{Q}_+$ can be written as a countable union of countably infinite sets:
+$$\mathbb{Q}_+ = A_1\cup A_2\cup \cdots$$
+where:
+
+$A_1 = \{\frac{1}{1}, \frac{2}{1}, \frac{3}{1}, \ldots\}$,
+
+$A_2 = \{\frac{1}{2}, \frac{2}{2}, \frac{3}{2}, \ldots\}$,
+
+$A_3 = \{\frac{1}{3}, \frac{2}{3}, \frac{3}{3}, \ldots\}$, $\ldots$
+
+%\bigskip
+%$-----------------$
+%\bigskip
+
+{\em Algebraic number}: a complex number $x$ that is a solution of some equation of the form
+$$a_nx^n+a_{n-1}x^{n-1}+\ldots+a_1x+a_0 = 0\,,$$
+where $n\in \mathbb{N}$ and $a_i\in \mathbb{Z}$ for all $i$.
+Also the set of algebraic numbers is countably infinite. This is because we can write it as a
+(countably infinite) union of finite sets:
+$$A_1\cup A_2\cup \cdots\,,$$
+where $A_k$ is the set of all complex numbers that are a solution of some equation of the above form such that
+$n+|a_0|+|a_1|+\ldots+|a_n|\le k$.
+
+\section{Uncountably infinite sets}
+
+The set of real numbers {\em is not countably infinite}!
+
+Let us show that already the set of all real numbers in the interval $$(0,1] = \{x~;~x\in \mathbb{R}\inn 0<x\le 1\}$$
+is not countably infinite.
+
+$x\in (0,1]\sledi$ $x$ can be written in the form of an infinite decimal number
+$$0,a_1a_2a_3\cdots\,,$$
+such that it doesn't happen that all numbers would be equal to $0$ from some point on.
+
+$\frac{1}{2} = 0,5000\cdots = 0,4999\cdots$
+
+$1 = 0,9999\cdots$
+
+Suppose that $f:\mathbb{N}\to (0,1]$ is a bijection!
+
+$f(0) = 0,a_1^0a_2^0\cdots$
+
+$f(1) = 0,a_1^1a_2^1\cdots$
+
+$----$
+
+$f(k) = 0,a_1^ka_2^k\cdots a^k_{k-1}$
+
+Let us define a number $b\in (0,1]$, as follows:
+$$b = 0,b_1b_2b_3\cdots$$
+
+If $a_1^0 \neq 1$, let $b_1 = 1$, and if $a_1^0 = 1$, let $b_1 = 2$.
+
+If $a_2^1 \neq 1$, let $b_2 = 1$, and if $a_2^1 = 1$, let $b_2 = 2$.
+
+$----$
+
+If $a_k^{k-1} \neq 1$, let $b_k = 1$, and if  $a_k^{k-1} = 1$, let $b_k = 2$.
+
+Clearly $b\in (0,1]$ and
+
+$b\neq f(0)$ (since  $b_1 \neq a^0_1 = (f(0))_1$),
+
+$b\neq f(1)$ (since $b_2 \neq a^1_2 = (f(1))_2$),
+
+$----$
+
+$b\neq f(k)$ (since $b_{k+1} \neq a^{k}_{k+1} = (f(k))_{k+1}$).
+
+Hence, number $b$ is not in the range of mapping $f$. This is a contradiction with the surjectivity of $f$!
+
+Therefore, interval $(0,1]$ is not a countably infinite set (and therefore neither is $\mathbb{R}$).\qed
+
+\medskip
+The just given argument is called ``Diagonal proof"~(also diagonalization, diagonal argument, ...
+Cantor, 1891).
+
+\bigskip
+
+Let us now show that some intervals of the real numbers are equipollent to $\mathbb{R}$.
+
+The following maps are all bijective:
+\begin{itemize}
+  \item $f_1:(0,1]\to [0,1)$, $f_1(x) = 1-x$
+  \item $f_2:[0,1)\to [0,\infty)$, $f_2(x) = \frac{x}{1-x}$
+  \item $f_3:(-1,0]\to (-\infty,0]$, $f_3(x) = \frac{x}{1+x}$
+  \item $f_4:(-1,1)\to \mathbb{R}$, $f_4(x)  = \left\{
+               \begin{array}{ll}
+                 f_2(x), & \hbox{if $x\ge 0$;} \\
+                 f_3(x), & \hbox{otherwise.}
+               \end{array}
+             \right.$
+\end{itemize}
+
+\bigskip
+
+\textbf{ Homework:} verify the bijectivity of maps $f_1$, $f_2$, $f_3$, $f_4$.
+
+\bigskip
+$-----------------$
+\bigskip
+
+Consequently:
+$$(0,1]\sim [0,1)\sim[0,\infty)$$
+$$(-1,0]\sim (-\infty,0]$$
+Since also  $(-1,0]\sim [0,1)$ (as the mapping $f:(-1,0]\to [0,1)$, $f(x)=x$
+is bijective), it follows that
+$$(0,1]\sim [0,1)\sim[0,\infty)\sim (-1,0]\sim (-\infty,0]\,.$$
+Due to mapping $f_4$ we have
+$$(-1,1)\sim \mathbb{R}\,.$$
+
+\bigskip
+
+Are perhaps all these sets pairwise equipollent?
+We can get an affirmative answer using the following
+
+\begin{proposition}
+If we remove finitely or countably infinitely many elements from an infinite sets $S$,
+then the obtained set is still equipollent to $S$ as long as it is infinite.
+\end{proposition}
+
+\begin{proof}
+Let $S_0\subseteq S$ be a finite or countably infinite subset of set $S$ such that
+the set $S_1 = S\brez S_0$ is infinite.
+Let $S_2$ be a countably infinite subset in $S_1$. We can write
+$$S_1 = S_2\cup S_3\,,$$
+where $S_2\cap S_3=\emptyset$. (Take $S_3 = S_1\brez S_2$.)
+
+$S = S_0\cup S_1= S_0\cup S_2\cup S_3$
+
+Let us define mapping $f$:
+$$f:S = S_0\cup S_2\cup S_3\to S_1 = S_2\cup S_3$$
+\begin{itemize}
+  \item Let $f$ be the identity on $S_3$:
+
+  $f(x) = x$ for all $x\in S_3$.
+
+  \item The sets $S_0\cup S_2$ and $S_2$ are both countably infinite, hence there exists a bijection $g:S_0\cup S_2\to S_2$.
+
+      For $x\in S_0\cup S_2$ we define $f(x) =g(x)$.
+\end{itemize}
+Function $f$ is clearly a bijection.
+\end{proof}
+
+Consequently:
+$$[0,1]\sim [0,1)\sim (0,1]\sim (0,1)\sim (-1,1)\sim\mathbb{R}$$
+(The equipollence $(0,1)\sim (-1,1)$ can be established for instance with a bijective mapping
+$f:(0,1)\to (-1,1)$, $f(x) = 2x-1$.~\footnote{Similarly, we could show in general that every two intervals
+$(a,b)$ and $(c,d)$ are equipollent.})
+
+\bigskip
+
+Every set that is equipollent to the set of real numbers $\mathbb{R}$ is said to have the \textbf{ cardinality of the continuum}.
+
+Since the set of real numbers is not countably infinite, it holds:
+$$\mathbb{R}>\mathbb{N}!$$
+
+\bigskip
+
+Also the set of all real numbers that are not algebraic (these are the so-called~{\em transcendental numbers}),
+has, according to the previous claim, the cardinality of the continuum! Therefore there are just as many transcendental numbers as there are real numbers,
+while there are significantly fewer algebraic numbers.
+
+%\subsection*{Uncountably  neskonène mnoice (nadaljevanje)}
+
+\bigskip
+It turns out that there exist sets that are of bigger cardinality than the set of real numbers.
+
+\begin{theorem}[Cantors's theorem]
+Let $S$ be an arbitrary set. Then
+$${\cal P}(S)> S\,.$$
+\end{theorem}
+
+\begin{proof}
+1.~Set ${\cal P}(S)$ has at least one subset that is equipollent to the set $S$.
+\begin{itemize}
+  \item For example, the set of all one-element subsets:
+  $$\{\{x\}~;~x\in S\}\,.$$
+%  $$\{X~;X\subseteq {\cal P}(S)\inn (\exists x\in S)X = \{x\}\}\,.$$
+\end{itemize}
+
+2.~Set $S$ does not have any subset that would be equipollent to the set ${\cal P}(S)$.
+
+Suppose that there exists $S'\subseteq S$ and a bijective mapping $f:S'\to {\cal P}(S)$.
+
+$s'\in S'\sledi f(s')\in {\cal P}(S)\sledi f(s')\subseteq S$.
+
+Two possibilities: $s'\in f(s')$ or $s'\not\in f(s')$.
+
+Let $$X = \{s'~;~s'\in S'\inn s'\not\in f(s')\}\,.$$
+This way, we defined a subset $X\subseteq S$, that is, $X\in {\cal P}(S)$.
+But since $f$ is surjective, there exists an element $x\in S'$ such that $f(x) = X$.
+
+However :
+$$x\in X \textrm{~~~or~~~} x\in S'\brez X\,.$$
+\begin{itemize}
+  \item $x\in X\sledi x \not\in f(x) = X$. Contradiction.
+  \item $x\in S'\brez X\sledi x \in f(x) = X$. Contradiction.
+\end{itemize}
+Therefore $f$ is not bijective!
+\end{proof}
+
+$--------$
+
+\bigskip
+It holds ${\cal P}(\mathbb N)\sim \mathbb{R}$.
+
+\bigskip
+\textbf{ Continuum hypothesis:}
+{\em There is no set $X$ such that $$\mathbb{N}<X<\mathbb{R}\,.$$}
+({\em There is not set that would have bigger cardinality than $\mathbb{N}$ but smaller than $\mathbb{R}$.})
+
+G\"odel (1940): the continuum hypothesis is consistent with the remaining axioms of set theory.
+
+Cohen (1963): the continuum hypothesis is unprovable from the remaining axioms of set theory!
+
+\bigskip
+\textbf{ Generalized continuum hypothesis:}
+{\em Let $S$ be an infinite set. There is no set $X$ such that $$S<X<{\cal P}(S)\,.$$}
+
+\bigskip
+
+To conclude, let us just mention some further notions related to infinite sets:
+\begin{itemize}
+  \item {\em cardinal numbers} (``cardinalities''~of sets; they allow a study of different hierarchies of infinities),
+  \item {\em order types} (essentially different ``ways'' how sets can be strictly linearly ordered, e.g.~$(\mathbb{N}, <)$, $(\mathbb{N}, >)$, $(\mathbb{Q}, <)$, $(\mathbb{R}, <)$),
+  \item {\em ordinal numbers} (order types of well ordered sets),
+  \item {\em principle of transfinite induction} (a generalization of the principle of induction to arbitrary well ordered sets).
+ \item {\em transfinite recursion} (allows recursive definitions of notions in well ordered sets).
+\end{itemize}
+For an introduction to these notions see the books of Niko Prijatelj and Paul Halmos.
+
+%
+
+
+\end{comment}
 
 
 
@@ -4163,19 +5569,19 @@ Axioms are needed to ensure the existence of certain sets (e.g.~the axiom of pai
 	$$\forall A\, \forall B\, (\forall x \,(x\in A \cee x\in B) \sledi A = B)$$
 	
 	\item Axiom of an empty set:
-	{\emph There is an empty set.}
+	\emph{ There is an empty set.}
 	$$\exists B\, \forall x\, (x\not \in B)$$
 	
-	\item Axiom of pairing: {\emph Any couple of elements from universe may form a 2-set.}
+	\item Axiom of pairing: \emph{ Any couple of elements from universe may form a 2-set.}
 	$$\forall u\, \forall v\, \exists B\, \forall x\, (x\in B \cee x = u\textrm{ ali }x = v)$$
 	
-	\item Axiom of union: {\emph The union over the elements of a set exists. }
+	\item Axiom of union: \emph{ The union over the elements of a set exists. }
 	$$\forall A\, \exists B\, \forall x\, (x\in B \cee (\exists b\in A) x\in b)$$
 	
-	\item Axiom of power set: {\emph For each set, the set of all its subsets exists.}
+	\item Axiom of power set: \emph{ For each set, the set of all its subsets exists.}
 	$$\forall a\, \exists B\, \forall x (x\in B \cee x\subseteq a)$$
 	
-	\item Axiom schema of specification: {\emph  The set builder notation makes sense!}
+	\item Axiom schema of specification: \emph{  The set builder notation makes sense!}
 	
 	For each logical predicate $\varphi$ which include variables $t_1,\ldots, t_k$, but not  $B$, we have:
 	$$\forall t_1\,\cdots\, \forall t_k\,\forall c\,\exists B \,\forall x \,(x\in B \cee x\in c \inn \varphi)$$
@@ -4193,12 +5599,12 @@ Axioms are needed to ensure the existence of certain sets (e.g.~the axiom of pai
 	
 	\paragraph{Example.} $\{x\in \mathbb{R}; x\ge 0\}$.
 	
-	\item Axiom of infinity: {\emph There exists an infinite set.}
+	\item Axiom of infinity: \emph{ There exists an infinite set.}
 	$$\exists A\,(\emptyset \,\in A \inn (\forall a\in A)\, (a\cup \{a\}\in A))$$
 	
 
 	
-	\item Axiom schema of replacement: {\emph The image of a set under any definable function will also fall inside a set.}
+	\item Axiom schema of replacement: \emph{ The image of a set under any definable function will also fall inside a set.}
 	
 	This schema allows us to describe functions in a form
 	$$\{f(x); x\in A\}\,,$$
@@ -4211,16 +5617,449 @@ Axioms are needed to ensure the existence of certain sets (e.g.~the axiom of pai
 	%$$\forall t_1\,\cdots \forall t_k\,\forall A\,[(\forall x\in A)\,\forall y_1\, \forall y_2\, (\varphi(x,y_1) \inn \varphi(x,y_2) \sledi y_1 = y_2)$$
 	%$$\sledi \exists B\, \forall y\, [y\in B \cee (\exists x\in A)\,\varphi(x,y)]$$
 	
-	\item Axion of regularity: {\emph Every non-empty set x contains a member y such that x and y are disjoint sets.}
+	\item Axion of regularity: \emph{ Every non-empty set x contains a member y such that x and y are disjoint sets.}
 	$$(\forall A\neq \emptyset)\,(\exists m\in A)\,(m\cap A = \emptyset)$$
 	
 	This implies, for example, that for any $A$ and $B$,  niether $A\in B$ or $B\in A$.
 
 
-	\item Axiom of choice: {\emph Each relation admits a function with the same domain.}
+	\item Axiom of choice: \emph{ Each relation admits a function with the same domain.}
 	$$(\forall \textrm{ relacijo }R)(\exists \textrm{ funkcija }F)(F\subseteq R \inn {\cal D}(F) = {\cal D}(R))$$
 	We will cover this axiom in detail later, at the end of the Relations chapter.
 \end{enumerate}
 \noindent Some of above axioms maybe derived from the remaining ones, in particular 2., 3.~and 6.
+
+\chapter{Axiom of Choice}
+\section{Axiom of Choice}
+%
+%\subsection*{Ponovitev:}
+%
+%Zakljuèili smo z obravnavo struktur urejenosti:
+%\begin{itemize}
+%\item Sovisna and irreflexive relation  $R$ je dobra urejenost, èe ima vsaka neprazna set $R$-minimalen element (torej tak element, pod katerim ni nobenega elementa).
+%
+%\item $R$-prvi element: tak, ki je pod vsakim drugim elementom.
+%\item $R$ antisymmetric $\sledi$ ($R$-prvi $\sledi$ $R$-minimalni).
+%\item Dobra urejenost je poseben primer stroge linearne urejenosti.
+%\item $R$ dobra urejenost $\sledi$ ($R$-minimalni $\sledi$ $R$-prvi).
+%\item Definirali smo pojma $R$-zadnjega elementa and
+%   neposrednega naslednika.
+%
+%\zgled
+%
+%%Nasledniki v delni urejenosti, podani s Hassejevim diagramom:
+%\begin{center}
+%\includegraphics[height=50mm]{nasledniki.eps}
+%\end{center}
+%\end{itemize}
+
+$A_1$, $A_2$: sets
+
+$A_1\times A_2 = \{(x,y)~;~x\in A_1,~y\in A_2\}$
+
+Every ordered pair is determined so that the first element is chosen from set $A_1$, and the second one from $A_2$.
+Such a choice corresponds to a function
+$$f:\{1,2\} \to A_1\cup A_2$$
+such that
+$$f(1)\in A_1 \textrm{ and }f(2)\in A_2\,.$$
+
+Hence
+$$A_1\times A_2 = \{f:\{1,2\} \to A_1\cup A_2,
+f(1)\in A_1, f(2)\in A_2\}\,.$$
+
+We can write a similar expression for Cartesian products of finitely many factors:
+$$A_1\times \cdots \times A_n= \{f:\{1,\ldots, n\} \to A_1\cup \cdots\cup A_n,
+f(1)\in A_1, \ldots, f(n)\in A_n\}\,.$$
+
+\bigskip
+This way, we can generalize the definition of the Cartesian product to
+products of an arbitrary set family:
+
+Let
+$${\cal A}=\{A_{\lambda}~;~\lambda\in I\}$$
+be an arbitrary (nonempty) set family.
+The {\em Cartesian product} of family ${\cal A}$ is defined as
+$$\prod{\cal A} = \prod_{\lambda\in I}A_\lambda = \{f:I\to\cup_{\lambda\in I}A_\lambda,~(\forall\lambda)(\lambda\in I\sledi f(\lambda)\in A_\lambda)\}\,.$$
+
+An element
+$f\in \prod_{\lambda\in I}A_\lambda$ is called a {\em choice function}.
+
+If at least one of the sets $A_\lambda$ is empty, then also the product $\prod_{\lambda\in I}A_\lambda$
+is empty (since if  $A_\lambda = \emptyset$ then the condition $f(\lambda) \in A_\lambda$ can certainly not be satisfied)!
+
+\begin{itemize}
+  \item $(\exists \lambda)(\lambda\in I\inn A_\lambda = \emptyset)\sledi \prod_{\lambda\in I}A_\lambda=\emptyset$.
+\end{itemize}
+
+In the finite case also the converse holds:
+$$(\forall \lambda)(\lambda\in I\sledi A_\lambda\neq\emptyset)\sledi
+      \prod_{\lambda\in I}A_\lambda\neq\emptyset\,.$$
+
+{\em What about the infinite case??}
+
+``If $A_\lambda\neq \emptyset$ for all $\lambda\in I$ then there exists at least one choice function."~
+
+{\em Can we prove this?}
+
+Cohen (1963): this proposition is unprovable from the remaining axioms of Set Theory.
+
+\bigskip
+\textbf{ The Cartesian product axiom:}
+
+If ${\cal A}$ is an arbitrary family of nonempty sets, then $\prod {\cal A}$ is a nonempty set.
+
+\bigskip
+\textbf{ The Axiom of Choice (AC):}
+
+If  ${\cal A} = \{A_\lambda~;~\lambda\in I\}$ is an arbitrary family of nonempty sets,
+then there exists at least one funcion $f:I\to \cup_{\lambda \in I}A_\lambda$
+such that
+$f(\lambda)\in A_\lambda$ for all $\lambda\in I$.
+
+Zermelo, 1904 -- used AC when proving the Well ordering theorem
+
+(Zermelo Axiom)
+
+% 19. predavanje, 2 uri, 20. 12. 2011
+
+\bigskip
+
+\textbf{ G\"odel's Theorem (1940):} The Axiom of Choice is consistent with the remaining axioms of Set Theory:\footnote{Together with the consistency of the Axiom of Choice, Kurt G\"odel also demonstrated the consistency of the continuum hypothesis with the other axioms of Set Theory. This way he solved the first of its famous $23$ problems, that
+German mathematician David Hilbert posed to the mathematical community in $1900$.}
+\begin{itemize}
+  \item \emph{ If we can derive a contradiction in a system, where, besides other axioms we also assume the Axiom of Choice, then a contradiction can also be derived in the system that only relies on the remaining axioms and has no Axiom of Choice.}
+\end{itemize}
+
+\bigskip
+
+Using the Axiom of Choice one can prove many important theorems in various areas of mathematics (algebra, analysis, topology, $\ldots $), as well as some less intuitive theorems, e.g.~ the \textbf{ Banach--Tarski paradox:} A three-dimensional unit ball can be the cut into finitely many pairwise disjoint parts such that
+translations and rotations of them can be composed into {\em two} identical copies of the original ball!
+
+\bigskip
+The Axiom of Choice is equivalent to many other propositions, for example to the following two:
+\begin{itemize}
+  \item Every binary relation contains a function with the same domain.
+  \item If  ${\cal A}$ is a family of pairwise disjoint nonempty sets, then there exists a set $X$ such that for every $A\in {\cal A}$, set $X\cap A$ contains exactly one element.
+\end{itemize}
+
+\subsection{Maximality principles}
+
+We will give four maximality principles and show that they are logically equivalent.
+They are also equivalent to the Axiom of Choice.
+
+\bigskip
+
+First, two definitions:
+
+
+Let $R$ be a partial order on $S$.
+\begin{itemize}
+  \item If $S$ contains an element $m$ such that for every other element $x\in S$ {\em it does not hold} $mRx$,
+  then we say that $m$ is an {\em $R$-maximal element} of set $S$.
+
+  \item A {\em chain} in set $S$ is a subset $X$ of $S$ that is linearly ordered by $R$.
+\end{itemize}
+
+\medskip
+\textbf{ Example:}
+Let $S = \{1,2,\ldots, 8\}$ and let $R$ be the divisibility relation on $S$ ($xRy$ if and only if $x$ divides $y$).
+This poset is represented with the following Hasse diagram:
+
+\medskip
+\begin{center}
+\includegraphics[height=50mm]{verige-deljivost.eps}
+\end{center}
+
+The poset has $4$ maximal elements ($5$, $6$, $7$, $8$) and contains the following chains:
+\begin{itemize}
+  \item $\emptyset$ ($1$ chain without elements)
+  \item $\{1\}, \{2\}, \ldots, \{8\}$  ($8$ $1$-element chains)
+  \item $\{1,2\}, \{1,3\},\ldots, \{1,8\},\{2,4\}, \{2,6\}, \{2,8\}, \{3,6\}, \{4,8\}$  ($12$ $2$-element chains)
+  \item $\{1,2,4\}, \{1,2,8\},\{1,3,6\},\{1,4,8\}, \{2,4,8\}$  ($5$ $3$-element chains)
+  \item $\{1,2,4,8\}$  ($1$ $4$-element chain)
+\end{itemize}
+
+%The power set of the set $\{1,2\}$ is partially ordered with respect to inclusion.
+%
+%\medskip
+%\begin{center}
+%\includegraphics[height=30mm]{verige0.eps}
+%\end{center}
+%
+%It has only one maximal element and contains the following chains:
+%\begin{itemize}
+%  \item $\emptyset$ ($1$ chain with no elements)
+%  \item $\{\emptyset\}$, $\{\{1\}\}$, $\{\{2\}\}$, $\{\{1,2\}\}$ ($4$ one-element chains)
+%  \item $\{\emptyset,\{1\}\}$, $\{\emptyset,\{2\}\}$, $\{\emptyset,\{1,2\}\}$, $\{\{1\},\{1,2\}\}$, $\{\{2\},\{1,2\}\}$ ($5$ two-element chains)
+%  \item $\{\emptyset, \{1\}, \{1,2\}\}$, $\{\emptyset, \{2\}, \{1,2\}\}$ ($2$ three-element chains)
+%\end{itemize}
+%
+\bigskip
+\textbf{ Example:}
+
+The following partial order has two maximal elements. The circled elements form a chain:
+\begin{center}
+\includegraphics[height=50mm]{verige-en.eps}
+\end{center}
+
+\bigskip
+\textbf{ 1. Hausdorff maximality principle.}
+
+Let $S$ be a set partially ordered with relation $R$.
+Let ${\cal V}$ be the family of all chains:
+$${\cal V} = \{X\subseteq S~;~X \textrm { is a chain}\}\,.$$
+The set ${\cal V}$ is partially ordered with respect to relation $\subseteq$.
+
+When is $X$ a maximal element of ${\cal V}$?
+
+When for every other $Y\in {\cal V}$ it holds that $X$ is not a subset of $Y$: $X\nsubseteq Y$.
+Such an element is called a {\em maximal chain}.
+
+\bigskip
+\underline{Hausdorff maximality principle:}
+
+{\em Set  ${\cal V}$ has at least one maximal element with respect to $\subseteq$.}
+
+Every poset has a maximal chain.
+
+\bigskip
+\textbf{ 2. Zorn's lemma.}
+
+Zorn's lemma says that the condition that every chain in a poset is bounded from above is a sufficient condition for the existence of a maximal element
+in the given poset.
+
+\medskip
+\underline{Zorn's lemma:} {\em Let $S$ be a set partially ordered with respect to relation $R$
+and suppose that every chain in $S$ has an $R$-upper bound.
+Then the set $S$ has at least one $R$-maximal element.}
+
+\bigskip
+\bigskip
+\textbf{ 3. Tukey's maximality principle.}
+
+Let $S$ be an arbitrary set and let ${\cal D}$ be an arbitrary (nonempty) family of subsets of set $S$
+(hence ${\cal D}\subseteq {\cal P}(S)$).
+
+\begin{definition}
+${\cal D}$ is {\em of finite character} $\cee$ an arbitrary subset $X\subseteq S$ is in ${\cal D}$ if and only if every {\em finite} subset of set $X$
+is in ${\cal D}$.
+\end{definition}
+
+%\bigskip
+%
+%{\small \textbf{ Example:} druina vseh linearno neodvisnih mnoic danega vektorskega prostora.}
+
+\bigskip
+\underline{Tukey's maximality principle:}
+
+{\em If ${\cal D}$ is of finite character, then ${\cal D}$
+has at least one maximal element with respect to relation ``$\subseteq$" (which partially orders ${\cal D}$).}
+
+\bigskip
+
+\textbf{ 4. Kuratowski's lemma.}
+
+Let $S$ be a set partially ordered with relation $R$.
+Let $V\subseteq S$ be a chain in $S$.
+$${\cal U}_V = \{X\subseteq S~;~X\textrm{ is a chain in }S \textrm{ and } V\subseteq X\}\,.$$
+${\cal U}_V$ is partially ordered with relation ``$\subseteq$".
+
+\underline{Kuratowski's lemma:}
+{\em ${\cal U}_V$ has at least one maximal element with respect to inclusion $\subseteq$.}
+
+\medskip
+Every chain is contained in a maximal chain.
+
+------------------------------------------------------------
+
+\bigskip
+
+All these maximality principles are pairwise logically equivalent.
+We will show:
+
+$$\textrm{(Hausdorff) $\sledi$ (Zorn) $\sledi$ (Tukey) $\sledi$ (Kuratowski) $\sledi$ (Hausdorff)}$$
+
+% 20. predavanje, 2 uri, 21. 12. 2011, poprava kviza 15'
+
+\bigskip
+\textbf{ Step 1: (Hausdorff) $\sledi$ (Zorn)}
+
+Let $R$ partially order $S$ and let every chain in $S$ have $R$-upper bound.
+
+By Hausdorff, $S$ contains at least one maximal chain $V$.
+
+The hypothesis of Zorn's lemma says that $V$ has an $R$-upper bound $u$.
+
+We claim that $u$ is an $R$-maximal element.
+
+Suppose this is not the case.
+Then there exists an element $x\in S$ such that $x\neq u$ and $uRx$.
+
+Let $y\in V$. Since $u$ is an upper bound for chain $V$, we have $yRu$ and also $uRx$ and
+therefore, by transitivity, $yRx$. Consequently $y\neq x$, since $y=x$ would imply $uRx$ and $xRu$ and also $x = u$.
+
+Therefore the chain $V$ is a proper subset of the set $V\cup \{x\}$. But the set $V\cup \{x\}$ is linearly ordered with relation $R$, hence it is a chain.
+This is in contradiction with the condition that $V$ is a maximal chain.
+
+We thus showed that set $S$ has an $R$-maximal element.\qed
+
+\bigskip
+\textbf{ Step 2: (Zorn) $\sledi$ (Tukey)}
+
+Let  ${\cal D}$ be a nonempty family of subsets of a given set $X$ and let ${\cal D}$ be of finite character.
+
+The family ${\cal D}$ is partially ordered with respect to relation ``$\subseteq$".
+
+Let us check that every chain in this family has an upper bound!
+
+Let $V$ be an arbitrary chain in family ${\cal D}$.
+The elements of set $V$ are subsets of set $X$, which are linearly ordered with relation $\subseteq$
+(since $V$ is a chain).
+Let us take the union of all the elements of this chain, $W = \cup V$.
+Clearly, $W$ is an upper bound for $V$ (for every element $X\in V$ it holds $X\subseteq \cup V = W$).
+
+Let us show that $W\in{\cal D}$. Since ${\cal D}$ is of finite character, it suffice to show that every finite subset of
+$W$ belongs to ${\cal D}$.
+Let $A=\{a_1,\ldots, a_n\}\subseteq W$. There exist sets $A_1,\ldots, A_n\in V$ such that $a_i\in A_i$ for all $i$.
+But since these sets are linearly ordered, one of these $n$ sets, say $A_j$, contains all others.
+It follows that $A_j$ also contains $A$. Since $A\subseteq A_j\in V$ and therefore also  $A_j\in {\cal D}$,
+it follows that also $A\in {\cal D}$, since $A$ is a finite subset of $V$, which is an element of
+${\cal D}$, and family ${\cal D}$ is of finite character.
+
+We have showed that every chain has an upper bound with respect to relation of inclusion.
+It follows from Zorn's lemma that family ${\cal D}$ has at least one maximal element.\qed
+
+\bigskip
+\textbf{ Step 3: (Tukey) $\sledi$ (Kuratowski)}
+
+Let a relation $R$ partially order set $S$ and let $V$ be an arbitrary chain in $S$.
+
+Let ${\cal D}$ be the family of all the subsets $X$ of set $S$ such that
+$X\cup V$ is a chain in set $S$.
+
+Let us verify that ${\cal D}$ is of finite character!
+
+Let $X\in {\cal D}$. Then also every finite subset $X'$ of set $X$ is in ${\cal D}$:
+namely, $V\cup X$ is a chain, therefore $V\cup X'$ is also a chain.
+
+And conversely: let $X$ be a subset of set $S$ such that ${\cal D}$ contains all finite subsets of $X$.
+This means that for every two elements $x,y\in X$ it holds that
+$\{x,y\}\cup V$ is a chain. It is evident that then also the set $X\cup V$ is a chain. Therefore $X\in {\cal D}$.
+
+By Tukey, set ${\cal D}$ contains a maximal element $M$ with respect to relation of inclusion $\subseteq$.
+
+By the definition of family ${\cal D}$, the set $M\cup V$ is a maximal chain in set $S$ containing chain $V$.
+But this is exactly the statement of Kuratowski's lemma.\qed
+
+\bigskip
+\textbf{ Step 4: (Kuratowski) $\sledi$ (Hausdorff)}
+
+Let a relation $R$ partially order a set $S$.
+Consider the empty set. This is certainly a chain in $S$; the condition about linear ordering of its elements is vacuously satisfied.
+
+But the empty set is a subset of every chain in $S$. According to Kuratowski's lemma, a maximal chain exists and
+at the same time is also a maximal element of the family ${\cal V}$ of all chains with respect to relation of inclusion $\subseteq$.
+But this is precisely the content of Hausdorff maximality principle.\qed
+
+% 21. predavanje, 2 uri, 3. 1. 2012
+%Ponovitev:
+%
+%Spoznali smo tiri principi maksimalnosti and pokazali, da so med seboj ekvivalentni:
+%\begin{itemize}
+%  \item \underline{Hausdorffov princip maksimalnosti:} Vsaka delno urejena set ima vsaj eno maksimalno verigo.
+%  \item \underline{Zornova lema:} {\em Let $S$ z relacijo $R$ delno urejena and naj ima vsaka veriga v $S$ $R$-zgornjo mejo. Potem ima set $S$ vsaj en $R$-maksimalni element.}
+%  \item \underline{Tukeyev princip maksimalnosti:} {\em Èe ima ${\cal D}\subseteq {\cal P}(S)$ karakter konènosti, potem ima ${\cal D}$ vsaj en maksimalni element with respect to relation ``$\subseteq$" (ki ${\cal D}$ delno ureja).}
+%\item \underline{Lema Kuratowskega:} Vsaka veriga v delno urejeni mnoici je vsebovana v neki maksimalni verigi.
+%\end{itemize}
+%
+\bigskip
+
+Maximality principles are also equivalent to the axiom of choice:
+
+(Tukey) $\sledi$ (axiom of choice) $\sledi$ (Hausdorff)
+
+
+\bigskip
+\textbf{ (Tukey) $\sledi$ (axiom of choice)}
+
+Let ${\cal A} = \{A_\lambda~;~\lambda\in I\}$ be an arbitrary family of nonempty sets.
+
+Let ${\cal F}$ be the set of all functions the domain ${\cal D}f$ of which is a subset of $I$ and
+that assign to each $\lambda\in {\cal D}f$ an element $f(\lambda)\in A_\lambda$.
+
+Every such function is a set of ordered pairs, that is,
+$$f\subseteq I\times \cup {\cal A}\,.$$
+Set ${\cal F}$ is a family of subsets of the Cartesian product $I\times \cup {\cal A}$.
+
+\emph{ Claim: ${\cal F}$ is of finite character.}
+
+Proof of claim: Let $f\in{\cal F}$. Clearly, every finite subset of function $f$ is an element of ${\cal F}$.
+
+Now, take an arbitrary subset $g$ of the Cartesian product $I\times \cup {\cal A}$
+with the property that every finite subset of $g$ is an element of  ${\cal F}$.
+
+In this case, $g$ is also a function and an element of family ${\cal F}$. Indeed, if
+in the set $g$ there existed two different pairs $(\lambda,a)$ and $(\lambda,b)$ with the same first coordinate,
+then the two-element subset $\{(\lambda,a),(\lambda,b)\}$ would not be a function, which is in contradiction with the assumption.
+
+Similarly we conclude that $g\in {\cal F}$, since for every $(\lambda,a)\in g$, it holds that
+$\{(\lambda,a)\}\in {\cal F}$, therefore $\lambda\in I$ and $a\in A_\lambda$.
+
+We proved that ${\cal F}$ is of finite character.
+Tukey's maximality principle implies that ${\cal F}$ has at least one maximal element $F$ with respect to relation ``$\subseteq$".
+
+Let us verify that this $F$ is a choice function!
+
+Since $F\in{\cal F}$, $F$ is a function.
+Hence, it is enough to show that the domain of $F$ is equal to $I$.
+Suppose this is not the case. Then, there exists an index $\lambda\in I\backslash {\cal D}f$.
+Let $a$ be an arbitrary element of the non-empty set $A_\lambda$ and let us make the ordered pair $(\lambda, a)$ and the union $F\cup\{(\lambda,a)\}$. This union is an element of family ${\cal F}$ that contains function $F$ as a proper subset. This, however, is in contradiction with the fact that $F$ is a maximal element of family ${\cal F}$.
+
+Therefore ${\cal D}F = I$ and $F$ is indeed a choice function.\qed
+
+\bigskip
+
+It is possible to show that \textbf{ (axiom of choice) $\sledi$ (Hausdorff)}.
+
+See \emph{ Niko Prijatelj: Matemati\v cne strukture I, p.~135--142}.
+
+For the proof of implication \textbf{ (axiom of choice) $\sledi$ (Zorn's lemma)},
+see \emph{ Paul Halmos: Naive Set Theory, p. 63--65}.
+
+\section{Well ordering theorem}
+
+\emph{ Perhaps the deepest reason why the axiom of choice seems problematic to many mathematicians stems from the fact that
+the axiom of choice implies the well ordering theorem, that states that every set can be well ordered.}
+
+%\bigskip
+%Aksiom izbire je logièno ekvivalenten tudi t.i.~izreku o dobri ureditvi.
+
+\medskip
+\textbf{ Well ordering theorem}:
+For every set $S$ there exists a relation $R$ that well orders~$S$.
+
+\bigskip
+Well ordering theorem $\cee$ axiom of choice.
+
+\bigskip
+Let us show the easier of both implications.
+
+\textbf{ Well ordering theorem $\sledi$ axiom of choice.}
+
+Let ${\cal A} = \{A_\lambda~;~\lambda\in I\}$ be an arbitrary family of nonempty sets.
+According to the well ordering theorem, there exists a relation  $R$ that well orders \emph{ the union of family ${\cal A}$}, $\cup {\cal A}$.
+
+Since every subset $A_\lambda$ of family ${\cal A}$ is a nonempty subset of the union
+$\cup{\cal A}$, it has an $R$-least element.
+Hence, we can define the choice function $f$ by assigning to each element $\lambda\in I$ the
+$R$-least element of set  $A_\lambda$:
+$$f(\lambda) = R\textrm{-least element in  }A_\lambda\,.$$
+The axiom of choice is thus verified.\qed
+
+It is also possible to show the implication \textbf{ (axiom of choice) $\sledi$ (well-ordering theorem)}.
+See \emph{ Niko Prijatelj: Matemati\v cne strukture I, p.~143--151}.
+
+For a proof of implication of \textbf{ (Zorn's lemma) $\sledi$ (well-ordering theorem)}
+see \emph{ Paul Halmos: Naive Set Theory, p.~68}.
 
 \end{document}
