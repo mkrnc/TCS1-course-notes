@@ -1,0 +1,97 @@
+\vspace {-\cftbeforechapskip }
+\contentsline {chapter}{\numberline {1}{Mathematical logic}}{7}{chapter.1}%
+\contentsline {section}{\numberline {1.1}{Propositions}}{7}{section.1.1}%
+\contentsline {section}{\numberline {1.2}{Basic logical connectives}}{8}{section.1.2}%
+\contentsline {paragraph}{{ \underline {Negation:} Not $A$; it is not true that $A$}}{8}{paragraph*.1}%
+\contentsline {paragraph}{{\underline {Conjunction:} $A$ and $B$}}{9}{paragraph*.2}%
+\contentsline {paragraph}{{\underline {Disjunction:} $A$ or $B$}}{9}{paragraph*.3}%
+\contentsline {paragraph}{{\underline {Implication}: If $A$, then $B$}}{9}{paragraph*.4}%
+\contentsline {paragraph}{{\underline {Equivalence:} $A$ if and only if $B$}}{10}{paragraph*.5}%
+\contentsline {section}{\numberline {1.3}{Truth tables}}{10}{section.1.3}%
+\contentsline {paragraph}{{Example:}}{11}{paragraph*.8}%
+\contentsline {paragraph}{{Example:}}{13}{paragraph*.9}%
+\contentsline {section}{\numberline {1.4}{Logical equivalences}}{14}{section.1.4}%
+\contentsline {section}{\numberline {1.5}{Canonical forms of propositions}}{16}{section.1.5}%
+\contentsline {paragraph}{{1st approach:}}{17}{paragraph*.10}%
+\contentsline {paragraph}{{2nd approach:}}{17}{paragraph*.11}%
+\contentsline {paragraph}{{Example.}}{18}{paragraph*.12}%
+\contentsline {section}{\numberline {1.6}{Switching circuits}}{19}{section.1.6}%
+\contentsline {paragraph}{{Example.}}{21}{paragraph*.16}%
+\contentsline {paragraph}{{Example.}}{22}{paragraph*.19}%
+\contentsline {paragraph}{{Example.}}{24}{paragraph*.22}%
+\contentsline {section}{\numberline {1.7}{Logical implications}}{24}{section.1.7}%
+\contentsline {paragraph}{{Example.}}{26}{paragraph*.24}%
+\contentsline {paragraph}{{Example.}}{28}{paragraph*.25}%
+\contentsline {section}{\numberline {1.8}{Proofs}}{28}{section.1.8}%
+\contentsline {subsection}{\numberline {1.8.1}{Direct proof}}{28}{subsection.1.8.1}%
+\contentsline {subsection}{\numberline {1.8.2}{Indirect proof.}}{29}{subsection.1.8.2}%
+\contentsline {subsection}{\numberline {1.8.3}{Proof by contradiction.}}{29}{subsection.1.8.3}%
+\contentsline {subsection}{\numberline {1.8.4}{Propositions with quantifiers}}{30}{subsection.1.8.4}%
+\contentsline {subsubsection}{{Negation of propositions with quantifiers}}{30}{subsubsection*.26}%
+\contentsline {paragraph}{{Example.}}{30}{paragraph*.27}%
+\contentsline {paragraph}{{Example.}}{30}{paragraph*.28}%
+\contentsline {paragraph}{{Example.}}{31}{paragraph*.29}%
+\contentsline {paragraph}{{Example.}}{31}{paragraph*.30}%
+\contentsline {paragraph}{{Example.}}{31}{paragraph*.31}%
+\contentsline {paragraph}{{Example.}}{32}{paragraph*.32}%
+\contentsline {subsection}{\numberline {1.8.5}{Sets of propositions}}{34}{subsection.1.8.5}%
+\contentsline {section}{\numberline {1.9}{Exercises}}{37}{section.1.9}%
+\contentsline {chapter}{\numberline {2}{Set Theory}}{51}{chapter.2}%
+\contentsline {section}{\numberline {2.1}{Sets}}{51}{section.2.1}%
+\contentsline {section}{\numberline {2.2}{Empty set}}{53}{section.2.2}%
+\contentsline {section}{\numberline {2.3}{Subsets}}{53}{section.2.3}%
+\contentsline {section}{\numberline {2.4}{Union}}{55}{section.2.4}%
+\contentsline {section}{\numberline {2.5}{Intersection}}{57}{section.2.5}%
+\contentsline {section}{\numberline {2.6}{Set difference}}{60}{section.2.6}%
+\contentsline {section}{\numberline {2.7}{Complement}}{62}{section.2.7}%
+\contentsline {paragraph}{{Example.}}{62}{paragraph*.34}%
+\contentsline {paragraph}{{Example.}}{63}{paragraph*.35}%
+\contentsline {section}{\numberline {2.8}{Power set}}{63}{section.2.8}%
+\contentsline {section}{\numberline {2.9}{Ordered pairs and tuples}}{64}{section.2.9}%
+\contentsline {section}{\numberline {2.10}{Cartesian product}}{65}{section.2.10}%
+\contentsline {section}{\numberline {2.11}{Exercises}}{66}{section.2.11}%
+\contentsline {chapter}{\numberline {3}{Relations}}{69}{chapter.3}%
+\contentsline {section}{\numberline {3.1}{Basic notions for binary relations}}{69}{section.3.1}%
+\contentsline {paragraph}{{Example:}}{70}{paragraph*.36}%
+\contentsline {paragraph}{{Example:}}{70}{paragraph*.37}%
+\contentsline {paragraph}{{Example:}}{71}{paragraph*.38}%
+\contentsline {paragraph}{{Example:}}{71}{paragraph*.39}%
+\contentsline {paragraph}{{Example:}}{72}{paragraph*.40}%
+\contentsline {subsection}{\numberline {3.1.1}{Composition of relations}}{72}{subsection.3.1.1}%
+\contentsline {paragraph}{{Example:}}{72}{paragraph*.41}%
+\contentsline {paragraph}{{Example:}}{73}{paragraph*.42}%
+\contentsline {subsection}{\numberline {3.1.2}{Universal, null and identity relations}}{73}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}{Properties of binary relations}}{74}{section.3.2}%
+\contentsline {section}{\numberline {3.3}{Equivalence relation}}{75}{section.3.3}%
+\contentsline {paragraph}{{Example:}}{78}{paragraph*.44}%
+\contentsline {subsubsection}{{Examples of equivalence relations}}{78}{subsubsection*.45}%
+\contentsline {section}{\numberline {3.4}{Functions}}{79}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}{Inverse relation, preimages}}{83}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}{Composition of functions}}{85}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}{Restrictions and extensions}}{85}{subsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.4.4}{Canonical decomposition of a function}}{86}{subsection.3.4.4}%
+\contentsline {section}{\numberline {3.5}{Order structures}}{89}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}{Lattice}}{93}{subsection.3.5.1}%
+\contentsline {subsubsection}{{Examples of lattices}}{94}{subsubsection*.46}%
+\contentsline {subsection}{\numberline {3.5.2}{Well ordering}}{97}{subsection.3.5.2}%
+\contentsline {section}{\numberline {3.6}{Exercises}}{103}{section.3.6}%
+\contentsline {chapter}{\numberline {4}{Cardinality of Sets}}{105}{chapter.4}%
+\contentsline {section}{\numberline {4.1}{Equipollent sets}}{105}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}{Properties of the equipollence relation}}{106}{subsection.4.1.1}%
+\contentsline {section}{\numberline {4.2}{Comparability of sets}}{108}{section.4.2}%
+\contentsline {chapter}{\numberline {5}{Finite and infinite sets}}{113}{chapter.5}%
+\contentsline {chapter}{\numberline {A}{Additional Topics from Propositional Logic}}{119}{appendix.A}%
+\contentsline {section}{\numberline {A.1}{Logical consequences}}{119}{section.A.1}%
+\contentsline {section}{\numberline {A.2}{Inference}}{122}{section.A.2}%
+\contentsline {chapter}{\numberline {B}{Additional Topics from Set Theory}}{125}{appendix.B}%
+\contentsline {section}{\numberline {B.1}{On Axioms}}{125}{section.B.1}%
+\contentsline {paragraph}{{Example.}}{125}{paragraph*.50}%
+\contentsline {section}{\numberline {B.2}{Axioms of Zermelo-Fraenkel set theory}}{126}{section.B.2}%
+\contentsline {paragraph}{{Example.}}{127}{paragraph*.51}%
+\contentsline {paragraph}{{Example.}}{127}{paragraph*.52}%
+\contentsline {paragraph}{{Example.}}{128}{paragraph*.53}%
+\contentsline {chapter}{\numberline {C}{Axiom of Choice}}{129}{appendix.C}%
+\contentsline {section}{\numberline {C.1}{Axiom of Choice}}{129}{section.C.1}%
+\contentsline {subsection}{\numberline {C.1.1}{Maximality principles}}{131}{subsection.C.1.1}%
+\contentsline {section}{\numberline {C.2}{Well ordering theorem}}{137}{section.C.2}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
