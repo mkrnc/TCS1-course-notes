@@ -1080,7 +1080,94 @@ Implication $10$ is indeed a tautology.\kz
 
 
 \section{Proofs}
-Here we describe several types of proofs.
+Here we describe several types of proofs. First, we discuss the inference rules.
+
+\subsection*{Inference of Propositions}
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+	\hline 
+	name & assumption(s) & conclusion\\
+	\hline 
+	\hline 
+	modus ponens & $A,A\Rightarrow B$ & $B$\\
+	\hline 
+	modus tollens & $A\Rightarrow B,\neg B$ & $\neg A$\\
+	\hline 
+	hipoteti\v{c}ni silogizem & $A\Rightarrow B,B\Rightarrow C$ & $A\Rightarrow C$\\
+	\hline 
+	disjunktivni silogizem & $A\vee B,\neg A$ & $B$\\
+	\hline 
+	združitev  & $A,B$ & $A\wedge B$\\
+	\hline 
+	poenostavitev & $A\wedge B$ & $A$\\
+	\hline 
+	pridružitev & $A$ & $A\vee B$\\
+	\hline 
+\end{tabular}
+\end{center}
+
+\textbf{Example 1}:
+\begin{itemize}
+	\item I will go to the match.
+	\item In the evening, I will do the homework.
+	\item If I go to the match and then to the cinema, I will not have the time to do the homework.
+\end{itemize}
+Can I infer that I will not be able to go to the cinema?
+
+\medskip
+\textbf{ Solution:}
+
+Let us define the following propositions:
+
+$A_1$: I will go to the match.
+
+$A_2$: In the evening, I will do the homework.
+
+$A_3$: I will go to the cinema.
+
+$C_1$: $A_1$
+
+$C_2$: $A_2$
+
+$C_3$: $A_1\inn A_3\sledi \neg A_2$.
+
+We have to determine whether the implication
+$$C_1\inn C_2\inn C_3\sledi \neg A_3$$
+is a tautology.
+
+\textbf{Example 2}
+
+The following facts are given:
+\begin{itemize}
+	\item This animal is not a bird, or it has wings.
+	\item If this animal is a bird, then it lays eggs.
+\end{itemize}
+Is the following inference correct?
+{\em If this animal does not have wings, then it does not lay eggs.}
+
+\medskip
+\textbf{ Solution:}
+
+Let us define the following propositions:
+
+$A_1$: This animal is a bird.
+
+$A_2$: This animal has wings.
+
+$A_3$: This animal lays eggs.
+
+$C_1$: $\neg A_1\ali A_2$
+
+$C_2$: $A_1\sledi A_3$
+
+$B$: $\neg A_2\sledi \neg A_3$.
+
+We have to determine whether the implication
+$$C_1\inn C_2\sledi B$$
+is a tautology.
+
+
 \subsection{Direct proof}
 
 We would like to prove the truthfulness of logical implication $A \sledi  B$.
@@ -1282,90 +1369,6 @@ $$(\exists x)(\forall y)(y\ge x)\,,$$
 since there exists a smallest natural number.
 \end{itemize}
 %end of lecture 3
-\subsection*{Inference of Propositions}
-
-\begin{center}
-\begin{tabular}{|c|c|c|}
-	\hline 
-	name & assumption(s) & conclusion\\
-	\hline 
-	\hline 
-	modus ponens & $A,A\Rightarrow B$ & $B$\\
-	\hline 
-	modus tollens & $A\Rightarrow B,\neg B$ & $\neg A$\\
-	\hline 
-	hipoteti\v{c}ni silogizem & $A\Rightarrow B,B\Rightarrow C$ & $A\Rightarrow C$\\
-	\hline 
-	disjunktivni silogizem & $A\vee B,\neg A$ & $B$\\
-	\hline 
-	združitev  & $A,B$ & $A\wedge B$\\
-	\hline 
-	poenostavitev & $A\wedge B$ & $A$\\
-	\hline 
-	pridružitev & $A$ & $A\vee B$\\
-	\hline 
-\end{tabular}
-\end{center}
-
-\textbf{Example 1}:
-\begin{itemize}
-	\item I will go to the match.
-	\item In the evening, I will do the homework.
-	\item If I go to the match and then to the cinema, I will not have the time to do the homework.
-\end{itemize}
-Can I infer that I will not be able to go to the cinema?
-
-\medskip
-\textbf{ Solution:}
-
-Let us define the following propositions:
-
-$A_1$: I will go to the match.
-
-$A_2$: In the evening, I will do the homework.
-
-$A_3$: I will go to the cinema.
-
-$C_1$: $A_1$
-
-$C_2$: $A_2$
-
-$C_3$: $A_1\inn A_3\sledi \neg A_2$.
-
-We have to determine whether the implication
-$$C_1\inn C_2\inn C_3\sledi \neg A_3$$
-is a tautology.
-
-\textbf{Example 2}
-
-The following facts are given:
-\begin{itemize}
-	\item This animal is not a bird, or it has wings.
-	\item If this animal is a bird, then it lays eggs.
-\end{itemize}
-Is the following inference correct?
-{\em If this animal does not have wings, then it does not lay eggs.}
-
-\medskip
-\textbf{ Solution:}
-
-Let us define the following propositions:
-
-$A_1$: This animal is a bird.
-
-$A_2$: This animal has wings.
-
-$A_3$: This animal lays eggs.
-
-$C_1$: $\neg A_1\ali A_2$
-
-$C_2$: $A_1\sledi A_3$
-
-$B$: $\neg A_2\sledi \neg A_3$.
-
-We have to determine whether the implication
-$$C_1\inn C_2\sledi B$$
-is a tautology.
 
 \subsection{Sets of propositions}
 
@@ -4739,8 +4742,27 @@ Show that $R$ is an equivalence relation  and find the equivalenec class $R[(7,1
 
 
 \end{enumerate}
+\subsection{Graph theory}
+\begin{enumerate}
+\item Let $n\ge 3$. Recall the definition of cycles and complete graphs:
+\[C_{n}=\{[n], E_{1}\}\]
+\[K_{n}=\{[n], E_{2}\}\]
+and define
+\[G_{n}=\{[n], E_{2} \setminus E_{1}\}\]
+\begin{itemize}
+    \item Draw \(H, G_{4}, G_{5}, G_{6}, C_{5}, C_{6}, \overline{C_{i}}\)
+    \item For all the above graphs, determine \(\Delta(G_{i}), \delta(G_{i}), \alpha(G_{i}), \omega(G_{i}), \chi(G_{i}), g(G_{i})\)
+    \item Prove \((\forall i \geq 3) (G_{i} \simeq \overline{C_{i}})\)
+\end{itemize}
 
+\item Let \(G = ([n], E)\) be a graph.
+\begin{itemize}
+\item Prove: \(\chi (G) \geq \omega (G)\)
+\item Prove: \(\chi (G) \geq \frac{n}{\alpha(G)}\)
+\end{itemize}
 
+\end{enumerate}
+\
 \chapter{Cardinality of Sets}
 {\em When do two finite sets have the same number of elements?
 
